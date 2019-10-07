@@ -105,3 +105,15 @@ struct LoginRequest: Request {
         return HttpData.Json(["username": "johndoe", "password": "123456"])
     }
 }
+
+struct PaginatedUsersRequest: PaginatedJsonRequest {
+    
+    typealias Result = PaginationContainer<[UserContainer]>
+    
+    let page: Int
+    let chunk: Int
+    
+    var routes: HttpRoute {
+        return ["pagination"]
+    }
+}

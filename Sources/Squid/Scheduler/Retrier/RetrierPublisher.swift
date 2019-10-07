@@ -81,12 +81,12 @@ where Upstream: Publisher, Downstream: Subscriber, RequestType: Request,
     private let request: RequestType
     private var retrier: Retrier
     
-    @Locked private var downstream: Downstream?
-    @Locked private var cancellable: Cancellable?
+    @RWLocked private var downstream: Downstream?
+    @RWLocked private var cancellable: Cancellable?
     
     init(upstream: Upstream, downstream: Downstream, request: RequestType, retrier: Retrier) {
         self.upstream = upstream
-        self._downstream.sync { $0 = downstream }
+        self._downstream.set(downstream)
         self.request = request
         self.retrier = retrier
     }
@@ -96,14 +96,14 @@ where Upstream: Publisher, Downstream: Subscriber, RequestType: Request,
         let retrier = RetrierSubscription<Upstream, Downstream>(
             upstreamSubscription: subscription
         )
-        self._downstream.sync { $0?.receive(subscription: retrier) }
+        self.downstream?.receive(subscription: retrier)
         retrier.request(.unlimited)
     }
     
     func receive(_ input: Input) -> Subscribers.Demand {
         // In case of a result being received, we simply pass the result along the chain - nothing
         // to do here.
-        return self._downstream.sync { $0?.receive(input) } ?? .none
+        return self.downstream?.receive(input) ?? .none
     }
     
     func receive(completion: Subscribers.Completion<Failure>) {
@@ -113,30 +113,32 @@ where Upstream: Publisher, Downstream: Subscriber, RequestType: Request,
             // First, we need to check whether we ought to retry the failed request.
             // In case the request should be retried, we need to subscribe to the publisher again
             // since the original subscription got destroyed upon error.
-            self._cancellable.sync { cancellable in
-                cancellable = self.retrier.retry(self.request, failingWith: error)
-                    .sink { retry in
-                        // We don't need to do anything if no retry is required. In case of a retry,
-                        // we need to ensure that a downstream element is set.
-                        guard retry, let downstream = self._downstream.sync({ $0 }) else {
-                            return
-                        }
-                        
-                        let retrier = RetrierSubscriber(
-                            upstream: self.upstream, downstream: downstream,
-                            request: self.request, retrier: self.retrier
-                        )
-                        self.upstream.subscribe(retrier)
-                        
-                        // Eventually, we want to force-cancel this cancellable. Do *not* perform
-                        // this operation synchronously.
-                        self._cancellable.async { $0?.cancel(); $0 = nil }
+            let cancellable = self.retrier.retry(self.request, failingWith: error)
+                .sink { retry in
+                    // We don't need to do anything if no retry is required. In case of a retry,
+                    // we need to ensure that a downstream element is set.
+                    guard retry, let downstream = self.downstream else {
+                        return
                     }
-            }
+                    
+                    let retrier = RetrierSubscriber(
+                        upstream: self.upstream, downstream: downstream,
+                        request: self.request, retrier: self.retrier
+                    )
+                    self.upstream.subscribe(retrier)
+                    
+                    // Eventually, we want to force-cancel this cancellable. Do *not* perform
+                    // this operation synchronously.
+//                    self._cancellable.async { $0?.cancel(); $0 = nil }
+                }
+            
+            // Do NOT assign this directly! Apparently, there is some kind of compiler bug causing
+            // bad access.
+            self._cancellable.write { $0 = cancellable }
         case .finished:
             // In case, the upstream publisher is finished, we simply pass this information along
             // the chain - nothing to do here.
-            self._downstream.sync { $0?.receive(completion: completion) }
+            self.downstream?.receive(completion: completion)
         }
     }
 //    

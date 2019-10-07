@@ -7,12 +7,12 @@
 
 import Foundation
 
-public protocol Stream {
+public protocol StreamRequest {
     
     associatedtype Message = Void
     associatedtype Result
     
-    var routingPaths: [String] { get }
+    var routes: HttpRoute { get }
     var query: HttpQuery { get }
     
     var priority: RequestPriority { get }

@@ -14,7 +14,7 @@ import OHHTTPStubsSwift
 class StubFactory {
     
     internal static let shared = StubFactory()
-    @Locked private var requestIsThrottled = true
+    @RWLocked private var requestIsThrottled = true
     
     private init() { }
     
@@ -112,14 +112,14 @@ class StubFactory {
     }
     
     func enableThrottling(_ throttle: Bool) {
-        self._requestIsThrottled.sync { $0 = throttle }
+        self._requestIsThrottled.write { $0 = throttle }
     }
     
     func throttlingRequest() {
         let descriptor = stub(
             condition: isHost("squid.borchero.com") && isMethodGET() && isPath("/throttle")
         ) { _ -> OHHTTPStubsResponse in
-            if self._requestIsThrottled.sync({ $0 }) {
+            if self.requestIsThrottled {
                 return .init(data: Data(), statusCode: 429, headers: [:])
             }
             return .init(data: Data(), statusCode: 200, headers: [:])
@@ -137,5 +137,46 @@ class StubFactory {
             return .init(data: Data(), statusCode: 200, headers: [:])
         }
         descriptor.name = "Authorization Stub"
+    }
+    
+    func paginatingRequest() {
+        class Counter {
+            var count = 1
+        }
+        
+        let counter = Counter()
+        let descriptor = stub(condition: { request -> Bool in
+            let expectedIndex = counter.count
+            counter.count += 1
+            return request.url?.host == "squid.borchero.com"
+                && request.url?.path == "/pagination"
+                && request.httpMethod == "GET"
+                && request.url?.query == "chunk=1&page=\(expectedIndex)"
+        }) { request -> OHHTTPStubsResponse in
+            let path = OHPathForFile("users.json", type(of: self))!
+            let data = try! Data(contentsOf: URL(fileURLWithPath: path))
+            let json = try! JSONSerialization.jsonObject(
+                with: data, options: []
+            ) as! [[String: Any]]
+            
+            let response = json.filter { ($0["id"] as! Int) == counter.count }
+            let finalResponse: [String: Any] = [
+                "data": response,
+                "page": counter.count,
+                "from": counter.count,
+                "to": counter.count + 1,
+                "chunk": 1,
+                "totalCount": 2,
+                "totalPageCount": 2
+            ]
+            let responseData = try! JSONSerialization.data(withJSONObject: finalResponse, options: [])
+            
+            return .init(
+                data: responseData,
+                statusCode: 200,
+                headers: ["Content-Type": "application/json"]
+            )
+        }
+        descriptor.name = "Pagination Stub"
     }
 }

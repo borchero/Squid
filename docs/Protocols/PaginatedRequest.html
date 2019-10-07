@@ -14,7 +14,7 @@
     <a title="PaginatedRequest Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Squid Docs</a> (86% documented)</p>
+        <p><a href="../index.html">Squid Docs</a> (96% documented)</p>
         <p class="header-right"><a href="https://github.com/borchero/squid"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -97,7 +97,7 @@
                 <a href="../Protocols/PaginatedData.html">PaginatedData</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols.html#/s:5Squid20PaginatedJsonRequestP">PaginatedJsonRequest</a>
+                <a href="../Protocols/PaginatedJsonRequest.html">PaginatedJsonRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/PaginatedRequest.html">PaginatedRequest</a>
@@ -115,7 +115,7 @@
                 <a href="../Protocols/StatelessRetrier.html">StatelessRetrier</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/Stream.html">Stream</a>
+                <a href="../Protocols/StreamRequest.html">StreamRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/UrlConvertible.html">UrlConvertible</a>
@@ -147,6 +147,9 @@
                 <a href="../Structs/HttpQuery.html">HttpQuery</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/HttpRoute.html">HttpRoute</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/NilRetrier.html">NilRetrier</a>
               </li>
               <li class="nav-group-task">
@@ -172,66 +175,19 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>A paginated request describes a request which loads a large number of elements over multiple
+requests, i.e. over several pages. A paginated request is a usual request which defines two
+additional properties, namely <code>page</code> and <code>chunk</code>. These are used to load the elements
+incrementally. Note that the only supported HTTP method is GET and no request body must
+therefore be defined.</p>
+
+<p>In addition to a simple request, the paginated request also requires the result type to conform
+to the <code><a href="../Protocols/PaginatedData.html">PaginatedData</a></code> protocol. This enables automating requesting multiple pages on demand.</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
               <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5Squid16PaginatedRequestP4BaseQa"></a>
-                    <a name="//apple_ref/swift/Alias/Base" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid16PaginatedRequestP4BaseQa">Base</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">Base</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Request.html">Request</a></span> <span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Base</span><span class="o">.</span><span class="kt">Result</span> <span class="o">==</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Result</span><span class="o">.</span><span class="kt">Data</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5Squid16PaginatedRequestP4base4BaseQzvp"></a>
-                    <a name="//apple_ref/swift/Property/base" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid16PaginatedRequestP4base4BaseQzvp">base</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">base</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PaginatedRequest.html#/s:5Squid16PaginatedRequestP4BaseQa">Base</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -245,7 +201,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The index of the currently requested page.</p>
 
                       </div>
                       <div class="declaration">
@@ -272,7 +228,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The (maximum) number of elements that are requested. The number of returned elements is only
+smaller than the given chunk if the given page index is the index of the last page and the
+number of elements is not divisible by the chunk size.</p>
 
                       </div>
                       <div class="declaration">
@@ -288,217 +246,10 @@
                 </li>
               </ul>
             </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5Squid7RequestP6methodAA10HttpMethodOvp"></a>
-                    <a name="//apple_ref/swift/Property/method" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid7RequestP6methodAA10HttpMethodOvp">method</a>
-                    </code>
-                      <span class="declaration-note">
-                        Extension method
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">method</span><span class="p">:</span> <span class="kt"><a href="../Enums/HttpMethod.html">HttpMethod</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5Squid7RequestP12routingPathsSaySSGvp"></a>
-                    <a name="//apple_ref/swift/Property/routingPaths" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid7RequestP12routingPathsSaySSGvp">routingPaths</a>
-                    </code>
-                      <span class="declaration-note">
-                        Extension method
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">routingPaths</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5Squid7RequestP6headerAA10HttpHeaderVvp"></a>
-                    <a name="//apple_ref/swift/Property/header" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid7RequestP6headerAA10HttpHeaderVvp">header</a>
-                    </code>
-                      <span class="declaration-note">
-                        Extension method
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">header</span><span class="p">:</span> <span class="kt"><a href="../Structs/HttpHeader.html">HttpHeader</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5Squid7RequestP5queryAA9HttpQueryVvp"></a>
-                    <a name="//apple_ref/swift/Property/query" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid7RequestP5queryAA9HttpQueryVvp">query</a>
-                    </code>
-                      <span class="declaration-note">
-                        Extension method
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">query</span><span class="p">:</span> <span class="kt"><a href="../Structs/HttpQuery.html">HttpQuery</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5Squid7RequestP4bodyAA8HttpBody_pvp"></a>
-                    <a name="//apple_ref/swift/Property/body" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid7RequestP4bodyAA8HttpBody_pvp">body</a>
-                    </code>
-                      <span class="declaration-note">
-                        Extension method
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kt"><a href="../Protocols/HttpBody.html">HttpBody</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5Squid7RequestP19acceptedStatusCodesSNySiGvp"></a>
-                    <a name="//apple_ref/swift/Property/acceptedStatusCodes" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid7RequestP19acceptedStatusCodesSNySiGvp">acceptedStatusCodes</a>
-                    </code>
-                      <span class="declaration-note">
-                        Extension method
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">acceptedStatusCodes</span><span class="p">:</span> <span class="kt">CountableClosedRange</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5Squid7RequestP8priorityAA0B8PriorityOvp"></a>
-                    <a name="//apple_ref/swift/Property/priority" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid7RequestP8priorityAA0B8PriorityOvp">priority</a>
-                    </code>
-                      <span class="declaration-note">
-                        Extension method
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">priority</span><span class="p">:</span> <span class="kt"><a href="../Enums/RequestPriority.html">RequestPriority</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-05)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-07)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

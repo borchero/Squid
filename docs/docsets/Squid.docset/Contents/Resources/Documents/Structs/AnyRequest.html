@@ -14,7 +14,7 @@
     <a title="AnyRequest Structure Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Squid Docs</a> (86% documented)</p>
+        <p><a href="../index.html">Squid Docs</a> (96% documented)</p>
         <p class="header-right"><a href="https://github.com/borchero/squid"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -97,7 +97,7 @@
                 <a href="../Protocols/PaginatedData.html">PaginatedData</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols.html#/s:5Squid20PaginatedJsonRequestP">PaginatedJsonRequest</a>
+                <a href="../Protocols/PaginatedJsonRequest.html">PaginatedJsonRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/PaginatedRequest.html">PaginatedRequest</a>
@@ -115,7 +115,7 @@
                 <a href="../Protocols/StatelessRetrier.html">StatelessRetrier</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/Stream.html">Stream</a>
+                <a href="../Protocols/StreamRequest.html">StreamRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/UrlConvertible.html">UrlConvertible</a>
@@ -145,6 +145,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/HttpQuery.html">HttpQuery</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/HttpRoute.html">HttpRoute</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/NilRetrier.html">NilRetrier</a>
@@ -228,9 +231,9 @@ scheduling can be performed even easier.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5Squid7RequestP12routingPathsSaySSGvp"></a>
-                    <a name="//apple_ref/swift/Property/routingPaths" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid7RequestP12routingPathsSaySSGvp">routingPaths</a>
+                    <a name="/s:5Squid7RequestP6routesAA9HttpRouteVvp"></a>
+                    <a name="//apple_ref/swift/Property/routes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid7RequestP6routesAA9HttpRouteVvp">routes</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -244,7 +247,7 @@ scheduling can be performed even easier.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">routingPaths</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">routes</span><span class="p">:</span> <span class="kt"><a href="../Structs/HttpRoute.html">HttpRoute</a></span></code></pre>
 
                         </div>
                       </div>
@@ -546,9 +549,9 @@ scheduling can be performed even easier.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5Squid10AnyRequestV_12routingPaths5query6header4body19acceptedStatusCodes8priority7serviceAcA10HttpMethodO_SaySSGAA0N5QueryVAA0N6HeaderVAA0N4Body_pSNySiGAA0C8PriorityOAA0N7Service_ptcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(_:routingPaths:query:header:body:acceptedStatusCodes:priority:service:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid10AnyRequestV_12routingPaths5query6header4body19acceptedStatusCodes8priority7serviceAcA10HttpMethodO_SaySSGAA0N5QueryVAA0N6HeaderVAA0N4Body_pSNySiGAA0C8PriorityOAA0N7Service_ptcfc">init(_:routingPaths:query:header:body:acceptedStatusCodes:priority:service:)</a>
+                    <a name="/s:5Squid10AnyRequestV_6routes5query6header4body19acceptedStatusCodes8priority7serviceAcA10HttpMethodO_AA0M5RouteVAA0M5QueryVAA0M6HeaderVAA0M4Body_pSNySiGAA0C8PriorityOAA0M7Service_ptcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:routes:query:header:body:acceptedStatusCodes:priority:service:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid10AnyRequestV_6routes5query6header4body19acceptedStatusCodes8priority7serviceAcA10HttpMethodO_AA0M5RouteVAA0M5QueryVAA0M6HeaderVAA0M4Body_pSNySiGAA0C8PriorityOAA0M7Service_ptcfc">init(_:routes:query:header:body:acceptedStatusCodes:priority:service:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -564,7 +567,7 @@ scheduling can be performed even easier.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">method</span><span class="p">:</span> <span class="kt"><a href="../Enums/HttpMethod.html">HttpMethod</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">get</span><span class="p">,</span>
-            <span class="nv">routingPaths</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+            <span class="nv">routes</span><span class="p">:</span> <span class="kt"><a href="../Structs/HttpRoute.html">HttpRoute</a></span><span class="p">,</span>
             <span class="nv">query</span><span class="p">:</span> <span class="kt"><a href="../Structs/HttpQuery.html">HttpQuery</a></span> <span class="o">=</span> <span class="p">[:],</span>
             <span class="nv">header</span><span class="p">:</span> <span class="kt"><a href="../Structs/HttpHeader.html">HttpHeader</a></span> <span class="o">=</span> <span class="p">[:],</span>
             <span class="nv">body</span><span class="p">:</span> <span class="kt"><a href="../Protocols/HttpBody.html">HttpBody</a></span> <span class="o">=</span> <span class="kt"><a href="../Enums/HttpData.html">HttpData</a></span><span class="o">.</span><span class="kt">Empty</span><span class="p">(),</span>
@@ -593,13 +596,13 @@ scheduling can be performed even easier.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>routingPaths</em>
+                                <em>routes</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The routing paths for the request. The final URL is constructed
-                      by making use of the given <code>service</code>.</p>
+                                  <p>The routing paths for the request. The final URL is constructed by
+                making use of the given <code>service</code>.</p>
                                 </div>
                               </td>
                             </tr>
@@ -727,7 +730,7 @@ in this case. This implies that the user should <strong>not</strong> use the <co
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-05)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-07)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

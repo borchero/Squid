@@ -8,48 +8,64 @@
 import Foundation
 
 @propertyWrapper
-internal class Atomic {
+internal class Atomic<Value: Numeric> {
     
-    postfix static func ++ (atomic: Atomic) -> Int64 {
+    @discardableResult
+    postfix static func ++ (atomic: Atomic) -> Value {
         let value = atomic.value
         atomic.increment()
         return value
     }
     
-    private var value: Int64
+    private var value: Value
+    private let lockingQueue = DispatchQueue(label: "")
     
-    init(wrappedValue: Int64) {
+    init(wrappedValue: Value) {
         self.value = wrappedValue
     }
     
-    var wrappedValue: Int64 {
-        return self.value
+    var wrappedValue: Value {
+        return self.lockingQueue.sync { self.value }
     }
     
     private func increment() {
-        OSAtomicIncrement64(&self.value)
+        self.lockingQueue.sync {
+            self.value += 1
+        }
     }
 }
 
 @propertyWrapper
-internal class Locked<Value> {
+internal class RWLocked<Value> {
     
-    private(set) var wrappedValue: Value
-    private let lockingQueue = DispatchQueue(label: "", qos: .default)
+    private let lock = DispatchQueue(label: "", attributes: .concurrent)
+    private var value: Value
     
     init(wrappedValue: Value) {
-        self.wrappedValue = wrappedValue
+        self.value = wrappedValue
     }
     
-    func sync<R>(_ execute: (inout Value) -> R) -> R {
-        return lockingQueue.sync {
-            execute(&self.wrappedValue)
+    var wrappedValue: Value {
+        get {
+            return self.read { $0 }
+        } set {
+            self.write { $0 = newValue }
         }
     }
     
-    func async(_ execute: @escaping (inout Value) -> Void) {
-        lockingQueue.async {
-            execute(&self.wrappedValue)
+    func set(_ value: Value) {
+        self.value = value
+    }
+    
+    func read<R>(_ execute: (Value) throws -> R) rethrows -> R {
+        return try lock.sync {
+            try execute(self.value)
+        }
+    }
+    
+    func write<R>(_ execute: (inout Value) throws -> R) rethrows -> R {
+        return try lock.sync(flags: .barrier) {
+            return try execute(&self.value)
         }
     }
 }

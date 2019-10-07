@@ -12,10 +12,14 @@ internal class NetworkScheduler {
     
     // MARK: Static
     static let shared = NetworkScheduler()
-    @Atomic private var runningIdentifier = 0
+    
+    #if DEBUG
+    @Atomic private var runningIdentifier: Int = 0
+    #endif
     
     // MARK: Properties
-    @Locked private var sessions: [URLSessionConfiguration: URLSession] = [:]
+    private let lockingQueue = DispatchQueue(label: "squid-scheduler-locking-queue")
+    private var sessions: [URLSessionConfiguration: URLSession] = [:]
     
     private let queues: [RequestPriority: DispatchQueue] = {
         return [
@@ -35,7 +39,9 @@ internal class NetworkScheduler {
     
     // MARK: Instance Methods
     func schedule<R>(_ request: R, service: HttpService) -> Response<R> where R: Request {
+        #if DEBUG
         let requestId = self._runningIdentifier++
+        #endif
         
         // 1) Build HTTP request
         let httpRequest = Future<HttpRequest, Squid.Error> { promise in
@@ -46,11 +52,8 @@ internal class NetworkScheduler {
             }
             
             // 1.2) Validate request
-            if (request.method == .get || request.method == .delete)
-                && !(request.body is HttpData.Empty) {
-                promise(.failure(.invalidRequest(
-                    message: "Request must not have HTTP method GET/DELETE and a non-empty body."
-                )))
+            if let error = request.validate() {
+                promise(.failure(error))
             }
             
             // 1.3) Modify request to carry all required data
@@ -71,7 +74,7 @@ internal class NetworkScheduler {
         }
         
         // 2) Get URL session
-        let session = self.getSession(for: service.sessionConfiguration)
+        let session = self.lockingQueue.sync { self.getSession(for: service.sessionConfiguration) }
         
         // 3) Submit task
         #if DEBUG
@@ -127,21 +130,23 @@ internal class NetworkScheduler {
     
     // MARK: Private Methods
     private func getSession(for configuration: URLSessionConfiguration) -> URLSession {
-        return self._sessions.sync { sessions -> URLSession in
-            if let session = sessions[configuration] {
-                return session
-            }
-            let session = URLSession(configuration: configuration)
-            sessions[configuration] = session
+        if let session = self.sessions[configuration] {
             return session
         }
+        let session = URLSession(
+            configuration: configuration,
+            delegate: URLSessionDelegateProxy.shared,
+            delegateQueue: nil
+        )
+        self.sessions[configuration] = session
+        return session
     }
 }
 
 // MARK: Extensions
 extension Publisher where Output == HttpRequest {
     
-    func debug<R>(request: R, withId id: Int64) -> Publishers.HandleEvents<Self> where R: Request {
+    func debug<R>(request: R, withId id: Int) -> Publishers.HandleEvents<Self> where R: Request {
         return self.handleEvents(receiveOutput: { httpRequest in
             Squid.Logger.shared.log(
                 "Scheduled request `\(type(of: request))` with identifier \(id):\n" +
@@ -166,7 +171,7 @@ extension Publisher where Output == (data: Data, response: URLResponse), Failure
 extension Publisher where Output == (data: Data, response: HTTPURLResponse) {
     
     fileprivate func debugResponse<R>(
-        of request: R, withId id: Int64
+        of request: R, withId id: Int
     ) -> Publishers.HandleEvents<Self> where R: Request {
         return self.handleEvents(receiveOutput: { result in
             Squid.Logger.shared.log(

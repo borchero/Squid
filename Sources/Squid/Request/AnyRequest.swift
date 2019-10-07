@@ -63,8 +63,8 @@ public struct AnyRequest: Request {
     /// Initializes a new request based on a predefined `HttpService`.
     ///
     /// - Parameter method: The HTTP method for the request. Defaults to GET.
-    /// - Parameter routingPaths: The routing paths for the request. The final URL is constructed
-    ///                           by making use of the given `service`.
+    /// - Parameter routes: The routing paths for the request. The final URL is constructed by
+    ///                     making use of the given `service`.
     /// - Parameter query: The request's query parameters. Defaults to no parameters.
     /// - Parameter header: The request's headers. Defaults to no header fields.
     /// - Parameter body: The request's body. Defaults to an empty body.

@@ -1,184 +1,51 @@
 {
   "warnings": [
     {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Request/Pagination/PaginatedData.swift",
+      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/StreamRequest/StreamRequest.swift",
       "line": 10,
-      "symbol": "PaginatedData",
+      "symbol": "StreamRequest",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Request/Pagination/PaginatedData.swift",
+      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/StreamRequest/StreamRequest.swift",
       "line": 12,
-      "symbol": "PaginatedData.Data",
+      "symbol": "StreamRequest.Message",
       "symbol_kind": "source.lang.swift.decl.associatedtype",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Request/Pagination/PaginatedData.swift",
-      "line": 14,
-      "symbol": "PaginatedData.data",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Request/Pagination/PaginatedData.swift",
-      "line": 16,
-      "symbol": "PaginatedData.page",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Request/Pagination/PaginatedData.swift",
-      "line": 17,
-      "symbol": "PaginatedData.from",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Request/Pagination/PaginatedData.swift",
-      "line": 18,
-      "symbol": "PaginatedData.to",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Request/Pagination/PaginatedData.swift",
-      "line": 19,
-      "symbol": "PaginatedData.chunk",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Request/Pagination/PaginatedData.swift",
-      "line": 21,
-      "symbol": "PaginatedData.totalCount",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Request/Pagination/PaginatedData.swift",
-      "line": 22,
-      "symbol": "PaginatedData.totalPageCount",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Request/Pagination/PaginatedData.swift",
-      "line": 25,
-      "symbol": "PaginatedData",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Request/Pagination/PaginatedData.swift",
-      "line": 27,
-      "symbol": "PaginatedData.count",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Request/Pagination/PaginatedData.swift",
-      "line": 31,
-      "symbol": "PaginatedData.isLastPage",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Request/Pagination/PaginatedRequest.swift",
-      "line": 10,
-      "symbol": "PaginatedRequest",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Request/Pagination/PaginatedRequest.swift",
-      "line": 12,
-      "symbol": "PaginatedRequest.Base",
-      "symbol_kind": "source.lang.swift.decl.associatedtype",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Request/Pagination/PaginatedRequest.swift",
-      "line": 14,
-      "symbol": "PaginatedRequest.base",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Request/Pagination/PaginatedRequest.swift",
-      "line": 15,
-      "symbol": "PaginatedRequest.page",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Request/Pagination/PaginatedRequest.swift",
-      "line": 16,
-      "symbol": "PaginatedRequest.chunk",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Request/Pagination/PaginatedRequest.swift",
-      "line": 19,
-      "symbol": "PaginatedRequest",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Request/Pagination/PaginatedRequest.swift",
-      "line": 53,
-      "symbol": "PaginatedJsonRequest",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Stream/Stream.swift",
-      "line": 10,
-      "symbol": "Stream",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Stream/Stream.swift",
-      "line": 12,
-      "symbol": "Stream.Message",
-      "symbol_kind": "source.lang.swift.decl.associatedtype",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Stream/Stream.swift",
+      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/StreamRequest/StreamRequest.swift",
       "line": 13,
-      "symbol": "Stream.Result",
+      "symbol": "StreamRequest.Result",
       "symbol_kind": "source.lang.swift.decl.associatedtype",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Stream/Stream.swift",
+      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/StreamRequest/StreamRequest.swift",
       "line": 15,
-      "symbol": "Stream.routingPaths",
+      "symbol": "StreamRequest.routes",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Stream/Stream.swift",
+      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/StreamRequest/StreamRequest.swift",
       "line": 16,
-      "symbol": "Stream.query",
+      "symbol": "StreamRequest.query",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Stream/Stream.swift",
+      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/StreamRequest/StreamRequest.swift",
       "line": 18,
-      "symbol": "Stream.priority",
+      "symbol": "StreamRequest.priority",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/Stream/Stream.swift",
+      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/StreamRequest/StreamRequest.swift",
       "line": 20,
-      "symbol": "Stream.decode(_:)",
+      "symbol": "StreamRequest.decode(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     }

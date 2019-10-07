@@ -14,7 +14,7 @@
     <a title="PaginatedData Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Squid Docs</a> (86% documented)</p>
+        <p><a href="../index.html">Squid Docs</a> (96% documented)</p>
         <p class="header-right"><a href="https://github.com/borchero/squid"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -97,7 +97,7 @@
                 <a href="../Protocols/PaginatedData.html">PaginatedData</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols.html#/s:5Squid20PaginatedJsonRequestP">PaginatedJsonRequest</a>
+                <a href="../Protocols/PaginatedJsonRequest.html">PaginatedJsonRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/PaginatedRequest.html">PaginatedRequest</a>
@@ -115,7 +115,7 @@
                 <a href="../Protocols/StatelessRetrier.html">StatelessRetrier</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/Stream.html">Stream</a>
+                <a href="../Protocols/StreamRequest.html">StreamRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/UrlConvertible.html">UrlConvertible</a>
@@ -147,6 +147,9 @@
                 <a href="../Structs/HttpQuery.html">HttpQuery</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/HttpRoute.html">HttpRoute</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/NilRetrier.html">NilRetrier</a>
               </li>
               <li class="nav-group-task">
@@ -172,7 +175,9 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>The paginated data protocol defines a common interface for result types of paginated requests.
+The properties of the protocol are leveraged to enable handling paginated requests
+automatically by observing the provided properties.</p>
 
           </section>
           <section class="section task-group-section">
@@ -181,9 +186,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5Squid13PaginatedDataP0C0Qa"></a>
-                    <a name="//apple_ref/swift/Alias/Data" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid13PaginatedDataP0C0Qa">Data</a>
+                    <a name="/s:5Squid13PaginatedDataP0C4TypeQa"></a>
+                    <a name="//apple_ref/swift/Alias/DataType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid13PaginatedDataP0C4TypeQa">DataType</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -191,14 +196,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The actual type of the requested data (usually provided as a field of the top-level JSON).</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">Data</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">DataType</span></code></pre>
 
                         </div>
                       </div>
@@ -208,9 +213,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5Squid13PaginatedDataP4data0C0Qzvp"></a>
+                    <a name="/s:5Squid13PaginatedDataP4data0C4TypeQzvp"></a>
                     <a name="//apple_ref/swift/Property/data" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid13PaginatedDataP4data0C0Qzvp">data</a>
+                    <a class="token" href="#/s:5Squid13PaginatedDataP4data0C4TypeQzvp">data</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -218,14 +223,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The actual data that is received by the request.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">data</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PaginatedData.html#/s:5Squid13PaginatedDataP0C0Qa">Data</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">data</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PaginatedData.html#/s:5Squid13PaginatedDataP0C4TypeQa">DataType</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -245,7 +250,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The index of the current page. By convention, an index of 1 indicates the first page. You
+will need to overwrite the <code><a href="../Protocols/PaginatedData.html#/s:5Squid13PaginatedDataP18zeroBasedPageIndexSbvp">zeroBasedPageIndex</a></code> property to return <code>true</code> when you want to
+use an API where the first page has index 0.</p>
 
                       </div>
                       <div class="declaration">
@@ -272,7 +279,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The index of the first element of the data (inclusive).</p>
 
                       </div>
                       <div class="declaration">
@@ -299,7 +306,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The index of the last element of the data (exclusive).</p>
 
                       </div>
                       <div class="declaration">
@@ -326,7 +333,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The requested number of items on the page. Might be larger than the actual number of
+elements.</p>
 
                       </div>
                       <div class="declaration">
@@ -353,7 +361,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The total number of elements that are available.</p>
 
                       </div>
                       <div class="declaration">
@@ -380,7 +388,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The total number of pages that are available given the chunk.</p>
 
                       </div>
                       <div class="declaration">
@@ -388,6 +396,41 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">totalPageCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid13PaginatedDataP18zeroBasedPageIndexSbvp"></a>
+                    <a name="//apple_ref/swift/Property/zeroBasedPageIndex" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid13PaginatedDataP18zeroBasedPageIndexSbvp">zeroBasedPageIndex</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether the first page of the paginated request is indexed with 0. By default, this property
+is <code>false</code> and indicates that the first page is indexed with 1.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">zeroBasedPageIndex</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -414,7 +457,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The number of elements currently returned.</p>
 
                       </div>
                       <div class="declaration">
@@ -444,7 +487,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Returns whether the returned page of the data is the last page available.</p>
 
                       </div>
                       <div class="declaration">
@@ -463,7 +506,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-05)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-07)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Stream Protocol Reference</title>
+    <title>HttpRoute Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,11 +10,11 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Protocol/Stream" class="dashAnchor"></a>
-    <a title="Stream Protocol Reference"></a>
+    <a name="//apple_ref/swift/Struct/HttpRoute" class="dashAnchor"></a>
+    <a title="HttpRoute Structure Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Squid Docs</a> (86% documented)</p>
+        <p><a href="../index.html">Squid Docs</a> (96% documented)</p>
         <p class="header-right"><a href="https://github.com/borchero/squid"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">Squid Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Stream Protocol Reference
+        HttpRoute Structure Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -97,7 +97,7 @@
                 <a href="../Protocols/PaginatedData.html">PaginatedData</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols.html#/s:5Squid20PaginatedJsonRequestP">PaginatedJsonRequest</a>
+                <a href="../Protocols/PaginatedJsonRequest.html">PaginatedJsonRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/PaginatedRequest.html">PaginatedRequest</a>
@@ -115,7 +115,7 @@
                 <a href="../Protocols/StatelessRetrier.html">StatelessRetrier</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/Stream.html">Stream</a>
+                <a href="../Protocols/StreamRequest.html">StreamRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/UrlConvertible.html">UrlConvertible</a>
@@ -147,6 +147,9 @@
                 <a href="../Structs/HttpQuery.html">HttpQuery</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/HttpRoute.html">HttpRoute</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/NilRetrier.html">NilRetrier</a>
               </li>
               <li class="nav-group-task">
@@ -165,14 +168,16 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Stream</h1>
+            <h1>HttpRoute</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Stream</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">HttpRoute</span></code></pre>
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>An HTTP route represents a set of URL routing paths. Essentially, a set of routing paths can
+simply be represented by an array of strings. However, this entity enables initializing HTTP
+routes without having to explicitly convert all path components to <code>String</code>.</p>
 
           </section>
           <section class="section task-group-section">
@@ -181,9 +186,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5Squid6StreamP7MessageQa"></a>
-                    <a name="//apple_ref/swift/Alias/Message" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid6StreamP7MessageQa">Message</a>
+                    <a name="/s:5Squid9HttpRouteVyACSayypGcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid9HttpRouteVyACSayypGcfc">init(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -191,26 +196,82 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initializes a new HTTP route.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">Message</span> <span class="o">=</span> <span class="kt">Void</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">paths</span><span class="p">:</span> <span class="p">[</span><span class="kt">Any</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>parameters</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The HTTP routing paths. All paths are converted to strings using
+                    the <code>String.init(describing:)</code> initializer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid9HttpRouteV1poiyA2C_ACtFZ"></a>
+                    <a name="//apple_ref/swift/Method/+(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid9HttpRouteV1poiyA2C_ACtFZ">+(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Combines the routing paths of two HTTP routes by appending the paths of the latter route to
+the paths of the former route.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">+</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">HttpRoute</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">HttpRoute</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">HttpRoute</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5Squid6StreamP6ResultQa"></a>
-                    <a name="//apple_ref/swift/Alias/Result" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid6StreamP6ResultQa">Result</a>
+                    <a name="/s:s25ExpressibleByArrayLiteralP05arrayD0x0cD7ElementQzd_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(arrayLiteral:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s25ExpressibleByArrayLiteralP05arrayD0x0cD7ElementQzd_tcfc">init(arrayLiteral:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -218,122 +279,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">Result</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5Squid6StreamP12routingPathsSaySSGvp"></a>
-                    <a name="//apple_ref/swift/Property/routingPaths" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid6StreamP12routingPathsSaySSGvp">routingPaths</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">routingPaths</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5Squid6StreamP5queryAA9HttpQueryVvp"></a>
-                    <a name="//apple_ref/swift/Property/query" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid6StreamP5queryAA9HttpQueryVvp">query</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">query</span><span class="p">:</span> <span class="kt"><a href="../Structs/HttpQuery.html">HttpQuery</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5Squid6StreamP8priorityAA15RequestPriorityOvp"></a>
-                    <a name="//apple_ref/swift/Property/priority" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid6StreamP8priorityAA15RequestPriorityOvp">priority</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">priority</span><span class="p">:</span> <span class="kt"><a href="../Enums/RequestPriority.html">RequestPriority</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5Squid6StreamP6decodey6ResultQzSo25NSURLSessionWebSocketTaskC10FoundationE7MessageOKF"></a>
-                    <a name="//apple_ref/swift/Method/decode(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid6StreamP6decodey6ResultQzSo25NSURLSessionWebSocketTaskC10FoundationE7MessageOKF">decode(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">decode</span><span class="p">(</span><span class="n">_</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">URLSessionWebSocketTask</span><span class="o">.</span><span class="kt"><a href="../Protocols/Stream.html#/s:5Squid6StreamP7MessageQa">Message</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/Stream.html#/s:5Squid6StreamP6ResultQa">Result</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">arrayLiteral</span> <span class="nv">elements</span><span class="p">:</span> <span class="kt">Any</span><span class="o">...</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -345,7 +297,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-05)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-07)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

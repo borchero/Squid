@@ -9,7 +9,7 @@ let package = Package(
         .macOS(.v10_15), .iOS(.v13)
     ],
     products: [
-        .library(name: "Squid", xtargets: ["Squid"]),
+        .library(name: "Squid", targets: ["Squid"]),
     ],
     dependencies: [
         .package(url: "https://github.com/AliSoftware/OHHTTPStubs.git",

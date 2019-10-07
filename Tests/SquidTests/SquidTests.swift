@@ -8,18 +8,21 @@
 import XCTest
 import OHHTTPStubsCore
 import OHHTTPStubsSwift
+import Combine
 @testable import Squid
 
-final class SquidTests: XCTestCase {
+final class SquidRequestTests: XCTestCase {
     
-    static var allTests = [
+    static let allTests = [
         ("testAnyRequest", testAnyRequest),
         ("testRequest", testRequest),
         ("testPostRequest", testPostRequest),
         ("testImageRequest", testImageRequest),
         ("testQueryRequest", testQueryRequest),
         ("testBackoffRetrier", testBackoffRetrier),
-        ("testHttpHeaders", testHttpHeaders)
+        ("testHttpHeaders", testHttpHeaders),
+        ("testPaginationRequest", testPaginationRequest),
+        ("testAtomicCounter", testAtomicCounter)
     ]
     
     override func tearDown() {
@@ -155,5 +158,46 @@ final class SquidTests: XCTestCase {
             }
         
         wait(for: [expectation], timeout: 0.1)
+    }
+    
+    func testPaginationRequest() {
+        StubFactory.shared.paginatingRequest()
+        
+        var current = 1
+        
+        let expectation1 = XCTestExpectation()
+        let expectation2 = XCTestExpectation()
+        
+        let service = MyApi()
+        let request = PaginatedUsersRequest(page: 1, chunk: 1)
+        request.schedule(with: service)
+    }
+    
+    func testAtomicCounter() {
+        let counter = MyAtomicCounter()
+        
+        threadPool(10) {
+            for _ in 0..<1_000 {
+                counter.increment()
+            }
+        }
+        
+        XCTAssertEqual(counter.count, 10_000)
+    }
+    
+    private func threadPool(_ count: Int = 8, execute: @escaping () -> Void) {
+        var threads: [Thread] = []
+        
+        // Create threads
+        for _ in 0..<count {
+            let thread = Thread(block: execute)
+            threads.append(thread)
+            thread.start()
+        }
+        
+        // "Join" threads (busy waiting)
+        for thread in threads {
+            while !thread.isFinished { }
+        }
     }
 }

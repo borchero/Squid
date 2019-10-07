@@ -7,50 +7,47 @@
 
 import Foundation
 
+/// A paginated request describes a request which loads a large number of elements over multiple
+/// requests, i.e. over several pages. A paginated request is a usual request which defines two
+/// additional properties, namely `page` and `chunk`. These are used to load the elements
+/// incrementally. Note that the only supported HTTP method is GET and no request body must
+/// therefore be defined.
+///
+/// In addition to a simple request, the paginated request also requires the result type to conform
+/// to the `PaginatedData` protocol. This enables automating requesting multiple pages on demand.
 public protocol PaginatedRequest: Request where Result: PaginatedData {
     
-    associatedtype Base: Request where Base.Result == Result.Data
-    
-    var base: Base { get }
+    /// The index of the currently requested page.
     var page: Int { get }
+    
+    /// The (maximum) number of elements that are requested. The number of returned elements is only
+    /// smaller than the given chunk if the given page index is the index of the last page and the
+    /// number of elements is not divisible by the chunk size.
     var chunk: Int { get }
 }
 
-extension PaginatedRequest {
+/// A paginated JSON request is equivalent to the `PaginatedRequest`. The only difference is the
+/// requirement that the result type is `Decodable`.
+public protocol PaginatedJsonRequest: PaginatedRequest where Result: Decodable {
     
-    public var method: HttpMethod {
-        assert(self.base.method == .get, "Paginated request must use HTTP method GET.")
-        return self.base.method
-    }
-    
-    public var routingPaths: [String] {
-        return self.base.routingPaths
-    }
-    
-    public var header: HttpHeader {
-        return self.base.header
-    }
-    
-    public var query: HttpQuery {
-        let query = self.base.query
-        return query + ["page": self.page, "chunk": self.chunk]
-    }
-    
-    public var body: HttpBody {
-        assert(self.base.body is HttpData.Empty, "Paginated request must not have an HTTP body.")
-        return self.base.body
-    }
-    
-    public var acceptedStatusCodes: CountableClosedRange<Int> {
-        return self.base.acceptedStatusCodes
-    }
-    
-    public var priority: RequestPriority {
-        return self.base.priority
-    }
+    /// Defines whether the decoder decoding the raw data to the result type should consider
+    /// camel case in the Swift code as snake case in the JSON (i.e. `userID` would be parsed from
+    /// the field `user_id` if not specified explicity in the type to decode to). By default,
+    /// attributes are decoded using snake case attribute names.
+    var decodeSnakeCase: Bool { get }
 }
 
-public protocol PaginatedJsonRequest: JsonRequest where Result: PaginatedData {
+extension PaginatedJsonRequest {
     
+    public var decodeSnakeCase: Bool {
+        return true
+    }
     
+    public func decode(_ data: Data) throws -> Result {
+        let decoder = JSONDecoder()
+        if self.decodeSnakeCase {
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+        }
+        return try decoder.decode(Result.self, from: data)
+    }
 }

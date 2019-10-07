@@ -65,10 +65,6 @@ public protocol Request {
 
 extension Request {
     
-    public var routingPaths: [String] {
-        return []
-    }
-    
     public var method: HttpMethod {
         return .get
     }
@@ -120,6 +116,22 @@ extension Request where Result == Void {
     
     public func decode(_ data: Data) throws -> Result {
         return ()
+    }
+}
+
+extension Request {
+    
+    internal func validate() -> Squid.Error? {
+        if (self.method == .get || self.method == .delete) && !(self.body is HttpData.Empty) {
+            return .invalidRequest(
+                message: "Request must not have HTTP method GET/DELETE and a non-empty body."
+            )
+        } else if (self.method == .post || self.method == .put) && (self.body is HttpData.Empty) {
+            return .invalidRequest(
+                message: "Request must not have HTTP method POST/PUT and an empty body."
+            )
+        }
+        return nil
     }
 }
 
