@@ -1,54 +1,6 @@
 {
   "warnings": [
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/StreamRequest/StreamRequest.swift",
-      "line": 10,
-      "symbol": "StreamRequest",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/StreamRequest/StreamRequest.swift",
-      "line": 12,
-      "symbol": "StreamRequest.Message",
-      "symbol_kind": "source.lang.swift.decl.associatedtype",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/StreamRequest/StreamRequest.swift",
-      "line": 13,
-      "symbol": "StreamRequest.Result",
-      "symbol_kind": "source.lang.swift.decl.associatedtype",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/StreamRequest/StreamRequest.swift",
-      "line": 15,
-      "symbol": "StreamRequest.routes",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/StreamRequest/StreamRequest.swift",
-      "line": 16,
-      "symbol": "StreamRequest.query",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/StreamRequest/StreamRequest.swift",
-      "line": 18,
-      "symbol": "StreamRequest.priority",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/borchero/Documents/bx/swift/Squid/Sources/Squid/StreamRequest/StreamRequest.swift",
-      "line": 20,
-      "symbol": "StreamRequest.decode(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    }
+
   ],
   "source_directory": "/Users/borchero/Documents/bx/swift/Squid"
 }

@@ -99,7 +99,6 @@ internal class NetworkScheduler {
         // 4) Check for response code
         let validatedResponse = httpTask
             .validate(statusCodeIn: request.acceptedStatusCodes)
-            .print()
         
         // 5) Run retriers if necessary
         let retriedResponse = validatedResponse

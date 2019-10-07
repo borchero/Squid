@@ -6,6 +6,10 @@
 //
 
 import Foundation
+import Combine
 
 // MARK: Publisher
-
+//internal struct WSTaskPublisher: Publisher {
+//
+//    typealias Output =
+//}

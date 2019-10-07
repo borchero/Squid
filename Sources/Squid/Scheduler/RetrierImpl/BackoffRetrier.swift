@@ -81,7 +81,6 @@ public struct BackoffRetrier: Retrier {
                 promise(.success(false))
                 return
             }
-            print("Backing off for \(duration) seconds...")
             DispatchQueue.global().asyncAfter(deadline: .now() + duration) {
                 promise(.success(true))
             }
