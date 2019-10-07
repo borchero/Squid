@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Protocols  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Section/Protocols" class="dashAnchor"></a>
+    <a title="Protocols  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">Squid Docs</a> (86% documented)</p>
+        <p class="header-right"><a href="https://github.com/borchero/squid"><img src="img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">Squid Reference</a>
+        <img id="carat" src="img/carat.png" />
+        Protocols  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/Response.html">Response</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/HttpData.html">HttpData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/HttpData/Empty.html">– Empty</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/HttpData/Image.html">– Image</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/HttpData/Json.html">– Json</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/HttpMethod.html">HttpMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/HttpMimeType.html">HttpMimeType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/RequestPriority.html">RequestPriority</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/URL.html">URL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:5Squid20snakeCaseJSONEncoder10Foundation0D0CyF">snakeCaseJSONEncoder()</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/HttpBody.html">HttpBody</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/HttpService.html">HttpService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/JsonRequest.html">JsonRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/PaginatedData.html">PaginatedData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols.html#/s:5Squid20PaginatedJsonRequestP">PaginatedJsonRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/PaginatedRequest.html">PaginatedRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/Retrier.html">Retrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/RetrierFactory.html">RetrierFactory</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/StatelessRetrier.html">StatelessRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/Stream.html">Stream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/UrlConvertible.html">UrlConvertible</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/AnyHttpService.html">AnyHttpService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/AnyRequest.html">AnyRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/BackoffRetrier.html">BackoffRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/BackoffRetrier/Strategy.html">– Strategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/HttpHeader.html">HttpHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/HttpHeader/Field.html">– Field</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/HttpQuery.html">HttpQuery</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/NilRetrier.html">NilRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Squid.html">Squid</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Squid/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Squid/Logger.html">– Logger</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Protocols</h1>
+            <p>The following protocols are available globally.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid8HttpBodyP"></a>
+                    <a name="//apple_ref/swift/Protocol/HttpBody" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid8HttpBodyP">HttpBody</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The HttpBody protocol ought to be implemented by any entity that can attach data to the body of
+an HTTP request. Any entities implementing this protocol should be scoped in an extension of the
+<code><a href="Enums/HttpData.html">HttpData</a></code> enum.</p>
+
+                        <a href="Protocols/HttpBody.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">HttpBody</span> <span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid13PaginatedDataP"></a>
+                    <a name="//apple_ref/swift/Protocol/PaginatedData" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid13PaginatedDataP">PaginatedData</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Protocols/PaginatedData.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PaginatedData</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid16PaginatedRequestP"></a>
+                    <a name="//apple_ref/swift/Protocol/PaginatedRequest" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid16PaginatedRequestP">PaginatedRequest</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Protocols/PaginatedRequest.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PaginatedRequest</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Request.html">Request</a></span> <span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Result</span> <span class="p">:</span> <span class="kt"><a href="Protocols/PaginatedData.html">PaginatedData</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid20PaginatedJsonRequestP"></a>
+                    <a name="//apple_ref/swift/Protocol/PaginatedJsonRequest" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid20PaginatedJsonRequestP">PaginatedJsonRequest</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PaginatedJsonRequest</span> <span class="p">:</span> <span class="kt"><a href="Protocols/JsonRequest.html">JsonRequest</a></span> <span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Result</span> <span class="p">:</span> <span class="kt"><a href="Protocols/PaginatedData.html">PaginatedData</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid7RequestP"></a>
+                    <a name="//apple_ref/swift/Protocol/Request" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid7RequestP">Request</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The request protocol is the core building block of the Squid framework. The general idea of a
+request is that it declaratively defines the content of an HTTP request. It is then <em>scheduled</em>
+against an API that is represented by a <code><a href="Protocols/HttpService.html">HttpService</a></code>. Scheduling the request returns a
+<code><a href="Classes/Response.html">Response</a></code>. This response is a shared publisher that can be subscribed to.</p>
+
+<p>The reason for abstracting requests away from APIs, i.e. HTTP services, is that often, requests
+are issued against differing domains with differing security requirements during testing/staging
+and development. Hence, it makes sense to capture methods, routing paths, headers, etc. in the
+request itself but abstract away the actual URL and common API headers into the <code><a href="Protocols/HttpService.html">HttpService</a></code>.</p>
+
+                        <a href="Protocols/Request.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Request</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid11JsonRequestP"></a>
+                    <a name="//apple_ref/swift/Protocol/JsonRequest" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid11JsonRequestP">JsonRequest</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This request protocol is a specialization of the <code><a href="Protocols/Request.html">Request</a></code> protocol. It can be used often when
+working with a JSON API where the returned data is a JSON object. As a requirement, the
+request&rsquo;s result type must implement the <code>Decodable</code> protocol. The <code>decode(_:)</code> method is then
+synthesized automatically by using a <code>JSONDecoder</code> and decoding the raw data to the specified
+type. <code>decodeSnakeCase</code> can further be used to modify the behavior of the aforementioned
+decoder.</p>
+
+                        <a href="Protocols/JsonRequest.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">JsonRequest</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Request.html">Request</a></span> <span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Result</span> <span class="p">:</span> <span class="kt">Decodable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid11HttpServiceP"></a>
+                    <a name="//apple_ref/swift/Protocol/HttpService" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid11HttpServiceP">HttpService</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An HTTP service can be used to abstract a specific endpoint away from specific requests.
+Usually, you would have one HTTP service per API that you use and possibly different services
+for testing/staging and production. Intuitively, a specific implementation of an HTTP service
+represents a particular API.</p>
+
+                        <a href="Protocols/HttpService.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">HttpService</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid7RetrierP"></a>
+                    <a name="//apple_ref/swift/Protocol/Retrier" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid7RetrierP">Retrier</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A retrier represents a <q>callback</q> that is executed whenever a request fails. One option for a
+retrier is to retry a failed request only once. An example might be a retrier that refreshes
+an authentication token when the server returns a 401 status code. Another option for the
+retrier is to retry multiple times. A common example might be a retrier that <q>backs off</q>
+exponentially long to ensure that a request is fulfilled at some time.</p>
+
+                        <a href="Protocols/Retrier.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Retrier</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid16StatelessRetrierP"></a>
+                    <a name="//apple_ref/swift/Protocol/StatelessRetrier" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid16StatelessRetrierP">StatelessRetrier</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A stateless retrier is a retrier which does not need to track any state across retries. This
+implies that the stateless retrier does <strong>not</strong> allow multiple retries. As it is stateless, it
+must be initializable with no parameters. The advantage is that a factory can easily be derived.</p>
+
+                        <a href="Protocols/StatelessRetrier.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">StatelessRetrier</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Retrier.html">Retrier</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid14RetrierFactoryP"></a>
+                    <a name="//apple_ref/swift/Protocol/RetrierFactory" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid14RetrierFactoryP">RetrierFactory</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A retrier factory is a simple class that creates retriers for failed requests on demand. The
+reason for using the factory is to allow for stateful retriers. As they cannot easily be shared
+across requests, each request requires its own instance of the retrier. Consequently, any entity
+implementing the <code><a href="Protocols/HttpService.html">HttpService</a></code> protocol needs to provide a retrier factory yielding retriers
+instead of a retrier instance.</p>
+
+                        <a href="Protocols/RetrierFactory.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RetrierFactory</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid6StreamP"></a>
+                    <a name="//apple_ref/swift/Protocol/Stream" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid6StreamP">Stream</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Protocols/Stream.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Stream</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid14UrlConvertibleP"></a>
+                    <a name="//apple_ref/swift/Protocol/UrlConvertible" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid14UrlConvertibleP">UrlConvertible</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Any entity implementing this protocol declares that it is able to possibly represent itself as
+a url. The conversion to this url may fail, however.</p>
+
+                        <a href="Protocols/UrlConvertible.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">UrlConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-05)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

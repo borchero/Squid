@@ -1,0 +1,3 @@
+# Squid
+
+## Installation
