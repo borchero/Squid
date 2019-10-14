@@ -13,9 +13,11 @@ import Combine
 /// request does not need to be retried.
 public struct NilRetrier: StatelessRetrier {
     
+    // MARK: Initialization
     /// Initializes a new never-retrying retrier. The implementation does nothing.
     public init() { }
     
+    // MARK: Retrier
     public func retry<R>(_ request: R, failingWith error: Squid.Error) -> Future<Bool, Never>
     where R : Request {
         return Future { promise in

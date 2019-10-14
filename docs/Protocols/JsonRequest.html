@@ -32,7 +32,13 @@
             <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Classes/Paginator.html">Paginator</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Stream.html">Stream</a>
               </li>
             </ul>
           </li>
@@ -66,18 +72,22 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Extensions/Publisher.html">Publisher</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Publishers.html">Publishers</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Publishers/IgnoreError.html">– IgnoreError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Publishers/IgnoreResultErrors.html">– IgnoreResultErrors</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/URL.html">URL</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="../Functions.html">Functions</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:5Squid20snakeCaseJSONEncoder10Foundation0D0CyF">snakeCaseJSONEncoder()</a>
               </li>
             </ul>
           </li>
@@ -94,13 +104,10 @@
                 <a href="../Protocols/JsonRequest.html">JsonRequest</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/NetworkRequest.html">NetworkRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/PaginatedData.html">PaginatedData</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols/PaginatedJsonRequest.html">PaginatedJsonRequest</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols/PaginatedRequest.html">PaginatedRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/Request.html">Request</a>
@@ -115,6 +122,9 @@
                 <a href="../Protocols/StatelessRetrier.html">StatelessRetrier</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/StreamRequest.html">StreamRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/UrlConvertible.html">UrlConvertible</a>
               </li>
             </ul>
@@ -127,6 +137,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/AnyRequest.html">AnyRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnyStreamRequest.html">AnyStreamRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/BackoffRetrier.html">BackoffRetrier</a>
@@ -255,10 +268,113 @@ attributes are decoded using snake case attribute names.</p>
                 </li>
               </ul>
             </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid11JsonRequestPAAE8schedule17forPaginationWith5chunk18zeroBasedPageIndex13paginatedTypeAA9PaginatorCyxqd__GAA11HttpService_p_SiSbqd__mtAA13PaginatedDataRd__SeRd__0sN0AaMPQyd__6ResultRtzlF"></a>
+                    <a name="//apple_ref/swift/Method/schedule(forPaginationWith:chunk:zeroBasedPageIndex:paginatedType:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid11JsonRequestPAAE8schedule17forPaginationWith5chunk18zeroBasedPageIndex13paginatedTypeAA9PaginatorCyxqd__GAA11HttpService_p_SiSbqd__mtAA13PaginatedDataRd__SeRd__0sN0AaMPQyd__6ResultRtzlF">schedule(forPaginationWith:chunk:zeroBasedPageIndex:paginatedType:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This method is very similar to the method
+<code><a href="../Protocols/Request.html#/s:5Squid7RequestPAAE8schedule17forPaginationWith5chunk18zeroBasedPageIndex6decodeAA9PaginatorCyxqd__GAA11HttpService_p_SiSbqd__10Foundation4DataV_xtKctAA09PaginatedQ0Rd__0Q4TypeQyd__6ResultRtzlF">Request.schedule(forPaginationWith:chunk:zeroBasedPageIndex:decode:)</a></code>, however, the user
+does not have to explicitly define a <code>decode</code> function whenever both the actual result and
+the type of <code><a href="../Protocols/PaginatedData.html">PaginatedData</a></code> to be used conform to the <code>Decodable</code> protocol. The type of the
+paginated data is tried to be inferred automatically, but might need to be given explicitly
+in some circumstances.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">schedule</span><span class="o">&lt;</span><span class="kt">P</span><span class="o">&gt;</span><span class="p">(</span><span class="n">forPaginationWith</span> <span class="nv">service</span><span class="p">:</span> <span class="kt"><a href="../Protocols/HttpService.html">HttpService</a></span><span class="p">,</span> <span class="nv">chunk</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+                        <span class="nv">zeroBasedPageIndex</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+                        <span class="nv">paginatedType</span><span class="p">:</span> <span class="kt">P</span><span class="o">.</span><span class="k">Type</span> <span class="o">=</span> <span class="kt">P</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Paginator.html">Paginator</a></span><span class="o">&lt;</span><span class="k">Self</span><span class="p">,</span> <span class="kt">P</span><span class="o">&gt;</span>
+<span class="k">where</span> <span class="kt">P</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PaginatedData.html">PaginatedData</a></span><span class="p">,</span> <span class="kt">P</span><span class="o">.</span><span class="kt">DataType</span> <span class="o">==</span> <span class="kt">Result</span><span class="p">,</span> <span class="kt">P</span><span class="p">:</span> <span class="kt">Decodable</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>service</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The service representing the API against which to schedule paginated
+                 requests.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>chunk</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The (maximum) number of elements that are requested per page. The number
+               of returned elements is only smaller than the given chunk if the given
+               page index is the index of the last page and the number of elements is
+               not divisible by the chunk.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>zeroBasedPageIndex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether the API endpoint that the request is scheduled
+                            against indexes the first page with 0. By default, the first
+                            page is indexed by 1.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>paginatedType</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The paginated data type to which to decode a response.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-08)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

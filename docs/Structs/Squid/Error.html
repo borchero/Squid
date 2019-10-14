@@ -32,7 +32,13 @@
             <a href="../../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../../Classes/Paginator.html">Paginator</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../../Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/Stream.html">Stream</a>
               </li>
             </ul>
           </li>
@@ -66,18 +72,22 @@
             <a href="../../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../../Extensions/Publisher.html">Publisher</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/Publishers.html">Publishers</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/Publishers/IgnoreError.html">– IgnoreError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/Publishers/IgnoreResultErrors.html">– IgnoreResultErrors</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../../Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Extensions/URL.html">URL</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="../../Functions.html">Functions</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../../Functions.html#/s:5Squid20snakeCaseJSONEncoder10Foundation0D0CyF">snakeCaseJSONEncoder()</a>
               </li>
             </ul>
           </li>
@@ -94,13 +104,10 @@
                 <a href="../../Protocols/JsonRequest.html">JsonRequest</a>
               </li>
               <li class="nav-group-task">
+                <a href="../../Protocols/NetworkRequest.html">NetworkRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../../Protocols/PaginatedData.html">PaginatedData</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Protocols/PaginatedJsonRequest.html">PaginatedJsonRequest</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Protocols/PaginatedRequest.html">PaginatedRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Protocols/Request.html">Request</a>
@@ -115,6 +122,9 @@
                 <a href="../../Protocols/StatelessRetrier.html">StatelessRetrier</a>
               </li>
               <li class="nav-group-task">
+                <a href="../../Protocols/StreamRequest.html">StreamRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../../Protocols/UrlConvertible.html">UrlConvertible</a>
               </li>
             </ul>
@@ -127,6 +137,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../../Structs/AnyRequest.html">AnyRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/AnyStreamRequest.html">AnyStreamRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Structs/BackoffRetrier.html">BackoffRetrier</a>
@@ -178,6 +191,13 @@ are wrapped as <code>unknown</code> errors.</p>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/User%20Error"></a>
+                <a name="//apple_ref/swift/Section/User Error" class="dashAnchor"></a>
+                <a href="#/User%20Error">
+                  <h3 class="section-name">User Error</h3>
+                </a>
+              </div>
               <ul>
                 <li class="item">
                   <div>
@@ -235,6 +255,17 @@ into a valid HTTP request.</p>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Connection%20Error"></a>
+                <a name="//apple_ref/swift/Section/Connection Error" class="dashAnchor"></a>
+                <a href="#/Connection%20Error">
+                  <h3 class="section-name">Connection Error</h3>
+                </a>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -343,6 +374,17 @@ into a valid HTTP request.</p>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Request%20Error"></a>
+                <a name="//apple_ref/swift/Section/Request Error" class="dashAnchor"></a>
+                <a href="#/Request%20Error">
+                  <h3 class="section-name">Request Error</h3>
+                </a>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -402,6 +444,100 @@ code and the actual response.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:5SquidAAV5ErrorO12closedStreamyADSo30NSURLSessionWebSocketCloseCodeV_tcADmF"></a>
+                    <a name="//apple_ref/swift/Element/closedStream(code:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5SquidAAV5ErrorO12closedStreamyADSo30NSURLSessionWebSocketCloseCodeV_tcADmF">closedStream(code:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A stream constructed by a <code>WebSocketRequest</code> was closed by the peer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="nf">closedStream</span><span class="p">(</span><span class="nv">code</span><span class="p">:</span> <span class="kt">URLSessionWebSocketTask</span><span class="o">.</span><span class="kt">CloseCode</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Misc"></a>
+                <a name="//apple_ref/swift/Section/Misc" class="dashAnchor"></a>
+                <a href="#/Misc">
+                  <h3 class="section-name">Misc</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5SquidAAV5ErrorO17requestInProgressyA2DmF"></a>
+                    <a name="//apple_ref/swift/Element/requestInProgress" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5SquidAAV5ErrorO17requestInProgressyA2DmF">requestInProgress</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An error indicating that a paginated request is already in progress and a new one will
+not be scheduled at the moment.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">requestInProgress</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5SquidAAV5ErrorO15requestFinishedyA2DmF"></a>
+                    <a name="//apple_ref/swift/Element/requestFinished" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5SquidAAV5ErrorO15requestFinishedyA2DmF">requestFinished</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An error indicating that the last page of a paginated request has been reached and no
+further request will be scheduled.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">requestFinished</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:5SquidAAV5ErrorO7unknownyADsAC_pcADmF"></a>
                     <a name="//apple_ref/swift/Element/unknown(_:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:5SquidAAV5ErrorO7unknownyADsAC_pcADmF">unknown(_:)</a>
@@ -432,7 +568,7 @@ code and the actual response.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-08)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

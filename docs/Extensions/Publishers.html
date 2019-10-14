@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>PaginatedJsonRequest Protocol Reference</title>
+    <title>Publishers Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Protocol/PaginatedJsonRequest" class="dashAnchor"></a>
-    <a title="PaginatedJsonRequest Protocol Reference"></a>
+    <a name="//apple_ref/swift/Extension/Publishers" class="dashAnchor"></a>
+    <a title="Publishers Extension Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Squid Docs</a> (100% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">Squid Reference</a>
         <img id="carat" src="../img/carat.png" />
-        PaginatedJsonRequest Protocol Reference
+        Publishers Extension Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -32,7 +32,13 @@
             <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Classes/Paginator.html">Paginator</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Stream.html">Stream</a>
               </li>
             </ul>
           </li>
@@ -66,18 +72,22 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Extensions/Publisher.html">Publisher</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Publishers.html">Publishers</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Publishers/IgnoreError.html">– IgnoreError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Publishers/IgnoreResultErrors.html">– IgnoreResultErrors</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/URL.html">URL</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="../Functions.html">Functions</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:5Squid20snakeCaseJSONEncoder10Foundation0D0CyF">snakeCaseJSONEncoder()</a>
               </li>
             </ul>
           </li>
@@ -94,13 +104,10 @@
                 <a href="../Protocols/JsonRequest.html">JsonRequest</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/NetworkRequest.html">NetworkRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/PaginatedData.html">PaginatedData</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols/PaginatedJsonRequest.html">PaginatedJsonRequest</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols/PaginatedRequest.html">PaginatedRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/Request.html">Request</a>
@@ -115,6 +122,9 @@
                 <a href="../Protocols/StatelessRetrier.html">StatelessRetrier</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/StreamRequest.html">StreamRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/UrlConvertible.html">UrlConvertible</a>
               </li>
             </ul>
@@ -127,6 +137,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/AnyRequest.html">AnyRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnyStreamRequest.html">AnyStreamRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/BackoffRetrier.html">BackoffRetrier</a>
@@ -165,16 +178,15 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>PaginatedJsonRequest</h1>
+            <h1>Publishers</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PaginatedJsonRequest</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/PaginatedRequest.html">PaginatedRequest</a></span> <span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Result</span> <span class="p">:</span> <span class="kt">Decodable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)</span>
+<span class="kd">extension</span> <span class="kt">Publishers</span></code></pre>
 
                 </div>
               </div>
-            <p>A paginated JSON request is equivalent to the <code><a href="../Protocols/PaginatedRequest.html">PaginatedRequest</a></code>. The only difference is the
-requirement that the result type is <code>Decodable</code>.</p>
-
+            
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -182,67 +194,59 @@ requirement that the result type is <code>Decodable</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5Squid20PaginatedJsonRequestP15decodeSnakeCaseSbvp"></a>
-                    <a name="//apple_ref/swift/Property/decodeSnakeCase" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid20PaginatedJsonRequestP15decodeSnakeCaseSbvp">decodeSnakeCase</a>
+                    <a name="/s:7Combine10PublishersO5SquidE11IgnoreErrorV"></a>
+                    <a name="//apple_ref/swift/Struct/IgnoreError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Combine10PublishersO5SquidE11IgnoreErrorV">IgnoreError</a>
                     </code>
-                      <span class="declaration-note">
-                        Default implementation
-                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Defines whether the decoder decoding the raw data to the result type should consider
-camel case in the Swift code as snake case in the JSON (i.e. <code>userID</code> would be parsed from
-the field <code>user_id</code> if not specified explicity in the type to decode to). By default,
-attributes are decoded using snake case attribute names.</p>
+                        <p>This publisher may be used to ignore any errors of an upstream publisher and replace errors
+by <code>.finished</code> messages. Also consider looking at <code><a href="../Extensions/Publisher.html#/s:7Combine9PublisherP5SquidE11ignoreErrorAA10PublishersOADE06IgnoreE0Vy_xGyF">Publisher.ignoreError()</a></code>.</p>
 
-                      </div>
-                      <h4>Default Implementation</h4>
-                      <div class="default_impl abstract">
-                        
+                        <a href="../Extensions/Publishers/IgnoreError.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">decodeSnakeCase</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">IgnoreError</span><span class="o">&lt;</span><span class="kt">Upstream</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">Publisher</span> <span class="k">where</span> <span class="kt">Upstream</span> <span class="p">:</span> <span class="kt">Publisher</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5Squid20PaginatedJsonRequestPAAE6decodey6ResultQz10Foundation4DataVKF"></a>
-                    <a name="//apple_ref/swift/Method/decode(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid20PaginatedJsonRequestPAAE6decodey6ResultQz10Foundation4DataVKF">decode(_:)</a>
+                    <a name="/s:7Combine10PublishersO5SquidE18IgnoreResultErrorsV"></a>
+                    <a name="//apple_ref/swift/Struct/IgnoreResultErrors" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Combine10PublishersO5SquidE18IgnoreResultErrorsV">IgnoreResultErrors</a>
                     </code>
-                      <span class="declaration-note">
-                        Extension method
-                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>This publisher can be used to ignore any errors of publishers which output values as
+<code>Result</code> but never fail otherwise. Every time a <code>success</code> element is emitted, it is passed
+through to the downstream subscriber, otherwise they are ignored. Also consider looking at
+<code><a href="../Extensions/Publisher.html#/s:7Combine9PublisherP5Squids5NeverO7FailureRtzrlE18ignoreResultErrorsAA10PublishersOADE06IgnoregH0Vy_xqd__qd_0_Gys5ErrorRd_0_s0G0Oyqd__qd_0_G6OutputRtzr0_lF">Publisher.ignoreResultErrors()</a></code>.</p>
+
+                        <a href="../Extensions/Publishers/IgnoreResultErrors.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">decode</span><span class="p">(</span><span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Result</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">IgnoreResultErrors</span><span class="o">&lt;</span><span class="kt">Upstream</span><span class="p">,</span> <span class="kt">Output</span><span class="p">,</span> <span class="kt">Err</span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">Publisher</span>
+<span class="k">where</span> <span class="kt">Upstream</span><span class="p">:</span> <span class="kt">Publisher</span><span class="p">,</span> <span class="kt">Err</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">Upstream</span><span class="o">.</span><span class="kt">Output</span> <span class="o">==</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">Output</span><span class="p">,</span> <span class="kt">Err</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="kt">Upstream</span><span class="o">.</span><span class="kt">Failure</span> <span class="o">==</span> <span class="kt">Never</span></code></pre>
 
                         </div>
                       </div>
@@ -254,7 +258,7 @@ attributes are decoded using snake case attribute names.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-08)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

@@ -12,6 +12,7 @@ import Foundation
 /// The value always needs to be of type `String`.
 public struct HttpHeader {
     
+    // MARK: Inner Type
     /// A header field represents the *key* for a specific entry in the HTTP header. There exist
     /// some pre-defined header fields that are used frequently (e.g. Content-Type) which are
     /// exposed via static variables.
@@ -58,6 +59,7 @@ extension HttpHeader: ExpressibleByDictionaryLiteral {
     }
 }
 
+// MARK: Operators
 extension HttpHeader {
     
     /// Combines the fields of two different headers into a single header containing all fields.
@@ -69,6 +71,7 @@ extension HttpHeader {
     }
 }
 
+// MARK: Header Fields
 extension HttpHeader.Field {
     
     /// HTTP "Accept" header: defines a list of allowed media types in the response.
@@ -92,17 +95,18 @@ extension HttpHeader.Field {
     public static let apiKey: HttpHeader.Field = "X-Api-Key"
 }
 
-
-extension HttpHeader.Field: Hashable {
-    
-    public func hash(into hasher: inout Hasher) {
-        self.name.hash(into: &hasher)
-    }
-}
-
+// MARK: Initialization
 extension HttpHeader.Field: ExpressibleByStringLiteral {
     
     public init(stringLiteral value: String) {
         self.name = value
+    }
+}
+
+// MARK: Hashable
+extension HttpHeader.Field: Hashable {
+    
+    public func hash(into hasher: inout Hasher) {
+        self.name.hash(into: &hasher)
     }
 }

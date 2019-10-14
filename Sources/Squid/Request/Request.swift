@@ -16,37 +16,26 @@ import Foundation
 /// are issued against differing domains with differing security requirements during testing/staging
 /// and development. Hence, it makes sense to capture methods, routing paths, headers, etc. in the
 /// request itself but abstract away the actual URL and common API headers into the `HttpService`.
-public protocol Request {
+public protocol Request: NetworkRequest {
     
+    // MARK: Types
     /// The expected type of the server's response upon a successful request.
     associatedtype Result
     
-    /// The routing paths of the request. By default, no routing paths are used.
-    var routes: HttpRoute { get }
-    
+    // MARK: Request Specification
     /// The HTTP method of the request. Defaults to GET.
     var method: HttpMethod { get }
-    
-    /// The query parameters to be used in the request. Defaults to no parameters.
-    var query: HttpQuery { get }
-    
-    /// The header fields set when scheduling the request. These fields overwrite potential header
-    /// fields defined by the HTTP service that the request is issued against. Defaults to no
-    /// headers.
-    var header: HttpHeader { get }
     
     /// The HTTP body of the request. May only be set to an instance of something other than
     /// `HttpData.Empty` if `method` is set to PUT or GET. By default, an instance of
     /// `HttpData.Empty` is returned.
     var body: HttpBody { get }
     
+    // MARK: Expected Response
     /// The range of accepted status codes for the request. Whenever the response's status code is
     /// not in the provided range, the request is considered to have failed. By default, all 2xx
     /// status codes are accepted.
     var acceptedStatusCodes: CountableClosedRange<Int> { get }
-    
-    /// The priority of the request. Defaults to `.userInitiated`.
-    var priority: RequestPriority { get }
     
     /// Upon successful completion of the HTTP request itself, this method is responsible for
     /// transforming the raw `Data` returned by the HTTP response into the response's result type.
@@ -69,14 +58,6 @@ extension Request {
         return .get
     }
     
-    public var query: HttpQuery {
-        return [:]
-    }
-    
-    public var header: HttpHeader {
-        return [:]
-    }
-    
     public var body: HttpBody {
         return HttpData.Empty()
     }
@@ -85,10 +66,7 @@ extension Request {
         return 200...299
     }
     
-    public var priority: RequestPriority {
-        return .userInitiated
-    }
-    
+    // MARK: Scheduling Requests
     /// Schedules the request against the API specified by the given HTTP service. The response is
     /// a publisher that yields the request's result type upon success or an error upon failure.
     /// The `schedule` method is the only method that may be used to obtain responses for requests.
@@ -102,6 +80,32 @@ extension Request {
     ///                      request.
     public func schedule(with service: HttpService) -> Response<Self> {
         return NetworkScheduler.shared.schedule(self, service: service)
+    }
+    
+    /// Schedules the request as paginated request against the API specified by the given HTTP
+    /// service. The response is a `PaginationResponse`. Consult its documentation to know how to
+    /// work with a paginated request.
+    ///
+    /// - Parameter service: The service representing the API against which to schedule paginated
+    ///                      requests.
+    /// - Parameter chunk: The (maximum) number of elements that are requested per page. The number
+    ///                    of returned elements is only smaller than the given chunk if the given
+    ///                    page index is the index of the last page and the number of elements is
+    ///                    not divisible by the chunk.
+    /// - Parameter zeroBasedPageIndex: Whether the API endpoint that the request is scheduled
+    ///                                 against indexes the first page with 0. By default, the first
+    ///                                 page is indexed by 1.
+    /// - Parameter decode: A closure that is used to decode the received data to the defined type
+    ///                     of `PaginatedData`. The closure receives both the body and the request
+    ///                     as the original `Request.decode(_:)` method might want to be used.
+    public func schedule<P>(
+        forPaginationWith service: HttpService, chunk: Int, zeroBasedPageIndex: Bool = false,
+        decode: @escaping (Data, Self) throws -> P
+    ) -> Paginator<Self, P> where P: PaginatedData, P.DataType == Result {
+        return Paginator(
+            base: self, service: service, chunk: chunk,
+            zeroBasedPageIndex: zeroBasedPageIndex, decode: decode
+        )
     }
 }
 
@@ -162,5 +166,40 @@ extension JsonRequest {
             decoder.keyDecodingStrategy = .convertFromSnakeCase
         }
         return try decoder.decode(Result.self, from: data)
+    }
+}
+
+extension JsonRequest {
+    
+    /// This method is very similar to the method
+    /// `Request.schedule(forPaginationWith:chunk:zeroBasedPageIndex:decode:)`, however, the user
+    /// does not have to explicitly define a `decode` function whenever both the actual result and
+    /// the type of `PaginatedData` to be used conform to the `Decodable` protocol. The type of the
+    /// paginated data is tried to be inferred automatically, but might need to be given explicitly
+    /// in some circumstances.
+    ///
+    /// - Parameter service: The service representing the API against which to schedule paginated
+    ///                      requests.
+    /// - Parameter chunk: The (maximum) number of elements that are requested per page. The number
+    ///                    of returned elements is only smaller than the given chunk if the given
+    ///                    page index is the index of the last page and the number of elements is
+    ///                    not divisible by the chunk.
+    /// - Parameter zeroBasedPageIndex: Whether the API endpoint that the request is scheduled
+    ///                                 against indexes the first page with 0. By default, the first
+    ///                                 page is indexed by 1.
+    /// - Parameter paginatedType: The paginated data type to which to decode a response.
+    public func schedule<P>(forPaginationWith service: HttpService, chunk: Int,
+                            zeroBasedPageIndex: Bool = false,
+                            paginatedType: P.Type = P.self) -> Paginator<Self, P>
+    where P: PaginatedData, P.DataType == Result, P: Decodable {
+        return Paginator(
+            base: self, service: service, chunk: chunk, zeroBasedPageIndex: zeroBasedPageIndex
+        ) { data, _ -> P in
+            let decoder = JSONDecoder()
+            if self.decodeSnakeCase {
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+            }
+            return try decoder.decode(P.self, from: data)
+        }
     }
 }

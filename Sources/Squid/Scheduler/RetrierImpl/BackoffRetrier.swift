@@ -14,6 +14,26 @@ import Combine
 /// is deemed unsuccessful.
 public struct BackoffRetrier: Retrier {
     
+    // MARK: Static Methods
+    /// Initializes a new factory yielding instances of backoff retriers for requests.
+    ///
+    /// - Parameter strategy: The strategy to use for the backoff retrier. Defaults to
+    ///                       `.exponentialBinary`.
+    /// - Parameter maxBackoff: The maximum backoff duration. After this time, requests are not
+    ///                         retried any more. Defaults to 10 minutes.
+    /// - Parameter retryCondition: A closure evaluating whether to attempt a retry based on the
+    ///                             error causing the request to fail. Defaults to
+    ///                             `defaultRetryCondition(_:)`.
+    public static func factory(
+        strategy: Strategy = .exponentialBinary, maxBackoff: TimeInterval = 600,
+        retryCondition: @escaping (Squid.Error) -> Bool = defaultRetryCondition
+    ) -> some RetrierFactory {
+        return StatelessRetrierFactory {
+            return BackoffRetrier(strategy: strategy, maxBackoff: maxBackoff,
+                                  retryCondition: retryCondition)
+        }
+    }
+    
     /// Defines the default condition that a request is retried based on the error that has occured.
     /// Retrying by backing off is attempted in the case of:
     ///
@@ -35,25 +55,6 @@ public struct BackoffRetrier: Retrier {
         }
     }
     
-    /// Initializes a new factory yielding instances of backoff retriers for requests.
-    ///
-    /// - Parameter strategy: The strategy to use for the backoff retrier. Defaults to
-    ///                       `.exponentialBinary`.
-    /// - Parameter maxBackoff: The maximum backoff duration. After this time, requests are not
-    ///                         retried any more. Defaults to 10 minutes.
-    /// - Parameter retryCondition: A closure evaluating whether to attempt a retry based on the
-    ///                             error causing the request to fail. Defaults to
-    ///                             `defaultRetryCondition(_:)`.
-    public static func factory(
-        strategy: Strategy = .exponentialBinary, maxBackoff: TimeInterval = 600,
-        retryCondition: @escaping (Squid.Error) -> Bool = defaultRetryCondition
-    ) -> some RetrierFactory {
-        return StatelessRetrierFactory {
-            return BackoffRetrier(strategy: strategy, maxBackoff: maxBackoff,
-                                  retryCondition: retryCondition)
-        }
-    }
-    
     private let strategy: Strategy
     private let maxBackoff: TimeInterval
     private let retryCondition: (Squid.Error) -> Bool
@@ -67,6 +68,7 @@ public struct BackoffRetrier: Retrier {
         self.backoffDuration = strategy.initial
     }
     
+    // MARK: Retrier
     public mutating func retry<R>(
         _ request: R, failingWith error: Squid.Error
     ) -> Future<Bool, Never> where R: Request {

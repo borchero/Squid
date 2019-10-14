@@ -14,6 +14,7 @@ public struct HttpRoute {
     
     private let paths: [String]
     
+    // MARK: Initialization
     /// Initializes a new HTTP route.
     ///
     /// - Parameter parameters: The HTTP routing paths. All paths are converted to strings using
@@ -29,18 +30,19 @@ public struct HttpRoute {
     }
 }
 
+extension HttpRoute: ExpressibleByArrayLiteral {
+    
+    public init(arrayLiteral elements: Any...) {
+        self.init(elements)
+    }
+}
+
+// MARK: Operators
 extension HttpRoute {
     
     /// Combines the routing paths of two HTTP routes by appending the paths of the latter route to
     /// the paths of the former route.
     public static func + (lhs: HttpRoute, rhs: HttpRoute) -> HttpRoute {
         return .init(lhs.paths + rhs.paths)
-    }
-}
-
-extension HttpRoute: ExpressibleByArrayLiteral {
-    
-    public init(arrayLiteral elements: Any...) {
-        self.init(elements)
     }
 }

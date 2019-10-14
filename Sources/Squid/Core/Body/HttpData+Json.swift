@@ -14,7 +14,6 @@ extension HttpData {
     /// "Content-Type" header to "application/json".
     public struct Json<T>: HttpBody where T: Encodable {
         
-        // MARK: Properties
         private let value: T
         private let encoder: JSONEncoder
         
@@ -23,15 +22,15 @@ extension HttpData {
         /// body.
         ///
         /// - Parameter value: The value to put into the request body.
-        /// - Parameter encoder: The JSON encoder to use for encoding. By default, a JSON encoder is
-        ///                      used where camel case attribute names are converted into snake
-        ///                      case (see `snakeCaseJSONEncoder`).
-        public init(_ value: T, encoder: JSONEncoder = snakeCaseJSONEncoder()) {
+        /// - Parameter encoder: The JSON encoder to use for encoding. When set to `nil`, a JSON
+        ///                      encoder is used where camel case attribute names are converted into
+        ///                      snake case.
+        public init(_ value: T, encoder: JSONEncoder? = nil) {
             self.value = value
-            self.encoder = encoder
+            self.encoder = encoder ?? snakeCaseJSONEncoder()
         }
         
-        // MARK: Instance Methods
+        // MARK: HttpBody
         public func add(to request: inout URLRequest) throws {
             request.addValue(
                 HttpMimeType.json.rawValue, forHTTPHeaderField: "Content-Type"
@@ -47,6 +46,7 @@ extension HttpData {
 
 extension HttpData.Json {
     
+    // MARK: CustomStringConvertible
     public var description: String {
         let debugEncoder = JSONEncoder()
         debugEncoder.outputFormatting = .prettyPrinted
@@ -57,10 +57,7 @@ extension HttpData.Json {
     }
 }
 
-/// Returns a JSON encoder that converts camel case attribute names to snake case. You should not
-/// use this function directly as it may be removed in the future. It is only declared as public to
-/// be used as default value in the initializer of `HttpData.Json`.
-public func snakeCaseJSONEncoder() -> JSONEncoder {
+fileprivate func snakeCaseJSONEncoder() -> JSONEncoder {
     let encoder = JSONEncoder()
     encoder.keyEncodingStrategy = .convertToSnakeCase
     return encoder

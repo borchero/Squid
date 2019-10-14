@@ -8,16 +8,18 @@
 import Foundation
 
 /// The paginated data protocol defines a common interface for result types of paginated requests.
-/// The properties of the protocol are leveraged to enable handling paginated requests
+/// The properties of the protocol can be leveraged to enable handling paginated requests
 /// automatically by observing the provided properties.
 public protocol PaginatedData {
     
+    // MARK: Data
     /// The actual type of the requested data (usually provided as a field of the top-level JSON).
     associatedtype DataType
     
     /// The actual data that is received by the request.
     var data: DataType { get }
     
+    // MARK: Page Metadata
     /// The index of the current page. By convention, an index of 1 indicates the first page. You
     /// will need to overwrite the `zeroBasedPageIndex` property to return `true` when you want to
     /// use an API where the first page has index 0.
@@ -50,6 +52,7 @@ extension PaginatedData {
         return false
     }
     
+    // MARK: Synthesized Properties
     /// The number of elements currently returned.
     public var count: Int {
         return self.from - self.to

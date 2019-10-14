@@ -10,9 +10,9 @@ import Foundation
 
 class MyAtomicCounter {
     
-    @Atomic var count = 0
+    var count = AtomicInt()
     
     func increment() {
-        self._count++
+        self.count.increment()
     }
 }

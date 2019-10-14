@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Stream Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/Stream" class="dashAnchor"></a>
+    <a title="Stream Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Squid Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/borchero/squid"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Squid Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Stream Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Paginator.html">Paginator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Stream.html">Stream</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/HttpData.html">HttpData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/HttpData/Empty.html">– Empty</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/HttpData/Image.html">– Image</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/HttpData/Json.html">– Json</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/HttpMethod.html">HttpMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/HttpMimeType.html">HttpMimeType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RequestPriority.html">RequestPriority</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Publisher.html">Publisher</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Publishers.html">Publishers</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Publishers/IgnoreError.html">– IgnoreError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Publishers/IgnoreResultErrors.html">– IgnoreResultErrors</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/HttpBody.html">HttpBody</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HttpService.html">HttpService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/JsonRequest.html">JsonRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NetworkRequest.html">NetworkRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PaginatedData.html">PaginatedData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Retrier.html">Retrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RetrierFactory.html">RetrierFactory</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/StatelessRetrier.html">StatelessRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/StreamRequest.html">StreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/UrlConvertible.html">UrlConvertible</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/AnyHttpService.html">AnyHttpService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnyRequest.html">AnyRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnyStreamRequest.html">AnyStreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BackoffRetrier.html">BackoffRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BackoffRetrier/Strategy.html">– Strategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/HttpHeader.html">HttpHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/HttpHeader/Field.html">– Field</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/HttpQuery.html">HttpQuery</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/HttpRoute.html">HttpRoute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/NilRetrier.html">NilRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Squid.html">Squid</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Squid/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Squid/Logger.html">– Logger</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Stream</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Stream</span><span class="o">&lt;</span><span class="kt">StreamRequestType</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">Publisher</span> <span class="k">where</span> <span class="kt">StreamRequestType</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamRequest.html">StreamRequest</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>An instance of the stream class is returned whenever a <code><a href="../Protocols/StreamRequest.html">StreamRequest</a></code> is scheduled. The stream
+publisher produces arbitrarily many values (depending on the messages from the connected peer).
+The publisher also provides additional <code>send</code> methods to enable bidirectional communication.
+Note that publisher <em>only</em> errors out if the stream fails and continues to exist if single
+messages from the peer cause an error. This is the reason for the stream&rsquo;s output to be of the
+type <code>Result</code>. Also note that the publisher never completes.</p>
+
+<p>Note that, in contrast to the <code><a href="../Classes/Response.html">Response</a></code> publisher, this publisher does <em>not</em> replay any
+messages received.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Types"></a>
+                <a name="//apple_ref/swift/Section/Types" class="dashAnchor"></a>
+                <a href="#/Types">
+                  <h3 class="section-name">Types</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Combine9PublisherP7FailureQa"></a>
+                    <a name="//apple_ref/swift/Alias/Failure" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Combine9PublisherP7FailureQa">Failure</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Failure</span> <span class="o">=</span> <span class="kt"><a href="../Structs/Squid.html">Squid</a></span><span class="o">.</span><span class="kt">Error</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Combine9PublisherP6OutputQa"></a>
+                    <a name="//apple_ref/swift/Alias/Output" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Combine9PublisherP6OutputQa">Output</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Output</span> <span class="o">=</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">StreamRequestType</span><span class="o">.</span><span class="kt">Result</span><span class="p">,</span> <span class="kt"><a href="../Structs/Squid.html">Squid</a></span><span class="o">.</span><span class="kt">Error</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Instance%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Instance Methods" class="dashAnchor"></a>
+                <a href="#/Instance%20Methods">
+                  <h3 class="section-name">Instance Methods</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid6StreamC4sendy7Combine12AnyPublisherVys6ResultOyytA2AV5ErrorOGs5NeverOG7MessageQzF"></a>
+                    <a name="//apple_ref/swift/Method/send(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid6StreamC4sendy7Combine12AnyPublisherVys6ResultOyytA2AV5ErrorOGs5NeverOG7MessageQzF">send(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This simple variant of the <code>send</code> method sends a message to the peer to which the WebSocket
+is connected. The result is a publisher which never errors out. Whether the request was
+successful can be deduced from the publisher&rsquo;s <em>single</em> returned <code>Result</code> instance.
+Note that the returned publishers is shared and replays the result.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">send</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">StreamRequestType</span><span class="o">.</span><span class="kt">Message</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">AnyPublisher</span><span class="o">&lt;</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt">Void</span><span class="p">,</span> <span class="kt"><a href="../Structs/Squid.html">Squid</a></span><span class="o">.</span><span class="kt">Error</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">Never</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>message</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The message to send to the peer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid6StreamC4send4fromQrqd___t7Combine9PublisherRd__6OutputQyd__7MessageRtzs5NeverO7FailureRtd__lF"></a>
+                    <a name="//apple_ref/swift/Method/send(from:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid6StreamC4send4fromQrqd___t7Combine9PublisherRd__6OutputQyd__7MessageRtzs5NeverO7FailureRtd__lF">send(from:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This variant of the <code>send</code> method provides a more reactive approach towards sending messages
+to a peer. Every value emitted by the publisher will be sent via the <code><a href="../Classes/Stream.html#/s:5Squid6StreamC4sendy7Combine12AnyPublisherVys6ResultOyytA2AV5ErrorOGs5NeverOG7MessageQzF">Stream.send(_:)</a></code>
+method and the response will be emitted by the publisher returned by this method. Note that,
+due to missing documentation on Apple&rsquo;s side, we cannot guarantee that the order of the
+items emitted by the returned publisher is the same as the order of the items emitted by the
+upstream publisher. Also, the returned publisher will never fail. The user is responsible
+for cancelling the subscription as soon as the stream is cancelled.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">send</span><span class="o">&lt;</span><span class="kt">P</span><span class="o">&gt;</span><span class="p">(</span><span class="n">from</span> <span class="nv">source</span><span class="p">:</span> <span class="kt">P</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">some</span> <span class="kt">Publisher</span>
+<span class="k">where</span> <span class="kt">P</span><span class="p">:</span> <span class="kt">Publisher</span><span class="p">,</span> <span class="kt">P</span><span class="o">.</span><span class="kt"><a href="../Classes/Stream.html#/s:7Combine9PublisherP6OutputQa">Output</a></span> <span class="o">==</span> <span class="kt">StreamRequestType</span><span class="o">.</span><span class="kt">Message</span><span class="p">,</span> <span class="kt">P</span><span class="o">.</span><span class="kt"><a href="../Classes/Stream.html#/s:7Combine9PublisherP7FailureQa">Failure</a></span> <span class="o">==</span> <span class="kt">Never</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>source</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The upstream publisher which emits item to be sent to the peer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Publisher"></a>
+                <a name="//apple_ref/swift/Section/Publisher" class="dashAnchor"></a>
+                <a href="#/Publisher">
+                  <h3 class="section-name">Publisher</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Combine9PublisherP7receive10subscriberyqd___tAA10SubscriberRd__7FailureQyd__AGRtz5InputQyd__6OutputRtzlF"></a>
+                    <a name="//apple_ref/swift/Method/receive(subscriber:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Combine9PublisherP7receive10subscriberyqd___tAA10SubscriberRd__7FailureQyd__AGRtz5InputQyd__6OutputRtzlF">receive(subscriber:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">receive</span><span class="o">&lt;</span><span class="kt">S</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">subscriber</span><span class="p">:</span> <span class="kt">S</span><span class="p">)</span>
+<span class="k">where</span> <span class="kt">S</span><span class="p">:</span> <span class="kt">Subscriber</span><span class="p">,</span> <span class="kt"><a href="../Classes/Stream.html#/s:7Combine9PublisherP7FailureQa">Failure</a></span> <span class="o">==</span> <span class="kt">S</span><span class="o">.</span><span class="kt"><a href="../Classes/Stream.html#/s:7Combine9PublisherP7FailureQa">Failure</a></span><span class="p">,</span> <span class="kt"><a href="../Classes/Stream.html#/s:7Combine9PublisherP6OutputQa">Output</a></span> <span class="o">==</span> <span class="kt">S</span><span class="o">.</span><span class="kt">Input</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-14)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

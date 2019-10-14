@@ -5,6 +5,7 @@
 //  Created by Oliver Borchert on 10/6/19.
 //
 
+import XCTest
 import Foundation
 import UIKit
 import OHHTTPStubsCore
@@ -14,14 +15,15 @@ import OHHTTPStubsSwift
 class StubFactory {
     
     internal static let shared = StubFactory()
-    @RWLocked private var requestIsThrottled = true
+    private let requestIsThrottled = Locked(true)
     
     private init() { }
     
-    func usersGet() {
+    func usersGet(expectation: XCTestExpectation? = nil) {
         let descriptor = stub(
             condition: isHost("squid.borchero.com") && isMethodGET() && isPath("/users")
         ) { _ -> OHHTTPStubsResponse in
+            expectation?.fulfill()
             let path = OHPathForFile("users.json", type(of: self))!
             return fixture(
                 filePath: path,
@@ -112,14 +114,14 @@ class StubFactory {
     }
     
     func enableThrottling(_ throttle: Bool) {
-        self._requestIsThrottled.write { $0 = throttle }
+        self.requestIsThrottled.value = throttle
     }
     
     func throttlingRequest() {
         let descriptor = stub(
             condition: isHost("squid.borchero.com") && isMethodGET() && isPath("/throttle")
         ) { _ -> OHHTTPStubsResponse in
-            if self.requestIsThrottled {
+            if self.requestIsThrottled.value {
                 return .init(data: Data(), statusCode: 429, headers: [:])
             }
             return .init(data: Data(), statusCode: 200, headers: [:])
@@ -140,37 +142,36 @@ class StubFactory {
     }
     
     func paginatingRequest() {
-        class Counter {
-            var count = 1
-        }
-        
-        let counter = Counter()
+        var counter = 0
         let descriptor = stub(condition: { request -> Bool in
-            let expectedIndex = counter.count
-            counter.count += 1
+            let expectedIndex = counter + 1
             return request.url?.host == "squid.borchero.com"
                 && request.url?.path == "/pagination"
                 && request.httpMethod == "GET"
-                && request.url?.query == "chunk=1&page=\(expectedIndex)"
+                && (request.url?.query == "page=\(expectedIndex)&chunk=1"
+                    || request.url?.query == "chunk=1&page=\(expectedIndex)")
         }) { request -> OHHTTPStubsResponse in
             let path = OHPathForFile("users.json", type(of: self))!
             let data = try! Data(contentsOf: URL(fileURLWithPath: path))
             let json = try! JSONSerialization.jsonObject(
                 with: data, options: []
             ) as! [[String: Any]]
-            
-            let response = json.filter { ($0["id"] as! Int) == counter.count }
+
+            let response = json.filter { ($0["id"] as! Int) == counter }
             let finalResponse: [String: Any] = [
                 "data": response,
-                "page": counter.count,
-                "from": counter.count,
-                "to": counter.count + 1,
+                "page": counter + 1,
+                "from": counter + 1,
+                "to": counter + 2,
                 "chunk": 1,
                 "totalCount": 2,
                 "totalPageCount": 2
             ]
-            let responseData = try! JSONSerialization.data(withJSONObject: finalResponse, options: [])
-            
+            let responseData = try! JSONSerialization.data(
+                withJSONObject: finalResponse, options: []
+            )
+            counter += 1
+
             return .init(
                 data: responseData,
                 statusCode: 200,

@@ -52,6 +52,15 @@ public struct HttpQuery {
     }
 }
 
+extension HttpQuery: ExpressibleByDictionaryLiteral {
+    
+    public init(dictionaryLiteral elements: (String, Any)...) {
+        let dict = Dictionary(uniqueKeysWithValues: elements)
+        self.init(dict)
+    }
+}
+
+// MARK: Operators
 extension HttpQuery {
     
     /// Combines the parameters of two queries into a single set of query parameters. Whenever a
@@ -60,13 +69,5 @@ extension HttpQuery {
         return HttpQuery(
             lhs.parameters.merging(rhs.parameters, uniquingKeysWith: { $1 })
         )
-    }
-}
-
-extension HttpQuery: ExpressibleByDictionaryLiteral {
-    
-    public init(dictionaryLiteral elements: (String, Any)...) {
-        let dict = Dictionary(uniqueKeysWithValues: elements)
-        self.init(dict)
     }
 }

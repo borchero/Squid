@@ -40,6 +40,7 @@ public protocol StatelessRetrier: Retrier {
 
 extension StatelessRetrier {
     
+    // MARK: Static Methods
     /// Creates a factory for the retrier class it is called on. The factory simply uses the empty
     /// initializer to yield instances of the class.
     public static func factory() -> some RetrierFactory {

@@ -7,65 +7,60 @@
 
 import Foundation
 
-@propertyWrapper
-internal class Atomic<Value: Numeric> {
+// Would be nice as a property wrapper but the Swift compiler (Swift 5.1) has some bugs that cause
+// weird segfaults either during compilation or at runtime.
+internal class Locked<Value> {
+    
+    private var _lock = os_unfair_lock()
+    private var _value: Value
+    
+    init(_ value: Value) {
+        self._value = value
+    }
+    
+    var value: Value {
+        get {
+            return self.locking { $0 }
+        } set {
+            self.locking { $0 = newValue }
+        }
+    }
+    
+    func locking<R>(_ block: (inout Value) throws -> R) rethrows -> R {
+        self.lock()
+        defer { self.unlock() }
+        return try block(&self._value)
+    }
+    
+    private func lock() {
+        os_unfair_lock_lock(&self._lock)
+    }
+    
+    private func unlock() {
+        os_unfair_lock_unlock(&self._lock)
+    }
+}
+
+internal class AtomicInt {
     
     @discardableResult
-    postfix static func ++ (atomic: Atomic) -> Value {
+    postfix static func ++ (atomic: AtomicInt) -> Int64 {
         let value = atomic.value
         atomic.increment()
         return value
     }
     
-    private var value: Value
-    private let lockingQueue = DispatchQueue(label: "")
+    private var _value: Int64
     
-    init(wrappedValue: Value) {
-        self.value = wrappedValue
+    init(_ value: Int64 = 0) {
+        self._value = value
     }
     
-    var wrappedValue: Value {
-        return self.lockingQueue.sync { self.value }
+    var value: Int64 {
+        return _value
     }
     
-    private func increment() {
-        self.lockingQueue.sync {
-            self.value += 1
-        }
-    }
-}
-
-@propertyWrapper
-internal class RWLocked<Value> {
-    
-    private let lock = DispatchQueue(label: "", attributes: .concurrent)
-    private var value: Value
-    
-    init(wrappedValue: Value) {
-        self.value = wrappedValue
-    }
-    
-    var wrappedValue: Value {
-        get {
-            return self.read { $0 }
-        } set {
-            self.write { $0 = newValue }
-        }
-    }
-    
-    func set(_ value: Value) {
-        self.value = value
-    }
-    
-    func read<R>(_ execute: (Value) throws -> R) rethrows -> R {
-        return try lock.sync {
-            try execute(self.value)
-        }
-    }
-    
-    func write<R>(_ execute: (inout Value) throws -> R) rethrows -> R {
-        return try lock.sync(flags: .barrier) {
-            return try execute(&self.value)
-        }
+    func increment() {
+        OSAtomicIncrement64(&self._value)
     }
 }

@@ -13,8 +13,10 @@ import Foundation
 /// represents a particular API.
 public protocol HttpService {
     
+    // MARK: API Configuration
     /// The URL of the API representes by this HTTP service (e.g. "api.example.com"). This is the
-    /// only field that needs to be provided by a particular implementation.
+    /// only field that needs to be provided by a particular implementation. This url should not
+    /// contain the scheme (e.g. "https://") as it might get overwritten unexpectedly by a request.
     var apiUrl: UrlConvertible { get }
     
     /// A header that ought to be used by all requests issued against the API represented by this
@@ -23,10 +25,12 @@ public protocol HttpService {
     /// they are used with. By default, the HTTP service does not set any headers.
     var header: HttpHeader { get }
     
+    // MARK: Low-Level Configuration
     /// The session configuration to use for all requests using this service. By default,
     /// `URLSessionConfiguration.default` is used.
     var sessionConfiguration: URLSessionConfiguration { get }
     
+    // MARK: Error Handling
     /// The retrier factory provides retriers for requests. By default, the default factory of the
     /// stateless `NilRetrier` is used, i.e. requests are never retried.
     var retrierFactory: RetrierFactory { get }

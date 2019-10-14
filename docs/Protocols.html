@@ -32,7 +32,13 @@
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Classes/Paginator.html">Paginator</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Stream.html">Stream</a>
               </li>
             </ul>
           </li>
@@ -66,18 +72,22 @@
             <a href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Extensions/Publisher.html">Publisher</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Publishers.html">Publishers</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Publishers/IgnoreError.html">– IgnoreError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Publishers/IgnoreResultErrors.html">– IgnoreResultErrors</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/URL.html">URL</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="Functions.html">Functions</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:5Squid20snakeCaseJSONEncoder10Foundation0D0CyF">snakeCaseJSONEncoder()</a>
               </li>
             </ul>
           </li>
@@ -94,13 +104,10 @@
                 <a href="Protocols/JsonRequest.html">JsonRequest</a>
               </li>
               <li class="nav-group-task">
+                <a href="Protocols/NetworkRequest.html">NetworkRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/PaginatedData.html">PaginatedData</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/PaginatedJsonRequest.html">PaginatedJsonRequest</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/PaginatedRequest.html">PaginatedRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/Request.html">Request</a>
@@ -115,6 +122,9 @@
                 <a href="Protocols/StatelessRetrier.html">StatelessRetrier</a>
               </li>
               <li class="nav-group-task">
+                <a href="Protocols/StreamRequest.html">StreamRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/UrlConvertible.html">UrlConvertible</a>
               </li>
             </ul>
@@ -127,6 +137,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Structs/AnyRequest.html">AnyRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/AnyStreamRequest.html">AnyStreamRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/BackoffRetrier.html">BackoffRetrier</a>
@@ -220,7 +233,7 @@ an HTTP request. Any entities implementing this protocol should be scoped in an 
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The paginated data protocol defines a common interface for result types of paginated requests.
-The properties of the protocol are leveraged to enable handling paginated requests
+The properties of the protocol can be leveraged to enable handling paginated requests
 automatically by observing the provided properties.</p>
 
                         <a href="Protocols/PaginatedData.html" class="slightly-smaller">See more</a>
@@ -243,9 +256,9 @@ automatically by observing the provided properties.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5Squid16PaginatedRequestP"></a>
-                    <a name="//apple_ref/swift/Protocol/PaginatedRequest" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid16PaginatedRequestP">PaginatedRequest</a>
+                    <a name="/s:5Squid14NetworkRequestP"></a>
+                    <a name="//apple_ref/swift/Protocol/NetworkRequest" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid14NetworkRequestP">NetworkRequest</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -253,51 +266,17 @@ automatically by observing the provided properties.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A paginated request describes a request which loads a large number of elements over multiple
-requests, i.e. over several pages. A paginated request is a usual request which defines two
-additional properties, namely <code>page</code> and <code>chunk</code>. These are used to load the elements
-incrementally. Note that the only supported HTTP method is GET and no request body must
-therefore be defined.</p>
+                        <p>The network request is a protocol that serves as a base protocol for requests on remote servers.
+The protocol is mainly used as a common base for <code><a href="Protocols/Request.html">Request</a></code> and <code><a href="Protocols/StreamRequest.html">StreamRequest</a></code>. You should
+never directly use this protocol as it hardly provides any functionality.</p>
 
-<p>In addition to a simple request, the paginated request also requires the result type to conform
-to the <code><a href="Protocols/PaginatedData.html">PaginatedData</a></code> protocol. This enables automating requesting multiple pages on demand.</p>
-
-                        <a href="Protocols/PaginatedRequest.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/NetworkRequest.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PaginatedRequest</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Request.html">Request</a></span> <span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Result</span> <span class="p">:</span> <span class="kt"><a href="Protocols/PaginatedData.html">PaginatedData</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5Squid20PaginatedJsonRequestP"></a>
-                    <a name="//apple_ref/swift/Protocol/PaginatedJsonRequest" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid20PaginatedJsonRequestP">PaginatedJsonRequest</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A paginated JSON request is equivalent to the <code><a href="Protocols/PaginatedRequest.html">PaginatedRequest</a></code>. The only difference is the
-requirement that the result type is <code>Decodable</code>.</p>
-
-                        <a href="Protocols/PaginatedJsonRequest.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PaginatedJsonRequest</span> <span class="p">:</span> <span class="kt"><a href="Protocols/PaginatedRequest.html">PaginatedRequest</a></span> <span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Result</span> <span class="p">:</span> <span class="kt">Decodable</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">NetworkRequest</span></code></pre>
 
                         </div>
                       </div>
@@ -337,7 +316,7 @@ request itself but abstract away the actual URL and common API headers into the 
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Request</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Request</span> <span class="p">:</span> <span class="kt"><a href="Protocols/NetworkRequest.html">NetworkRequest</a></span></code></pre>
 
                         </div>
                       </div>
@@ -371,41 +350,6 @@ decoder.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">JsonRequest</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Request.html">Request</a></span> <span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Result</span> <span class="p">:</span> <span class="kt">Decodable</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5Squid11HttpServiceP"></a>
-                    <a name="//apple_ref/swift/Protocol/HttpService" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid11HttpServiceP">HttpService</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>An HTTP service can be used to abstract a specific endpoint away from specific requests.
-Usually, you would have one HTTP service per API that you use and possibly different services
-for testing/staging and production. Intuitively, a specific implementation of an HTTP service
-represents a particular API.</p>
-
-                        <a href="Protocols/HttpService.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">HttpService</span></code></pre>
 
                         </div>
                       </div>
@@ -521,6 +465,78 @@ instead of a retrier instance.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:5Squid11HttpServiceP"></a>
+                    <a name="//apple_ref/swift/Protocol/HttpService" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid11HttpServiceP">HttpService</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An HTTP service can be used to abstract a specific endpoint away from specific requests.
+Usually, you would have one HTTP service per API that you use and possibly different services
+for testing/staging and production. Intuitively, a specific implementation of an HTTP service
+represents a particular API.</p>
+
+                        <a href="Protocols/HttpService.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">HttpService</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid13StreamRequestP"></a>
+                    <a name="//apple_ref/swift/Protocol/StreamRequest" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid13StreamRequestP">StreamRequest</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A request for a steram is similar to a <code><a href="Protocols/Request.html">Request</a></code>, only that it does not send an HTTP request,
+but asks for a web socket. Instead of a <code><a href="Classes/Response.html">Response</a></code> that yields at most one value, it therefore
+returns a <code><a href="Classes/Stream.html">Stream</a></code> which allows for receiving arbitrarily many values as well as sending values.
+Apart from that, working with a stream request is very similar to working with an HTTP request.
+It is also scheduled against an API represented by an <code><a href="Protocols/HttpService.html">HttpService</a></code>. However, the service&rsquo;s
+retriers as well as its headers are ignored. Still, the <code>Service.process(_:)</code> method is called.</p>
+
+                        <a href="Protocols/StreamRequest.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">StreamRequest</span> <span class="p">:</span> <span class="kt"><a href="Protocols/NetworkRequest.html">NetworkRequest</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:5Squid14UrlConvertibleP"></a>
                     <a name="//apple_ref/swift/Protocol/UrlConvertible" class="dashAnchor"></a>
                     <a class="token" href="#/s:5Squid14UrlConvertibleP">UrlConvertible</a>
@@ -552,7 +568,7 @@ a url. The conversion to this url may fail, however.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-08)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

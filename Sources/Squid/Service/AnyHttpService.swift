@@ -12,12 +12,14 @@ import Foundation
 /// instead of simply using an instance of `AnyHttpService`. This class is mainly used internally.
 public struct AnyHttpService: HttpService {
     
+    // MARK: Properties
     public let apiUrl: UrlConvertible
     public let header: HttpHeader
     public let sessionConfiguration: URLSessionConfiguration
     public let retrierFactory: RetrierFactory
     private let _process: (Squid.Error) -> Void
     
+    // MARK: Initialization
     /// Initializes a new HTTP service while setting all parameters as provided.
     ///
     /// - Parameter url: The URL of the API represented by the HTTP service.
@@ -38,6 +40,7 @@ public struct AnyHttpService: HttpService {
         self._process = processError
     }
     
+    // MARK: Instance Methods
     public func process(_ error: Squid.Error) {
         self._process(error)
     }

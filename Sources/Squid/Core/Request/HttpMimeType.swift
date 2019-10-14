@@ -11,9 +11,11 @@ import Foundation
 /// 'Content-Type' header field.
 public enum HttpMimeType: String {
     
+    // MARK: Application
     /// Mime type for JSON content.
     case json = "application/json"
     
+    // MARK: Image
     /// Mime type for PNG images.
     case png = "image/png"
     

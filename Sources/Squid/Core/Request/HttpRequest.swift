@@ -28,6 +28,14 @@ internal struct HttpRequest {
     }
     
     // MARK: Instance Methods
+    func with(scheme: String) -> HttpRequest {
+        var request = self.urlRequest
+        request.url = request.url
+            .map { scheme + "://" + $0.absoluteString.components(separatedBy: "://").last! }
+            .flatMap(URL.init(string:))
+        return HttpRequest(request, self.body)
+    }
+    
     func with(method: HttpMethod) -> HttpRequest {
         var request = self.urlRequest
         method.add(to: &request)

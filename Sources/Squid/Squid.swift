@@ -23,6 +23,7 @@ public struct Squid {
             }
         }
         
+        // MARK: User Error
         /// The scheduled request is invalid due to some form of invalid parameters. This error e.g.
         /// occurs when a request with method GET or DELETE is scheduled and has a non-empty body.
         case invalidRequest(message: String)
@@ -31,6 +32,7 @@ public struct Squid {
         /// into a valid HTTP request.
         case encodingFailed
         
+        // MARK: Connection Error
         /// The scheduled request did not receive a response from the server due to a timeout.
         case timeout
         
@@ -43,6 +45,7 @@ public struct Squid {
         /// The host of the url of the scheduled request could not be found.
         case unknownHost
         
+        // MARK: Request Error
         /// The response from the server could not be parsed as desired.
         case invalidResponse
         
@@ -50,6 +53,18 @@ public struct Squid {
         /// failure. The application-specific reason for the failure may be derived from the status
         /// code and the actual response.
         case requestFailed(statusCode: Int, response: Data)
+        
+        /// A stream constructed by a `WebSocketRequest` was closed by the peer.
+        case closedStream(code: URLSessionWebSocketTask.CloseCode)
+        
+        // MARK: Misc
+        /// An error indicating that a paginated request is already in progress and a new one will
+        /// not be scheduled at the moment.
+        case requestInProgress
+        
+        /// An error indicating that the last page of a paginated request has been reached and no
+        /// further request will be scheduled.
+        case requestFinished
         
         /// An unknown error occured which cannot be described more precisely by using a particular
         /// `Squid.Error`.
@@ -77,7 +92,7 @@ public struct Squid {
         internal func log(_ text: @autoclosure () -> String) {
             #if DEBUG
             if !silenced {
-                print("\n" + text().prefixed(with: "[Squid] "))
+                print((" \n" + text() + "\n ").prefixed(with: "[Squid] "))
             }
             #endif
         }

@@ -11,12 +11,11 @@ import Combine
 internal class HttpTaskSubscription<S>: Subscription
 where S: Subscriber, S.Input == HttpTaskPublisher.Output, S.Failure == HttpTaskPublisher.Failure {
     
-    let combineIdentifier = CombineIdentifier()
-    
     private let urlSession: URLSession
     private let urlRequest: URLRequest
     private var task: URLSessionTask?
     private var subscriber: S?
+    private var taskWasScheduled = false
     
     private var data: Data?
     
@@ -27,12 +26,18 @@ where S: Subscriber, S.Input == HttpTaskPublisher.Output, S.Failure == HttpTaskP
     }
     
     func request(_ demand: Subscribers.Demand) {
-        if demand > 0 {
-            let task = self.urlRequest.getTask(in: self.urlSession)
-            URLSessionDelegateProxy.shared.register(self, forIdentifier: task.taskIdentifier)
-            task.resume()
-            self.task = task
+        // We do not need to look `taskWasScheduled` as long as there is a single subscription
+        // --> this should be the case
+        guard demand > 0, !self.taskWasScheduled else {
+            return
         }
+        let task = self.urlRequest.getTask(in: self.urlSession)
+        URLSessionDelegateProxy[self.urlSession].register(
+            self, forIdentifier: task.taskIdentifier
+        )
+        task.resume()
+        self.task = task
+        self.taskWasScheduled = true
     }
     
     func cancel() {
@@ -43,12 +48,13 @@ where S: Subscriber, S.Input == HttpTaskPublisher.Output, S.Failure == HttpTaskP
     
     deinit {
         if let id = self.task?.taskIdentifier {
-            URLSessionDelegateProxy.shared.deregister(forIdentifier: id)
+            URLSessionDelegateProxy[self.urlSession].deregister(forIdentifier: id)
         }
+        self.cancel()
     }
 }
 
-extension HttpTaskSubscription: TaskSubscription {
+extension HttpTaskSubscription: HttpTaskSubscriptionDelegate {
     
     func receive(_ data: Data) {
         if let currentData = self.data {

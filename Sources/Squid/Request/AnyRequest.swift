@@ -18,8 +18,11 @@ import Foundation
 ///
 /// As this request struct abstracts away the `HttpService` in favor for a simpler interface,
 /// scheduling can be performed even easier.
+///
+/// **Note that this entity does not allow to make insecure requests over HTTP (only HTTPS).**
 public struct AnyRequest: Request {
     
+    // MARK: Types
     public typealias Result = Data
     
     // MARK: Properties

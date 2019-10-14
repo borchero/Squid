@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>PaginatedRequest Protocol Reference</title>
+    <title>Publisher Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Protocol/PaginatedRequest" class="dashAnchor"></a>
-    <a title="PaginatedRequest Protocol Reference"></a>
+    <a name="//apple_ref/swift/Extension/Publisher" class="dashAnchor"></a>
+    <a title="Publisher Extension Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Squid Docs</a> (100% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">Squid Reference</a>
         <img id="carat" src="../img/carat.png" />
-        PaginatedRequest Protocol Reference
+        Publisher Extension Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -32,7 +32,13 @@
             <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Classes/Paginator.html">Paginator</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Stream.html">Stream</a>
               </li>
             </ul>
           </li>
@@ -66,18 +72,22 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Extensions/Publisher.html">Publisher</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Publishers.html">Publishers</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Publishers/IgnoreError.html">– IgnoreError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Publishers/IgnoreResultErrors.html">– IgnoreResultErrors</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/URL.html">URL</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="../Functions.html">Functions</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:5Squid20snakeCaseJSONEncoder10Foundation0D0CyF">snakeCaseJSONEncoder()</a>
               </li>
             </ul>
           </li>
@@ -94,13 +104,10 @@
                 <a href="../Protocols/JsonRequest.html">JsonRequest</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/NetworkRequest.html">NetworkRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/PaginatedData.html">PaginatedData</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols/PaginatedJsonRequest.html">PaginatedJsonRequest</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols/PaginatedRequest.html">PaginatedRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/Request.html">Request</a>
@@ -115,6 +122,9 @@
                 <a href="../Protocols/StatelessRetrier.html">StatelessRetrier</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/StreamRequest.html">StreamRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/UrlConvertible.html">UrlConvertible</a>
               </li>
             </ul>
@@ -127,6 +137,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/AnyRequest.html">AnyRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnyStreamRequest.html">AnyStreamRequest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/BackoffRetrier.html">BackoffRetrier</a>
@@ -165,22 +178,15 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>PaginatedRequest</h1>
+            <h1>Publisher</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PaginatedRequest</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Request.html">Request</a></span> <span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Result</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/PaginatedData.html">PaginatedData</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)</span>
+<span class="kd">extension</span> <span class="kt">Publisher</span></code></pre>
 
                 </div>
               </div>
-            <p>A paginated request describes a request which loads a large number of elements over multiple
-requests, i.e. over several pages. A paginated request is a usual request which defines two
-additional properties, namely <code>page</code> and <code>chunk</code>. These are used to load the elements
-incrementally. Note that the only supported HTTP method is GET and no request body must
-therefore be defined.</p>
-
-<p>In addition to a simple request, the paginated request also requires the result type to conform
-to the <code><a href="../Protocols/PaginatedData.html">PaginatedData</a></code> protocol. This enables automating requesting multiple pages on demand.</p>
-
+            
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -188,9 +194,9 @@ to the <code><a href="../Protocols/PaginatedData.html">PaginatedData</a></code> 
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5Squid16PaginatedRequestP4pageSivp"></a>
-                    <a name="//apple_ref/swift/Property/page" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid16PaginatedRequestP4pageSivp">page</a>
+                    <a name="/s:7Combine9PublisherP5SquidE11ignoreErrorAA10PublishersOADE06IgnoreE0Vy_xGyF"></a>
+                    <a name="//apple_ref/swift/Method/ignoreError()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Combine9PublisherP5SquidE11ignoreErrorAA10PublishersOADE06IgnoreE0Vy_xGyF">ignoreError()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -198,26 +204,33 @@ to the <code><a href="../Protocols/PaginatedData.html">PaginatedData</a></code> 
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The index of the currently requested page.</p>
+                        <p>Use this function whenever you want to ignore all errors emitted by the upstream publisher.
+Note that this does <em>not</em> restore the upstream publisher if it fails but, instead, emits
+a completion message instead of the error. Also consider looking at
+<code><a href="../Extensions/Publishers/IgnoreError.html">Publishers.IgnoreError</a></code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">page</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">ignoreError</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Publishers</span><span class="o">.</span><span class="kt">IgnoreError</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5Squid16PaginatedRequestP5chunkSivp"></a>
-                    <a name="//apple_ref/swift/Property/chunk" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid16PaginatedRequestP5chunkSivp">chunk</a>
+                    <a name="/s:7Combine9PublisherP5Squids5NeverO7FailureRtzrlE18ignoreResultErrorsAA10PublishersOADE06IgnoregH0Vy_xqd__qd_0_Gys5ErrorRd_0_s0G0Oyqd__qd_0_G6OutputRtzr0_lF"></a>
+                    <a name="//apple_ref/swift/Method/ignoreResultErrors()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Combine9PublisherP5Squids5NeverO7FailureRtzrlE18ignoreResultErrorsAA10PublishersOADE06IgnoregH0Vy_xqd__qd_0_Gys5ErrorRd_0_s0G0Oyqd__qd_0_G6OutputRtzr0_lF">ignoreResultErrors()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -225,16 +238,16 @@ to the <code><a href="../Protocols/PaginatedData.html">PaginatedData</a></code> 
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The (maximum) number of elements that are requested. The number of returned elements is only
-smaller than the given chunk if the given page index is the index of the last page and the
-number of elements is not divisible by the chunk size.</p>
+                        <p>Ignores all errors carried via a <code>Result</code> object and only returns unwrapped <code>success</code>
+values. Also consider looking at <code><a href="../Extensions/Publishers/IgnoreResultErrors.html">Publishers.IgnoreResultErrors</a></code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">chunk</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">ignoreResultErrors</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">,</span> <span class="kt">F</span><span class="o">&gt;</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Publishers</span><span class="o">.</span><span class="kt">IgnoreResultErrors</span><span class="o">&lt;</span><span class="k">Self</span><span class="p">,</span> <span class="kt">R</span><span class="p">,</span> <span class="kt">F</span><span class="o">&gt;</span>
+<span class="k">where</span> <span class="kt">Output</span> <span class="o">==</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">,</span> <span class="kt">F</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">F</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
 
                         </div>
                       </div>
@@ -246,7 +259,7 @@ number of elements is not divisible by the chunk size.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-08)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

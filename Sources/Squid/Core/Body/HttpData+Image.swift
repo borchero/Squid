@@ -15,7 +15,6 @@ extension HttpData {
     /// "Content-Length" header to the size of the image in bytes.
     public struct Image: HttpBody {
         
-        // MARK: Properties
         let mime: HttpMimeType
         let data: Data
         
@@ -29,7 +28,7 @@ extension HttpData {
             self.data = data
         }
         
-        // MARK: Instance Methods
+        // MARK: HttpBody
         public func add(to request: inout URLRequest) throws {
             request.addValue(
                 self.mime.rawValue,
@@ -46,6 +45,7 @@ extension HttpData {
 
 extension HttpData.Image {
     
+    // MARK: CustomStringConvertible
     public var description: String {
         return "<binary data of size \(self.data.count)>"
     }

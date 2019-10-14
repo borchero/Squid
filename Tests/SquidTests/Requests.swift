@@ -106,12 +106,9 @@ struct LoginRequest: Request {
     }
 }
 
-struct PaginatedUsersRequest: PaginatedJsonRequest {
+struct PaginatedUsersRequest: JsonRequest {
     
-    typealias Result = PaginationContainer<[UserContainer]>
-    
-    let page: Int
-    let chunk: Int
+    typealias Result = [UserContainer]
     
     var routes: HttpRoute {
         return ["pagination"]

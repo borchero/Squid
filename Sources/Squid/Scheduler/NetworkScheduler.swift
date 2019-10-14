@@ -14,7 +14,7 @@ internal class NetworkScheduler {
     static let shared = NetworkScheduler()
     
     #if DEBUG
-    @Atomic private var runningIdentifier: Int = 0
+    private let runningIdentifier = AtomicInt()
     #endif
     
     // MARK: Properties
@@ -37,10 +37,10 @@ internal class NetworkScheduler {
         ]
     }()
     
-    // MARK: Instance Methods
+    // MARK: HTTP Request
     func schedule<R>(_ request: R, service: HttpService) -> Response<R> where R: Request {
         #if DEBUG
-        let requestId = self._runningIdentifier++
+        let requestId = self.runningIdentifier++
         #endif
         
         // 1) Build HTTP request
@@ -51,23 +51,22 @@ internal class NetworkScheduler {
                 return
             }
             
-            // 1.2) Validate request
-            if let error = request.validate() {
-                promise(.failure(error))
-            }
-            
-            // 1.3) Modify request to carry all required data
+            // 1.2) Modify request to carry all required data
             do {
                 httpRequest = try httpRequest
+                    .with(scheme: request.usesSecureProtocol ? "https" : "http")
                     .with(method: request.method)
                     .with(route: request.routes)
                     .with(query: request.query)
                     .with(header: service.header + request.header)
                     .with(body: request.body)
-            } catch let error as Squid.Error {
-                promise(.failure(error))
             } catch {
-                promise(.failure(.unknown(error)))
+                promise(.failure(.ensure(error)))
+            }
+            
+            // 1.3) Validate request
+            if let error = request.validate() {
+                promise(.failure(error))
             }
             
             promise(.success(httpRequest))
@@ -120,11 +119,99 @@ internal class NetworkScheduler {
             .tryMap(request.decode)
             .mapError(Squid.Error.ensure)
         
-        // 7) Dispatch onto background thread depending on priority
+        // 8) Dispatch onto background thread depending on priority
         let dispatchedResponse = decodedResponse
             .subscribe(on: self.queues[request.priority]!)
         
         return Response(publisher: dispatchedResponse, request: request)
+    }
+    
+    // MARK: Web Socket Request
+    func schedule<R>(_ request: R, service: HttpService) -> Stream<R> where R: StreamRequest {
+        #if DEBUG
+        let requestId = self.runningIdentifier++
+        #endif
+        
+        // 1) Build WebSocket request
+        let httpRequest = Future<HttpRequest, Squid.Error> { promise in
+            // 1.1) Initialize request with destination URL
+            guard var httpRequest = HttpRequest(url: service.apiUrl) else {
+                promise(.failure(.invalidUrl))
+                return
+            }
+            
+            // 1.2) Modify request to carry all required data
+            do {
+                httpRequest = try httpRequest
+                    .with(scheme: request.usesSecureProtocol ? "wss" : "ws")
+                    .with(method: .get)
+                    .with(route: request.routes)
+                    .with(query: request.query)
+                    .with(header: request.header)
+            } catch {
+                promise(.failure(.ensure(error)))
+            }
+            
+            promise(.success(httpRequest))
+        }
+        
+        // 2) Get URL session
+        let session = self.lockingQueue.sync { self.getSession(for: service.sessionConfiguration) }
+        
+        // 3) Submit task - somehow, we need to capture the task here
+        let taskSubject = CurrentValueSubject<URLSessionWebSocketTask?, Never>(nil)
+        #if DEBUG
+        let task = httpRequest
+            .debug(request: request, withId: requestId)
+            .flatMap { return WSTaskPublisher(request: $0, in: session, taskSubject: taskSubject) }
+        #else
+        let task = httpRequest
+            .flatMap { return WSTaskPublisher(request: $0, in: session, taskSubject: taskSubject) }
+        #endif
+        
+        // 3.1) Debug messages if necessary
+        #if DEBUG
+        let debuggedTask = task
+            .debugItem(of: request, withId: requestId)
+        #else
+        let debuggedTask = task
+        #endif
+        
+        // 4) Process error
+        let processedResponse = debuggedTask
+            .handleEvents(receiveOutput: { result in
+                switch result {
+                case .failure(let error):
+                    service.process(error)
+                default:
+                    return
+                }
+            }, receiveCompletion: { completion in
+                switch completion {
+                case .failure(let error):
+                    service.process(error)
+                default:
+                    return
+                }
+            })
+        
+        // 5) Decode for required type
+        let decodedResponse = processedResponse
+            .tryMap({ result -> Result<R.Result, Squid.Error> in
+                switch result {
+                case .success(let message):
+                    return .success(try request.decode(message))
+                case .failure(let error):
+                    return .failure(error)
+                }
+            })
+            .mapError(Squid.Error.ensure)
+        
+        // 6) Dispatch onto background thread depending on priority
+        let dispatchedResponse = decodedResponse
+            .subscribe(on: self.queues[request.priority]!)
+        
+        return Stream(publisher: dispatchedResponse, task: taskSubject, request: request)
     }
     
     // MARK: Private Methods
@@ -132,11 +219,7 @@ internal class NetworkScheduler {
         if let session = self.sessions[configuration] {
             return session
         }
-        let session = URLSession(
-            configuration: configuration,
-            delegate: URLSessionDelegateProxy.shared,
-            delegateQueue: nil
-        )
+        let session = URLSessionDelegateProxy.newSession(for: configuration)
         self.sessions[configuration] = session
         return session
     }
@@ -145,7 +228,8 @@ internal class NetworkScheduler {
 // MARK: Extensions
 extension Publisher where Output == HttpRequest {
     
-    func debug<R>(request: R, withId id: Int) -> Publishers.HandleEvents<Self> where R: Request {
+    func debug<R, N>(request: R, withId id: N) -> Publishers.HandleEvents<Self>
+    where R: NetworkRequest, N: Numeric {
         return self.handleEvents(receiveOutput: { httpRequest in
             Squid.Logger.shared.log(
                 "Scheduled request `\(type(of: request))` with identifier \(id):\n" +
@@ -169,9 +253,9 @@ extension Publisher where Output == (data: Data, response: URLResponse), Failure
 
 extension Publisher where Output == (data: Data, response: HTTPURLResponse) {
     
-    fileprivate func debugResponse<R>(
-        of request: R, withId id: Int
-    ) -> Publishers.HandleEvents<Self> where R: Request {
+    fileprivate func debugResponse<R, N>(
+        of request: R, withId id: N
+    ) -> Publishers.HandleEvents<Self> where R: Request, N: Numeric {
         return self.handleEvents(receiveOutput: { result in
             Squid.Logger.shared.log(
                 "Finished request `\(type(of: request))` with identifier \(id):\n" +
@@ -201,6 +285,38 @@ extension Publisher where Output == (data: Data, response: HTTPURLResponse) {
             }
             return response.data
         }.mapError(Squid.Error.ensure) // no typed throws...
+    }
+}
+
+extension Publisher where Output == Result<URLSessionWebSocketTask.Message, Squid.Error> {
+    
+    fileprivate func debugItem<R, N>(
+        of request: R, withId id: N
+    ) -> Publishers.HandleEvents<Self> where R: StreamRequest, N: Numeric {
+        return self.handleEvents(receiveOutput: { result in
+            switch result {
+            case .success(let message):
+                Squid.Logger.shared.log(
+                    "Stream `\(type(of: request))` with identifier \(id) received message:\n" +
+                    "- Message: \(message)".indent(spaces: 4)
+                )
+            case .failure(let error):
+                Squid.Logger.shared.log(
+                    "Stream `\(type(of: request))` with identifier \(id) received error:\n" +
+                    "- Error: \(error)".indent(spaces: 4)
+                )
+            }
+        }, receiveCompletion: { completion in
+            switch completion {
+            case .failure(let error):
+                Squid.Logger.shared.log(
+                    "Cancelled stream `\(type(of: request))` with identifier \(id):\n" +
+                    "- Error: \(error)".indent(spaces: 4)
+                )
+            default:
+                return
+            }
+        })
     }
 }
 

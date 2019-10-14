@@ -11,14 +11,14 @@ import Foundation
 struct MyApi: HttpService {
     
     var apiUrl: UrlConvertible {
-        return "https://squid.borchero.com"
+        return "squid.borchero.com"
     }
 }
 
 struct MyRetryingApi: HttpService {
     
     var apiUrl: UrlConvertible {
-        return "https://squid.borchero.com"
+        return "squid.borchero.com"
     }
     
     var retrierFactory: RetrierFactory {

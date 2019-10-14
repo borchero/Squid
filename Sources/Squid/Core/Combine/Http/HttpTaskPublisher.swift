@@ -8,6 +8,8 @@
 import Foundation
 import Combine
 
+// This publisher should be subscribed to *once*. Do *not* expose this publisher in a public
+// interface without using some kind of multicast publisher in the pipeline.
 internal struct HttpTaskPublisher: Publisher {
     
     typealias Output = (data: Data, response: URLResponse)

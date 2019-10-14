@@ -34,7 +34,7 @@ where Upstream: Publisher, Upstream.Failure == Squid.Error, RequestType: Request
     }
     
     func receive<S>(subscriber: S) where S: Subscriber, Failure == S.Failure, Output == S.Input {
-        let retrier = RetrierSubscriber(
+        let retrier = RetrierConduit(
             upstream: self.upstream, downstream: subscriber,
             request: self.request, retrier: self.retrier
         )
@@ -43,67 +43,36 @@ where Upstream: Publisher, Upstream.Failure == Squid.Error, RequestType: Request
 }
 
 // MARK: Subscription
-fileprivate class RetrierSubscription<Upstream, Downstream>: Subscription
-where Upstream: Publisher, Downstream: Subscriber, Upstream.Output == Downstream.Input,
-    Upstream.Failure == Downstream.Failure, Upstream.Failure == Squid.Error {
-    
-    let combineIdentifier = CombineIdentifier()
-    
-    private var upstreamSubscription: Subscription?
-    
-    init(upstreamSubscription: Subscription) {
-        self.upstreamSubscription = upstreamSubscription
-    }
-    
-    func request(_ demand: Subscribers.Demand) {
-        self.upstreamSubscription?.request(demand)
-    }
-    
-    func cancel() {
-//        print("Cancelled ADDR:", Unmanaged.passUnretained(self).toOpaque())
-//        self.upstreamSubscription?.cancel()
-//        self.upstreamSubscription = nil
-    }
-}
-
-fileprivate class RetrierSubscriber<Upstream, Downstream, RequestType>: Subscriber
+fileprivate class RetrierConduit<Upstream, Downstream, RequestType>: Subscriber, Subscription
 where Upstream: Publisher, Downstream: Subscriber, RequestType: Request,
     Upstream.Output == Downstream.Input, Upstream.Failure == Downstream.Failure,
-    Upstream.Failure == Squid.Error {
-    
-    
-    let combineIdentifier = CombineIdentifier()
+Upstream.Failure == Squid.Error {
     
     typealias Input = Upstream.Output
     typealias Failure = Upstream.Failure
     
     // MARK: Properties
+    private var downstream: Downstream?
+    private var subscription: Subscription?
+    private var cancellable: Cancellable?
+    
     private let upstream: Upstream
     private let request: RequestType
     private var retrier: Retrier
-    private var isFirstSubscription: Bool = true
     
-    @RWLocked private var downstream: Downstream?
-    @RWLocked private var cancellable: Cancellable?
+    private var postponeCancel = false
     
     init(upstream: Upstream, downstream: Downstream, request: RequestType, retrier: Retrier) {
         self.upstream = upstream
-        self._downstream.set(downstream)
+        self.downstream = downstream
         self.request = request
         self.retrier = retrier
     }
     
     // MARK: Subscriber
     func receive(subscription: Subscription) {
-        let retrier = RetrierSubscription<Upstream, Downstream>(
-            upstreamSubscription: subscription
-        )
-        self.downstream?.receive(subscription: retrier)
-        
-        if !isFirstSubscription {
-            retrier.request(.unlimited)
-        }
-        isFirstSubscription = false
+        self.subscription = subscription
+        self.downstream?.receive(subscription: self)
     }
     
     func receive(_ input: Input) -> Subscribers.Demand {
@@ -119,25 +88,19 @@ where Upstream: Publisher, Downstream: Subscriber, RequestType: Request,
             // First, we need to check whether we ought to retry the failed request.
             // In case the request should be retried, we need to subscribe to the publisher again
             // since the original subscription got destroyed upon error.
-            let cancellable = self.retrier.retry(self.request, failingWith: error)
+            self.cancellable = self.retrier.retry(self.request, failingWith: error)
                 .sink { retry in
                     // We don't need to do anything if no retry is required.
                     guard retry else {
                         return
                     }
                     
-                    // We simply subscribe to the upstream once again. Here, we will also need to
-                    // request from the upstream subscription again. This is, however, contained in
-                    // the `receive(subscription:)` function.
+                    // We simply subscribe to the upstream once again. Here, we also need to
+                    // request from the upstream subscription again.
+                    self.postponeCancel = true
                     self.upstream.subscribe(self)
-                    
-                    // Eventually, we want to force-cancel this cancellable.
-                    self.cancellable?.cancel()
-                    self.cancellable = nil
+                    self.subscription?.request(.unlimited)
                 }
-            
-            // Prevents compiler bug (God knows why)
-            self._cancellable.write { $0 = cancellable}
         case .finished:
             // In case, the upstream publisher is finished, we simply pass this information along
             // the chain - nothing to do here.
@@ -145,13 +108,18 @@ where Upstream: Publisher, Downstream: Subscriber, RequestType: Request,
         }
     }
     
-    // MARK: Cancellation
+    // MARK: Subscription
+    func request(_ demand: Subscribers.Demand) {
+        self.subscription?.request(demand)
+    }
+    
     func cancel() {
-        // 1) Currently active retry
-        self.cancellable?.cancel()
-        self.cancellable = nil
-
-        // 2) The downstream subscription
+        // We only cancel subscriptions and downstream subscribers when there is no new subscription
+        guard !self.postponeCancel else {
+            self.postponeCancel = false
+            return
+        }
+        self.subscription = nil
         self.downstream = nil
     }
 }
