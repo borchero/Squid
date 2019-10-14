@@ -214,13 +214,13 @@
 <p>At its very core, Squid establishes two main entities that are used for making network requests:</p>
 
 <ul>
-<li><strong>Services</strong> abstract API endpoints. They define an endpoint (i.e. a base URL, e.g. <code>places.google.com</code>), common HTTP headers that e.g. need to be used by all requests to authenticate against the API, and more (have a look at the <code>Service</code> protocol for a comprehensive overview).</li>
+<li><strong>Services</strong> abstract API endpoints. They define an endpoint (i.e. a base URL, e.g. <code>places.google.com</code>), common HTTP headers that e.g. need to be used by all requests to authenticate against the API, and more (have a look at the <code><a href="Protocols/HttpService.html">HttpService</a></code> protocol for a comprehensive overview).</li>
 <li><strong>Requests</strong> are <em>scheduled</em> using a service and therefore provide only request-specific information. This includes e.g. the HTTP Method, routing paths, query parameters, or the HTTP body. Further, they define an expected result type that ought to be returned by the server. In case of JSON responses, Squid automatically tries to decode the response to the specified type.</li>
 </ul>
 <h2 id='defining-services' class='heading'>Defining Services</h2>
 
-<p>Defining a specific service is very straightforward. You only have to conform to the <code>Service</code> protocol and implement its sole required property, the URL of the API:</p>
-<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">MyApi</span><span class="p">:</span> <span class="kt">Service</span> <span class="p">{</span>
+<p>Defining a specific service is very straightforward. You only have to conform to the <code><a href="Protocols/HttpService.html">HttpService</a></code> protocol and implement its sole required property, the URL of the API:</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">MyApi</span><span class="p">:</span> <span class="kt">HttpService</span> <span class="p">{</span>
 
     <span class="k">var</span> <span class="nv">apiUrl</span><span class="p">:</span> <span class="kt">UrlConvertible</span> <span class="p">{</span>
         <span class="s">"https://jsonplaceholder.typicode.com"</span>

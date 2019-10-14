@@ -227,12 +227,18 @@
 </ul>
 <h2 id='installation' class='heading'>Installation</h2>
 
-<p>At the moment, Squid is only available via the <a href="https://swift.org/package-manager/">Swift Package Manager</a>.</p>
+<p>Squid is available via the <a href="https://swift.org/package-manager/">Swift Package Manager</a> as well as <a href="https://cocoapods.org">CocoaPods</a>.</p>
+<h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
 
-<p>In order to use it, simply go to <code>File &gt; Swift Packages &gt; Add Package Dependency...</code> in Xcode and add this repository.</p>
+<p>Using the Swift Package Manager is the simplest option to use Squid. In Xcode, simply go to <code>File &gt; Swift Packages &gt; Add Package Dependency...</code> and add this repository.</p>
+<h3 id='cocoapods' class='heading'>CocoaPods</h3>
+
+<p>If you are still using CocoaPods or are required to use it due to other dependencies that are not yet available for the Swift Package Manager, you can include the following line in your Podfile to use the latest version of Squid:</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'Squid'</span><span class="p">,</span> <span class="s1">'~&gt; 1.0.0'</span>
+</code></pre>
 <h2 id='documentation' class='heading'>Documentation</h2>
 
-<p>Documentation is available <a href="https://borchero.github.io/Squid">here</a> and provides both comprehensive documentation of the library&rsquo;s public interface as well as a series of guides teaching you how to use Squid to great effect. Expect more guides to be added shortly.</p>
+<p>Documentation is available <a href="https://borchero.github.io/Squid/">here</a> and provides both comprehensive documentation of the library&rsquo;s public interface as well as a series of guides teaching you how to use Squid to great effect. Expect more guides to be added shortly.</p>
 <h2 id='license' class='heading'>License</h2>
 
 <p>Squid is licensed under the <a href="https://github.com/borchero/Squid/LICENSE">MIT License</a>.</p>
