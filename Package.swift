@@ -13,7 +13,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/AliSoftware/OHHTTPStubs.git",
-                 .branch("feature/spm-support"))
+                 .revision("fda9902f8c5c4170c6914d7dc845174e8c75bf92"))
     ],
     targets: [
         .target(name: "Squid", dependencies: []),

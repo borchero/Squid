@@ -5,7 +5,7 @@
         "package": "OHHTTPStubs",
         "repositoryURL": "https://github.com/AliSoftware/OHHTTPStubs.git",
         "state": {
-          "branch": "feature/spm-support",
+          "branch": null,
           "revision": "fda9902f8c5c4170c6914d7dc845174e8c75bf92",
           "version": null
         }
