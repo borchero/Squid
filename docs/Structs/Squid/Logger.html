@@ -4,180 +4,211 @@
     <title>Logger Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <script src="../../js/jquery.min.js" defer></script>
     <script src="../../js/jazzy.js" defer></script>
     
+    <script src="../../js/lunr.min.js" defer></script>
+    <script src="../../js/typeahead.jquery.js" defer></script>
+    <script src="../../js/jazzy.search.js" defer></script>
   </head>
   <body>
+
     <a name="//apple_ref/swift/Struct/Logger" class="dashAnchor"></a>
+
     <a title="Logger Structure Reference"></a>
-    <header>
-      <div class="content-wrapper">
-        <p><a href="../../index.html">Squid Docs</a> (100% documented)</p>
-        <p class="header-right"><a href="https://github.com/borchero/squid"><img src="../../img/gh.png"/>View on GitHub</a></p>
-      </div>
-    </header>
-    <div class="content-wrapper">
-      <p id="breadcrumbs">
-        <a href="../../index.html">Squid Reference</a>
-        <img id="carat" src="../../img/carat.png" />
-        Logger Structure Reference
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../../index.html">
+          Squid Docs
+        </a>
+         (100% documented)
       </p>
-    </div>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/borchero/squid">
+            <img class="header-icon" src="../../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../../index.html">Squid Reference</a>
+      <img class="carat" src="../../img/carat.png" />
+      Logger Structure Reference
+    </p>
+
     <div class="content-wrapper">
-      <nav class="sidebar">
+      <nav class="navigation">
         <ul class="nav-groups">
           <li class="nav-group-name">
-            <a href="../../Classes.html">Classes</a>
+            <a class="nav-group-name-link" href="../../Guides.html">Guides</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../../Classes/Paginator.html">Paginator</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Classes/Response.html">Response</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Classes/Stream.html">Stream</a>
+                <a class="nav-group-task-link" href="../../01-basics.html">01: Basics</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../../Enums.html">Enumerations</a>
+            <a class="nav-group-name-link" href="../../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../../Enums/HttpData.html">HttpData</a>
+                <a class="nav-group-task-link" href="../../Classes/Paginator.html">Paginator</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Enums/HttpData/Empty.html">– Empty</a>
+                <a class="nav-group-task-link" href="../../Classes/Response.html">Response</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Enums/HttpData/Image.html">– Image</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Enums/HttpData/Json.html">– Json</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Enums/HttpMethod.html">HttpMethod</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Enums/HttpMimeType.html">HttpMimeType</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Enums/RequestPriority.html">RequestPriority</a>
+                <a class="nav-group-task-link" href="../../Classes/Stream.html">Stream</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../../Extensions.html">Extensions</a>
+            <a class="nav-group-name-link" href="../../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../../Extensions/Publisher.html">Publisher</a>
+                <a class="nav-group-task-link" href="../../Enums/HttpData.html">HttpData</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Extensions/Publishers.html">Publishers</a>
+                <a class="nav-group-task-link" href="../../Enums/HttpData/Empty.html">– Empty</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Extensions/Publishers/IgnoreError.html">– IgnoreError</a>
+                <a class="nav-group-task-link" href="../../Enums/HttpData/Image.html">– Image</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Extensions/Publishers/IgnoreResultErrors.html">– IgnoreResultErrors</a>
+                <a class="nav-group-task-link" href="../../Enums/HttpData/Json.html">– Json</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Extensions/String.html">String</a>
+                <a class="nav-group-task-link" href="../../Enums/HttpMethod.html">HttpMethod</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Extensions/URL.html">URL</a>
+                <a class="nav-group-task-link" href="../../Enums/HttpMimeType.html">HttpMimeType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/RequestPriority.html">RequestPriority</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../../Protocols.html">Protocols</a>
+            <a class="nav-group-name-link" href="../../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../../Protocols/HttpBody.html">HttpBody</a>
+                <a class="nav-group-task-link" href="../../Extensions/Publisher.html">Publisher</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Protocols/HttpService.html">HttpService</a>
+                <a class="nav-group-task-link" href="../../Extensions/Publishers.html">Publishers</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Protocols/JsonRequest.html">JsonRequest</a>
+                <a class="nav-group-task-link" href="../../Extensions/Publishers/IgnoreError.html">– IgnoreError</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Protocols/NetworkRequest.html">NetworkRequest</a>
+                <a class="nav-group-task-link" href="../../Extensions/Publishers/IgnoreResultErrors.html">– IgnoreResultErrors</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Protocols/PaginatedData.html">PaginatedData</a>
+                <a class="nav-group-task-link" href="../../Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Protocols/Request.html">Request</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Protocols/Retrier.html">Retrier</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Protocols/RetrierFactory.html">RetrierFactory</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Protocols/StatelessRetrier.html">StatelessRetrier</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Protocols/StreamRequest.html">StreamRequest</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Protocols/UrlConvertible.html">UrlConvertible</a>
+                <a class="nav-group-task-link" href="../../Extensions/URL.html">URL</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../../Structs.html">Structures</a>
+            <a class="nav-group-name-link" href="../../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../../Structs/AnyHttpService.html">AnyHttpService</a>
+                <a class="nav-group-task-link" href="../../Protocols/HttpBody.html">HttpBody</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Structs/AnyRequest.html">AnyRequest</a>
+                <a class="nav-group-task-link" href="../../Protocols/HttpService.html">HttpService</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Structs/AnyStreamRequest.html">AnyStreamRequest</a>
+                <a class="nav-group-task-link" href="../../Protocols/JsonRequest.html">JsonRequest</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Structs/BackoffRetrier.html">BackoffRetrier</a>
+                <a class="nav-group-task-link" href="../../Protocols/NetworkRequest.html">NetworkRequest</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Structs/BackoffRetrier/Strategy.html">– Strategy</a>
+                <a class="nav-group-task-link" href="../../Protocols/PaginatedData.html">PaginatedData</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Structs/HttpHeader.html">HttpHeader</a>
+                <a class="nav-group-task-link" href="../../Protocols/Request.html">Request</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Structs/HttpHeader/Field.html">– Field</a>
+                <a class="nav-group-task-link" href="../../Protocols/Retrier.html">Retrier</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Structs/HttpQuery.html">HttpQuery</a>
+                <a class="nav-group-task-link" href="../../Protocols/RetrierFactory.html">RetrierFactory</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Structs/HttpRoute.html">HttpRoute</a>
+                <a class="nav-group-task-link" href="../../Protocols/StatelessRetrier.html">StatelessRetrier</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Structs/NilRetrier.html">NilRetrier</a>
+                <a class="nav-group-task-link" href="../../Protocols/StreamRequest.html">StreamRequest</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Structs/Squid.html">Squid</a>
+                <a class="nav-group-task-link" href="../../Protocols/UrlConvertible.html">UrlConvertible</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Structs/AnyHttpService.html">AnyHttpService</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Structs/Squid/Error.html">– Error</a>
+                <a class="nav-group-task-link" href="../../Structs/AnyRequest.html">AnyRequest</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Structs/Squid/Logger.html">– Logger</a>
+                <a class="nav-group-task-link" href="../../Structs/AnyStreamRequest.html">AnyStreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Structs/BackoffRetrier.html">BackoffRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Structs/BackoffRetrier/Strategy.html">– Strategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Structs/HttpHeader.html">HttpHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Structs/HttpHeader/Field.html">– Field</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Structs/HttpQuery.html">HttpQuery</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Structs/HttpRoute.html">HttpRoute</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Structs/NilRetrier.html">NilRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Structs/Squid.html">Squid</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Structs/Squid/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Structs/Squid/Logger.html">– Logger</a>
               </li>
             </ul>
           </li>
         </ul>
       </nav>
       <article class="main-content">
-        <section>
-          <section class="section">
+
+        <section class="section">
+          <div class="section-content">
             <h1>Logger</h1>
               <div class="declaration">
                 <div class="language">
@@ -190,10 +221,13 @@ logging is only enabled in debug mode - in release compiles, the code for loggin
 even included in the binary. It is also possible to prevent any log statements in debug
 mode by using the <code>silence</code> method.</p>
 
-          </section>
-          <section class="section task-group-section">
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
             <div class="task-group">
-              <ul>
+              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
@@ -243,14 +277,15 @@ compiles.</p>
                 </li>
               </ul>
             </div>
-          </section>
+          </div>
         </section>
-        <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-14)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
-        </section>
+
       </article>
     </div>
+    <section class="footer">
+      <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-14)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
   </body>
 </div>
 </html>

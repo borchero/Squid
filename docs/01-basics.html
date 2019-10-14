@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>01: Basics  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+
+    <a title="01: Basics  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          Squid Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/borchero/squid">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">Squid Reference</a>
+      <img class="carat" src="img/carat.png" />
+      01: Basics  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Guides.html">Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="01-basics.html">01: Basics</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Paginator.html">Paginator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Stream.html">Stream</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData.html">HttpData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData/Empty.html">– Empty</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData/Image.html">– Image</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData/Json.html">– Json</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpMethod.html">HttpMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpMimeType.html">HttpMimeType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/RequestPriority.html">RequestPriority</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publisher.html">Publisher</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publishers.html">Publishers</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publishers/IgnoreError.html">– IgnoreError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publishers/IgnoreResultErrors.html">– IgnoreResultErrors</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/URL.html">URL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/HttpBody.html">HttpBody</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/HttpService.html">HttpService</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/JsonRequest.html">JsonRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/NetworkRequest.html">NetworkRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/PaginatedData.html">PaginatedData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/Retrier.html">Retrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RetrierFactory.html">RetrierFactory</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/StatelessRetrier.html">StatelessRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/StreamRequest.html">StreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/UrlConvertible.html">UrlConvertible</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyHttpService.html">AnyHttpService</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyRequest.html">AnyRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyStreamRequest.html">AnyStreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/BackoffRetrier.html">BackoffRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/BackoffRetrier/Strategy.html">– Strategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpHeader.html">HttpHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpHeader/Field.html">– Field</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpQuery.html">HttpQuery</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpRoute.html">HttpRoute</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/NilRetrier.html">NilRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Squid.html">Squid</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Squid/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Squid/Logger.html">– Logger</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            
+            <h1 id='squid-basics' class='heading'>Squid Basics</h1>
+
+<p>At its very core, Squid establishes two main entities that are used for making network requests:</p>
+
+<ul>
+<li><strong>Services</strong> abstract API endpoints. They define an endpoint (i.e. a base URL, e.g. <code>places.google.com</code>), common HTTP headers that e.g. need to be used by all requests to authenticate against the API, and more (have a look at the <code>Service</code> protocol for a comprehensive overview).</li>
+<li><strong>Requests</strong> are <em>scheduled</em> using a service and therefore provide only request-specific information. This includes e.g. the HTTP Method, routing paths, query parameters, or the HTTP body. Further, they define an expected result type that ought to be returned by the server. In case of JSON responses, Squid automatically tries to decode the response to the specified type.</li>
+</ul>
+<h2 id='defining-services' class='heading'>Defining Services</h2>
+
+<p>Defining a specific service is very straightforward. You only have to conform to the <code>Service</code> protocol and implement its sole required property, the URL of the API:</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">MyApi</span><span class="p">:</span> <span class="kt">Service</span> <span class="p">{</span>
+
+    <span class="k">var</span> <span class="nv">apiUrl</span><span class="p">:</span> <span class="kt">UrlConvertible</span> <span class="p">{</span>
+        <span class="s">"https://jsonplaceholder.typicode.com"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h2 id='defining-http-requests' class='heading'>Defining HTTP Requests</h2>
+
+<p>Again, defining an HTTP request is very straightforward. A request simply needs to conform to the <code><a href="Protocols/Request.html">Request</a></code> protocol and implement its required methods. In fact, the only required method is the <code>decode(_:)</code> method where the <code>Data</code> returned by the server is transformed into the request&rsquo;s result type.</p>
+
+<p>Commonly, however, you will want to talk to a JSON API and therefore, you may also conform to the <code><a href="Protocols/JsonRequest.html">JsonRequest</a></code> protocol. Given that the request&rsquo;s result type is <code>Decodable</code>, the <code>decode(_:)</code> method has a useful default implementation.</p>
+
+<p>For this guide, let us define the following <code>User</code> type:</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">User</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+
+    <span class="k">let</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="k">let</span> <span class="nv">username</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Using this type, we can now easily define a request that expects a list of such users:</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">UserRequest</span><span class="p">:</span> <span class="kt">JsonRequest</span> <span class="p">{</span>
+
+    <span class="kd">typealias</span> <span class="kt">Result</span> <span class="o">=</span> <span class="p">[</span><span class="kt">User</span><span class="p">]</span>
+
+    <span class="k">var</span> <span class="nv">routes</span><span class="p">:</span> <span class="kt">HttpRoute</span> <span class="p">{</span>
+        <span class="p">[</span><span class="s">"users"</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Note that the <code><a href="Protocols/Request.html">Request</a></code> protocol includes plenty of useful default implementations for various options that a request can have (e.g. HTTP method, headers, &hellip;). Look at the protocol documentation to get an overview.</p>
+<h2 id='scheduling-http-requests' class='heading'>Scheduling HTTP Requests</h2>
+
+<p>Having defined a request and a service, a request must be <em>scheduled</em>:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">service</span> <span class="o">=</span> <span class="kt">MyApi</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">UserRequest</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">response</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="nf">schedule</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">service</span><span class="p">)</span>
+</code></pre>
+
+<p>The <code>response</code> variable is of type <code><a href="Classes/Response.html">Response</a></code> and is a Combine <code>Publisher</code> that can be subscribed to. Once subscribed for the first time, the request is actually sent and the result is delivered shortly (assuming that no error occurs).</p>
+
+<p>When another subscriber subscribes to the same scheduled request, the request is <em>not</em> sent again, but the response is passed to the subscriber once available.</p>
+
+<p>Note that when all subscriptions are cancelled, the request is also cancelled.</p>
+
+<p>An example on how to use the response might be the following:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">c</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="nf">sink</span><span class="p">(</span><span class="nv">receiveCompletion</span><span class="p">:</span> <span class="p">{</span> <span class="n">completion</span> <span class="k">in</span>
+    <span class="k">switch</span> <span class="n">completion</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"Request failed due to: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">."</span><span class="p">)</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">finished</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"Request finished."</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">})</span> <span class="p">{</span> <span class="n">users</span> <span class="k">in</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Received users: </span><span class="se">\(</span><span class="n">users</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>However, the fact that the <code>response</code> variable is a simple <code>Publisher</code> enables a wide range of possibilities how to work with the returned response.</p>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-14)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
