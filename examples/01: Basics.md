@@ -2,15 +2,15 @@
 
 At its very core, Squid establishes two main entities that are used for making network requests:
 
-* **Services** abstract API endpoints. They define an endpoint (i.e. a base URL, e.g. `places.google.com`), common HTTP headers that e.g. need to be used by all requests to authenticate against the API, and more (have a look at the `Service` protocol for a comprehensive overview).
+* **Services** abstract API endpoints. They define an endpoint (i.e. a base URL, e.g. `places.google.com`), common HTTP headers that e.g. need to be used by all requests to authenticate against the API, and more (have a look at the `HttpService` protocol for a comprehensive overview).
 * **Requests** are *scheduled* using a service and therefore provide only request-specific information. This includes e.g. the HTTP Method, routing paths, query parameters, or the HTTP body. Further, they define an expected result type that ought to be returned by the server. In case of JSON responses, Squid automatically tries to decode the response to the specified type.
 
 ## Defining Services
 
-Defining a specific service is very straightforward. You only have to conform to the `Service` protocol and implement its sole required property, the URL of the API:
+Defining a specific service is very straightforward. You only have to conform to the `HttpService` protocol and implement its sole required property, the URL of the API:
 
 ```swift
-struct MyApi: Service {
+struct MyApi: HttpService {
 
     var apiUrl: UrlConvertible {
         "https://jsonplaceholder.typicode.com"
