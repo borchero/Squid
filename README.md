@@ -16,9 +16,19 @@ At the moment, the most important features of Squid can be summarized as follows
 
 ## Installation
 
-At the moment, Squid is only available via the [Swift Package Manager](https://swift.org/package-manager/).
+Squid is available via the [Swift Package Manager](https://swift.org/package-manager/) as well as [CocoaPods](https://cocoapods.org).
 
-In order to use it, simply go to `File > Swift Packages > Add Package Dependency...` in Xcode and add this repository.
+### Swift Package Manager
+
+Using the Swift Package Manager is the simplest option to use Squid. In Xcode, simply go to `File > Swift Packages > Add Package Dependency...` and add this repository.
+
+### CocoaPods
+
+If you are still using CocoaPods or are required to use it due to other dependencies that are not yet available for the Swift Package Manager, you can include the following line in your Podfile to use the latest version of Squid:
+
+```ruby
+pod 'Squid', '~> 1.0.0'
+```
 
 ## Documentation
 

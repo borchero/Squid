@@ -44,23 +44,23 @@ internal class Locked<Value> {
 internal class AtomicInt {
     
     @discardableResult
-    postfix static func ++ (atomic: AtomicInt) -> Int64 {
+    postfix static func ++ (atomic: AtomicInt) -> Int {
         let value = atomic.value
         atomic.increment()
         return value
     }
     
-    private var _value: Int64
+    private let locked: Locked<Int>
     
-    init(_ value: Int64 = 0) {
-        self._value = value
+    init(_ value: Int = 0) {
+        self.locked = .init(value)
     }
     
-    var value: Int64 {
-        return _value
+    var value: Int {
+        return locked.value
     }
     
     func increment() {
-        OSAtomicIncrement64(&self._value)
+        self.locked.locking { $0 += 1 }
     }
 }

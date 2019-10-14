@@ -14,4 +14,3 @@ jazzy \
     --documentation=examples/*.md \
     --theme fullwidth \
     --output docs
-

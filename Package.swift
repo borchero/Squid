@@ -5,18 +5,11 @@ import PackageDescription
 
 let package = Package(
     name: "Squid",
-    platforms: [
-        .macOS(.v10_15), .iOS(.v13)
-    ],
-    products: [
-        .library(name: "Squid", targets: ["Squid"]),
-    ],
-    dependencies: [
-        .package(url: "https://github.com/AliSoftware/OHHTTPStubs.git",
-                 .revision("fda9902f8c5c4170c6914d7dc845174e8c75bf92"))
-    ],
+    platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .watchOS(.v6)],
+    products: [.library(name: "Squid", targets: ["Squid"])],
+    dependencies: [],
     targets: [
         .target(name: "Squid", dependencies: []),
-        .testTarget(name: "SquidTests", dependencies: ["Squid", "OHHTTPStubsSwift"]),
-    ]
+    ],
+    swiftLanguageVersions: [.v5]
 )
