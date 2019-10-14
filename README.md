@@ -22,7 +22,7 @@ In order to use it, simply go to `File > Swift Packages > Add Package Dependency
 
 ## Documentation
 
-Documentation is available [here](https://borchero.github.io/Squid) and provides both comprehensive documentation of the library's public interface as well as a series of guides teaching you how to use Squid to great effect. Expect more guides to be added shortly.
+Documentation is available [here](https://borchero.github.io/Squid/) and provides both comprehensive documentation of the library's public interface as well as a series of guides teaching you how to use Squid to great effect. Expect more guides to be added shortly.
 
 ## License
 
