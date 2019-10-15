@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>02: Retriers  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+
+    <a title="02: Retriers  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          Squid Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/borchero/squid">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">Squid Reference</a>
+      <img class="carat" src="img/carat.png" />
+      02: Retriers  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Guides.html">Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="01-basics.html">01: Basics</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="02-retriers.html">02: Retriers</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="03-websockets.html">03: WebSockets</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/BackoffRetrier.html">BackoffRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/BackoffRetrier/Strategy.html">– Strategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Paginator.html">Paginator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Stream.html">Stream</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData.html">HttpData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData/Empty.html">– Empty</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData/Image.html">– Image</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData/Json.html">– Json</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpMethod.html">HttpMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpMimeType.html">HttpMimeType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/RequestPriority.html">RequestPriority</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publisher.html">Publisher</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publishers.html">Publishers</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publishers/IgnoreError.html">– IgnoreError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publishers/IgnoreResultErrors.html">– IgnoreResultErrors</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/URL.html">URL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/HttpBody.html">HttpBody</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/HttpService.html">HttpService</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/JsonRequest.html">JsonRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/JsonStreamRequest.html">JsonStreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/NetworkRequest.html">NetworkRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/PaginatedData.html">PaginatedData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/Retrier.html">Retrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RetrierFactory.html">RetrierFactory</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/StreamRequest.html">StreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/UrlConvertible.html">UrlConvertible</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyHttpService.html">AnyHttpService</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyRequest.html">AnyRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyRetrierFactory.html">AnyRetrierFactory</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyStreamRequest.html">AnyStreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpHeader.html">HttpHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpHeader/Field.html">– Field</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpQuery.html">HttpQuery</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpRoute.html">HttpRoute</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/NilRetrier.html">NilRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Squid.html">Squid</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Squid/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Squid/Logger.html">– Logger</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            
+            <h1 id='retriers' class='heading'>Retriers</h1>
+
+<p>Retriers are a very useful tool for repeating requests that have failed. In Squid, they can be used in a variety of contexts. Some examples are the following:</p>
+
+<ul>
+<li>If an error occurs due to a missing internet connection or rate limiting, the request can be retried multiple times with exponential backoff.</li>
+<li>If an error occurs due to an expired token and results in a 401 response, the token can be refreshed and the request is retried with the new token.</li>
+</ul>
+<h2 id='how-to-use-retriers' class='heading'>How to Use Retriers</h2>
+
+<p>Retriers are defined at the API level - the justification being that e.g. authorization is implemented equally for all calls against an API.</p>
+
+<p>In order to use a retrier, the <code><a href="Protocols/HttpService.html">HttpService</a></code> provides a <code><a href="Protocols/HttpService.html#/s:5Squid11HttpServiceP14retrierFactoryAA07RetrierE0_pvp">HttpService.retrierFactory</a></code> property. Note that a new retrier is created per request to enable <em>stateful</em> retriers (e.g. exponential backoff). Creating a factory from a retrier is, however, very straightforward as you will see in the following.</p>
+
+<p>The retrier itself needs to conform to the <code><a href="Protocols/Retrier.html">Retrier</a></code> protocol which defines a single <code><a href="Protocols/Retrier.html#/s:5Squid7RetrierP5retry_11failingWith7Combine6FutureCySbs5NeverOGqd___A2AV5ErrorOtAA7RequestRd__lF">Retrier.retry(_:failingWith:)</a></code> method that possibly retries a failed request.</p>
+
+<p>To showcase how to use retriers in practice, we will consider the <code><a href="Classes/BackoffRetrier.html">BackoffRetrier</a></code> that Squid provides out-of-the-box as well as implement our own retrier for Authorization.</p>
+<h2 id='exponential-backoff' class='heading'>Exponential Backoff</h2>
+
+<p>As applying an exponential backoff to a failed request can be standardized, i.e. is not dependent on a particular API, it is included in Squid directly.</p>
+
+<p>As pointed out above, retriers need to be included into the API, so we modify our service from the first guide as follows:</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">MyApi</span><span class="p">:</span> <span class="kt">HttpService</span> <span class="p">{</span>
+
+    <span class="k">var</span> <span class="nv">apiUrl</span><span class="p">:</span> <span class="kt">UrlConvertible</span> <span class="p">{</span>
+        <span class="s">"jsonplaceholder.typicode.com"</span>
+    <span class="p">}</span>
+
+    <span class="k">var</span> <span class="nv">retrierFactory</span><span class="p">:</span> <span class="kt">RetrierFactory</span> <span class="p">{</span>
+        <span class="kt">BackoffRetrier</span><span class="o">.</span><span class="nf">factory</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>As a result, all requests that are now scheduled against the API will be retried when particular errors occur (e.g. <q>no connection</q>, 429 status code, &hellip;, see <code><a href="Classes/BackoffRetrier.html#/s:5Squid14BackoffRetrierC21defaultRetryConditionySbA2AV5ErrorOFZ">BackoffRetrier.defaultRetryCondition(_:)</a></code>).</p>
+
+<p><strong>In fact, you do not need to change anything else for this to work. You can schedule requests just as before.</strong></p>
+<h2 id='refreshing-tokens' class='heading'>Refreshing Tokens</h2>
+
+<p>Refreshing tokens for accessing protected resources is probably one of the most common use cases for retriers when targeting secure APIs. However, Squid does not include this feature out-of-the-box since the particular implementation is highly dependent on a particular API.</p>
+
+<p>In the following, we will walk you through the process of setting up services and requests that enable retrying requests for authentication. Throughout, we assume the following:</p>
+
+<ul>
+<li>We have two API endpoints: (A) one for <em>authentication</em> which can be accessed easily and (B) one for <em>accessing protected resources</em> where we need to authenticate.</li>
+<li>Authentication is performed via an <em>access token</em> that is passed via the HTTP <code>Authorization</code> header. Once received, this token is, however, valid for a short period of time only (e.g. 10 minutes).</li>
+<li>To request a new access token without passing user credentials (e.g. username/password), we have a <em>refresh token</em> that does not expire.</li>
+<li>When we try to access a resource from endpoint B with an expired access token, we get a response status code of 401.</li>
+<li>We can then receive a new access (and refresh) token by sending a request to endpoint A.</li>
+</ul>
+<h3 id='defining-the-authentication-service' class='heading'>Defining the Authentication Service</h3>
+
+<p>At first, we want to define the authentication service. Usually, you will need to send a login request initially to obtain an access and a refresh token. However, to simplify this guide, we assume that we have these tokens already stored in our keychain.</p>
+
+<p>To interact with the keychain, we use some (thread-safe and caching) instance that conforms to the following protocol (note that this protocol does not handle errors - again, to simplify this guide):</p>
+<pre class="highlight swift"><code><span class="kd">protocol</span> <span class="kt">KeychainService</span> <span class="p">{</span>
+
+    <span class="kd">func</span> <span class="n">store</span><span class="o">&lt;</span><span class="kt">K</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">K</span><span class="p">,</span> <span class="k">for</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">where</span> <span class="kt">K</span><span class="p">:</span> <span class="kt">Encodable</span>
+    <span class="kd">func</span> <span class="n">load</span><span class="o">&lt;</span><span class="kt">K</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">K</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="k">for</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">K</span> <span class="k">where</span> <span class="kt">K</span><span class="p">:</span> <span class="kt">Decodable</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Given that protocol, we can define our authentication service:</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">MyAuthApi</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">keychain</span><span class="p">:</span> <span class="kt">KeychainService</span>
+
+    <span class="nf">init</span><span class="p">(</span><span class="nv">keychain</span><span class="p">:</span> <span class="kt">KeychainService</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">keychain</span> <span class="o">=</span> <span class="n">keychain</span>
+    <span class="p">}</span>
+
+    <span class="k">var</span> <span class="nv">accessToken</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span>
+            <span class="n">keychain</span><span class="o">.</span><span class="nf">load</span><span class="p">(</span><span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="s">"access_token"</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">set</span> <span class="p">{</span>
+            <span class="n">keychain</span><span class="o">.</span><span class="nf">store</span><span class="p">(</span><span class="n">newValue</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="s">"access_token"</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">var</span> <span class="nv">refreshToken</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span>
+            <span class="n">keychain</span><span class="o">.</span><span class="nf">load</span><span class="p">(</span><span class="kt">String</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="s">"refresh_token"</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">set</span> <span class="p">{</span>
+            <span class="n">keychain</span><span class="o">.</span><span class="nf">store</span><span class="p">(</span><span class="n">newValue</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="s">"refresh_token"</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="kt">MyAuthApi</span><span class="p">:</span> <span class="kt">HttpService</span> <span class="p">{</span>
+
+    <span class="k">var</span> <span class="nv">apiUrl</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="s">"auth.borchero.com"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Note that this definition of a service is very similar to before - we only added a few properties that are associated with the authentication service.</p>
+<h3 id='defining-a-protected-api' class='heading'>Defining a Protected API</h3>
+
+<p>Using our authentication service, we can define the API which needs to provide access tokens to access protected resources.
+All requests scheduled against this API need to provide a valid HTTP <code>Authorization</code> header, therefore, our API definition can set this automatically:</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">MyProtectedApi</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">auth</span><span class="p">:</span> <span class="kt">MyAuthApi</span>
+
+    <span class="nf">init</span><span class="p">(</span><span class="nv">auth</span><span class="p">:</span> <span class="kt">MyAuthApi</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="n">auth</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="kt">MyProtectedApi</span><span class="p">:</span> <span class="kt">HttpService</span> <span class="p">{</span>
+
+    <span class="k">var</span> <span class="nv">apiUrl</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
+        <span class="s">"squid.borchero.com"</span>
+    <span class="p">}</span>
+
+    <span class="k">var</span> <span class="nv">header</span><span class="p">:</span> <span class="kt">HttpHeader</span> <span class="p">{</span>
+        <span class="p">[</span><span class="o">.</span><span class="nv">authorization</span><span class="p">:</span> <span class="s">"Bearer </span><span class="se">\(</span><span class="n">auth</span><span class="o">.</span><span class="n">accessToken</span><span class="se">)</span><span class="s">"</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h3 id='defining-the-retrier' class='heading'>Defining the Retrier</h3>
+
+<p>Finally, we want to retry requests scheduled against <code>MyProtectedApi</code> whenever we receive a 401 HTTP status code as response. Before retrying, however, we need to schedule a request against <code>MyAuthApi</code> to refresh our token.</p>
+
+<p>Therefore, we first want to define our request for refreshing tokens:</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">TokenRequestResponse</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+
+    <span class="k">let</span> <span class="nv">accessToken</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="k">let</span> <span class="nv">refreshToken</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="kt">TokenRequest</span><span class="p">:</span> <span class="kt">JsonRequest</span> <span class="p">{</span>
+
+    <span class="kd">typealias</span> <span class="kt">Result</span> <span class="o">=</span> <span class="kt">TokenRequestResponse</span>
+
+    <span class="k">let</span> <span class="nv">refreshToken</span><span class="p">:</span> <span class="kt">String</span>
+
+    <span class="k">var</span> <span class="nv">method</span><span class="p">:</span> <span class="kt">HttpMethod</span> <span class="p">{</span>
+        <span class="o">.</span><span class="n">post</span>
+    <span class="p">}</span>
+
+    <span class="k">var</span> <span class="nv">routes</span><span class="p">:</span> <span class="kt">HttpRoute</span> <span class="p">{</span>
+        <span class="p">[</span><span class="s">"token"</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kt">HttpBody</span> <span class="p">{</span>
+        <span class="kt">HttpData</span><span class="o">.</span><span class="kt">Json</span><span class="p">([</span><span class="s">"refresh_token"</span><span class="p">:</span> <span class="n">refreshToken</span><span class="p">])</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Here, we send the refresh token as JSON object to the server (usually, you would include some more information here) and we expect to receive an access as well as a refresh token.</p>
+
+<p>At this point, it is possible to define our retrier (note that you will need to import <code>Combine</code> for this):</p>
+<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">AuthorizationRetrier</span><span class="p">:</span> <span class="kt">Retrier</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">auth</span><span class="p">:</span> <span class="kt">MyAuthApi</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">cancellable</span><span class="p">:</span> <span class="kt">Cancellable</span><span class="p">?</span>
+
+    <span class="nf">init</span><span class="p">(</span><span class="nv">auth</span><span class="p">:</span> <span class="kt">MyAuthApi</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="n">auth</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="n">retry</span><span class="o">&lt;</span><span class="kt">R</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">request</span><span class="p">:</span> <span class="kt">R</span><span class="p">,</span> <span class="n">failingWith</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Squid</span><span class="o">.</span><span class="kt">Error</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">&lt;</span><span class="kt">Bool</span><span class="p">,</span> <span class="kt">Never</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">R</span><span class="p">:</span> <span class="kt">Request</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kt">Future</span> <span class="p">{</span> <span class="n">promise</span> <span class="k">in</span>
+            <span class="k">switch</span> <span class="n">error</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="o">.</span><span class="nf">requestFailed</span><span class="p">(</span><span class="nv">statusCode</span><span class="p">:</span> <span class="mi">401</span><span class="p">,</span> <span class="nv">response</span><span class="p">:</span> <span class="n">_</span><span class="p">):</span>
+                <span class="c1">// Here, we want to request a new token.</span>
+                <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">TokenRequest</span><span class="p">(</span><span class="nv">refreshToken</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">refreshToken</span><span class="p">)</span>
+
+                <span class="c1">// Note that we do not need any synchronization primitives here as this retrier is used by a *single request*</span>
+                <span class="k">self</span><span class="o">.</span><span class="n">cancellable</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="nf">schedule</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span><span class="o">.</span><span class="nf">sink</span><span class="p">(</span><span class="nv">receiveCompletion</span><span class="p">:</span> <span class="p">{</span> <span class="n">completion</span> <span class="k">in</span>
+                    <span class="k">switch</span> <span class="n">completion</span> <span class="p">{</span>
+                    <span class="k">case</span> <span class="o">.</span><span class="nv">finished</span><span class="p">:</span>
+                        <span class="c1">// We don't need to do anything</span>
+                        <span class="k">break</span>
+                    <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="n">_</span><span class="p">):</span>
+                        <span class="c1">// The request failed, we don't need to retry the original request</span>
+                        <span class="nf">promise</span><span class="p">(</span><span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="kc">false</span><span class="p">))</span>
+                    <span class="p">}</span>
+                <span class="p">})</span> <span class="p">{</span> <span class="n">value</span> <span class="k">in</span>
+                    <span class="k">self</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">accessToken</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">accessToken</span>
+                    <span class="k">self</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">refreshToken</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">refreshToken</span>
+
+                    <span class="c1">// The request finished successfully, retry the original request</span>
+                    <span class="nf">promise</span><span class="p">(</span><span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="kc">true</span><span class="p">))</span>
+                <span class="p">}</span>
+            <span class="k">default</span><span class="p">:</span>
+                <span class="c1">// Some other error occurred, we do not want to retry the request</span>
+                <span class="nf">promise</span><span class="p">(</span><span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="kc">false</span><span class="p">))</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h3 id='attaching-the-retrier-to-the-api' class='heading'>Attaching the Retrier to the API</h3>
+
+<p>Now that we defined our retrier, we need to attach it to <code>MyProtectedApi</code> to actually use it for requests scheduled against it. We can easily do this as follows:</p>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">MyProtectedApi</span> <span class="p">{</span>
+
+    <span class="k">var</span> <span class="nv">retrierFactory</span><span class="p">:</span> <span class="kt">RetrierFactory</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kt">AnyRetrierFactory</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kt">AuthorizationRetrier</span><span class="p">(</span><span class="nv">auth</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>We need to provide a factory function here to ensure that a new instance of the retrier is used for each request.</p>
+<h3 id='final-notes' class='heading'>Final Notes</h3>
+
+<p>You might think that defining this retrier was a lot of work. However, you probably realized that retriers can be very powerful. Further, all requests that you schedule against <code>MyProtectedApi</code> can be scheduled equally well against an API that is not protected. That means that you can switch between APIs (e.g. for staging and production) hardly changing any of your code.</p>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-15)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

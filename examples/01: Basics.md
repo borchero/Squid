@@ -1,4 +1,4 @@
-# Squid Basics
+# Basics
 
 At its very core, Squid establishes two main entities that are used for making network requests:
 
@@ -13,16 +13,16 @@ Defining a specific service is very straightforward. You only have to conform to
 struct MyApi: HttpService {
 
     var apiUrl: UrlConvertible {
-        "https://jsonplaceholder.typicode.com"
+        "jsonplaceholder.typicode.com"
     }
 }
 ```
 
 ## Defining HTTP Requests
 
-Again, defining an HTTP request is very straightforward. A request simply needs to conform to the `Request` protocol and implement its required methods. In fact, the only required method is the `decode(_:)` method where the `Data` returned by the server is transformed into the request's result type.
+Again, defining an HTTP request is very straightforward. A request simply needs to conform to the `Request` protocol and implement its required methods. In fact, the only required method is the `Request.decode(_:)` method where the `Data` returned by the server is transformed into the request's result type.
 
-Commonly, however, you will want to talk to a JSON API and therefore, you may also conform to the `JsonRequest` protocol. Given that the request's result type is `Decodable`, the `decode(_:)` method has a useful default implementation.
+Commonly, however, you will want to talk to a JSON API and therefore, you may also conform to the `JsonRequest` protocol. Given that the request's result type is `Decodable`, the `Request.decode(_:)` method has a useful default implementation.
 
 For this guide, let us define the following `User` type:
 
@@ -72,7 +72,7 @@ An example on how to use the response might be the following:
 let c = response.sink(receiveCompletion: { completion in
     switch completion {
         case .failure(let error):
-            print("Request failed due to: \(error).")
+            print("Request failed due to: \(error)")
         case .finished:
             print("Request finished.")
     }

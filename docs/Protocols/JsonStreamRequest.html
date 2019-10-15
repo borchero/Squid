@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>StatelessRetrier Protocol Reference</title>
+    <title>JsonStreamRequest Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Protocol/StatelessRetrier" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Protocol/JsonStreamRequest" class="dashAnchor"></a>
 
-    <a title="StatelessRetrier Protocol Reference"></a>
+    <a title="JsonStreamRequest Protocol Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">Squid Reference</a>
       <img class="carat" src="../img/carat.png" />
-      StatelessRetrier Protocol Reference
+      JsonStreamRequest Protocol Reference
     </p>
 
     <div class="content-wrapper">
@@ -56,11 +56,23 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../01-basics.html">01: Basics</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../02-retriers.html">02: Retriers</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../03-websockets.html">03: WebSockets</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BackoffRetrier.html">BackoffRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BackoffRetrier/Strategy.html">– Strategy</a>
+              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/Paginator.html">Paginator</a>
               </li>
@@ -134,6 +146,9 @@
                 <a class="nav-group-task-link" href="../Protocols/JsonRequest.html">JsonRequest</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/JsonStreamRequest.html">JsonStreamRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/NetworkRequest.html">NetworkRequest</a>
               </li>
               <li class="nav-group-task">
@@ -147,9 +162,6 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/RetrierFactory.html">RetrierFactory</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/StatelessRetrier.html">StatelessRetrier</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/StreamRequest.html">StreamRequest</a>
@@ -169,13 +181,10 @@
                 <a class="nav-group-task-link" href="../Structs/AnyRequest.html">AnyRequest</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnyRetrierFactory.html">AnyRetrierFactory</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/AnyStreamRequest.html">AnyStreamRequest</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Structs/BackoffRetrier.html">BackoffRetrier</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Structs/BackoffRetrier/Strategy.html">– Strategy</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/HttpHeader.html">HttpHeader</a>
@@ -209,16 +218,21 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>StatelessRetrier</h1>
+            <h1>JsonStreamRequest</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">StatelessRetrier</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Retrier.html">Retrier</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">JsonStreamRequest</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamRequest.html">StreamRequest</a></span> <span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Message</span> <span class="p">:</span> <span class="kt">Encodable</span><span class="p">,</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Result</span> <span class="p">:</span> <span class="kt">Decodable</span></code></pre>
 
                 </div>
               </div>
-            <p>A stateless retrier is a retrier which does not need to track any state across retries. This
-implies that the stateless retrier does <strong>not</strong> allow multiple retries. As it is stateless, it
-must be initializable with no parameters. The advantage is that a factory can easily be derived.</p>
+            <p>Similarly to the <code><a href="../Protocols/JsonRequest.html">JsonRequest</a></code>, this entity may be used whenever a JSON API is used, i.e. all
+messages being received and being sent are encoded as JSON. This requires messages to conform
+to the <code>Encodable</code> protocol as well as responses to conform to the <code>Decodable</code> protocol.</p>
+
+<p>This entity then provides default implementations for encoding and decoding messages. Note that
+messages are always encoded to <code>Data</code> for a more efficient transmission. Messages received can
+be either <code>String</code> or <code>Data</code>: in both cases, they are decoded equally (note that <code>Data</code> messages
+might be more efficient.</p>
 
           </div>
         </section>
@@ -230,24 +244,34 @@ must be initializable with no parameters. The advantage is that a factory can ea
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5Squid16StatelessRetrierPxycfc"></a>
-                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid16StatelessRetrierPxycfc">init()</a>
+                    <a name="/s:5Squid17JsonStreamRequestP15decodeSnakeCaseSbvp"></a>
+                    <a name="//apple_ref/swift/Property/decodeSnakeCase" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid17JsonStreamRequestP15decodeSnakeCaseSbvp">decodeSnakeCase</a>
                     </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initializes the stateless retrier. Most of the time, this method will probably be empty.</p>
+                        <p>Defines whether the encoder and decoder camel case in the Swift code as snake case in the
+JSON (i.e. <code>userID</code> would be encoded as/decoded from the field <code>user_id</code> if not specified
+explicity in the type to decode to). By default, attributes are encoded/decoded using snake
+case attribute names.</p>
 
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">decodeSnakeCase</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -257,20 +281,13 @@ must be initializable with no parameters. The advantage is that a factory can ea
               </ul>
             </div>
             <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Static%20Methods"></a>
-                <a name="//apple_ref/swift/Section/Static Methods" class="dashAnchor"></a>
-                <a href="#/Static%20Methods">
-                  <h3 class="section-name">Static Methods</h3>
-                </a>
-              </div>
               <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5Squid16StatelessRetrierPAAE7factoryQryFZ"></a>
-                    <a name="//apple_ref/swift/Method/factory()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid16StatelessRetrierPAAE7factoryQryFZ">factory()</a>
+                    <a name="/s:5Squid13StreamRequestP6encodeySo25NSURLSessionWebSocketTaskC10FoundationE7MessageOAHQzKF"></a>
+                    <a name="//apple_ref/swift/Method/encode(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid13StreamRequestP6encodeySo25NSURLSessionWebSocketTaskC10FoundationE7MessageOAHQzKF">encode(_:)</a>
                     </code>
                       <span class="declaration-note">
                         Extension method
@@ -281,15 +298,42 @@ must be initializable with no parameters. The advantage is that a factory can ea
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Creates a factory for the retrier class it is called on. The factory simply uses the empty
-initializer to yield instances of the class.</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">factory</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">some</span> <span class="kt"><a href="../Protocols/RetrierFactory.html">RetrierFactory</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">(</span><span class="n">_</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">Message</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">URLSessionWebSocketTask</span><span class="o">.</span><span class="kt">Message</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid13StreamRequestP6decodey6ResultQzSo25NSURLSessionWebSocketTaskC10FoundationE7MessageOKF"></a>
+                    <a name="//apple_ref/swift/Method/decode(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid13StreamRequestP6decodey6ResultQzSo25NSURLSessionWebSocketTaskC10FoundationE7MessageOKF">decode(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">decode</span><span class="p">(</span><span class="n">_</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">URLSessionWebSocketTask</span><span class="o">.</span><span class="kt">Message</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Result</span></code></pre>
 
                         </div>
                       </div>
@@ -304,7 +348,7 @@ initializer to yield instances of the class.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-14)</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-15)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

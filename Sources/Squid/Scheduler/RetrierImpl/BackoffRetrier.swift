@@ -12,7 +12,7 @@ import Combine
 /// failures by waiting a specified period of time defined by its strategy (see
 /// `BackoffRetrier.Strategy`). It also defines a maximum duration after which a failed request
 /// is deemed unsuccessful.
-public struct BackoffRetrier: Retrier {
+public class BackoffRetrier: Retrier {
     
     // MARK: Static Methods
     /// Initializes a new factory yielding instances of backoff retriers for requests.
@@ -27,8 +27,8 @@ public struct BackoffRetrier: Retrier {
     public static func factory(
         strategy: Strategy = .exponentialBinary, maxBackoff: TimeInterval = 600,
         retryCondition: @escaping (Squid.Error) -> Bool = defaultRetryCondition
-    ) -> some RetrierFactory {
-        return StatelessRetrierFactory {
+    ) -> RetrierFactory {
+        return AnyRetrierFactory {
             return BackoffRetrier(strategy: strategy, maxBackoff: maxBackoff,
                                   retryCondition: retryCondition)
         }
@@ -69,7 +69,7 @@ public struct BackoffRetrier: Retrier {
     }
     
     // MARK: Retrier
-    public mutating func retry<R>(
+    public func retry<R>(
         _ request: R, failingWith error: Squid.Error
     ) -> Future<Bool, Never> where R: Request {
         let duration = self.backoffDuration

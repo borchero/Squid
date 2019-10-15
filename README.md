@@ -26,7 +26,7 @@ If you are developing a Swift package, adding Squid as a dependency is as easy a
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/borchero/Squid.git", from: "1.0.0")
+    .package(url: "https://github.com/borchero/Squid.git", from: "1.1.0")
 ]
 ```
 
@@ -35,7 +35,7 @@ dependencies: [
 If you are still using CocoaPods or are required to use it due to other dependencies that are not yet available for the Swift Package Manager, you can include the following line in your Podfile to use the latest version of Squid:
 
 ```ruby
-pod 'Squid', '~> 1.0.0'
+pod 'Squid', '~> 1.1.0'
 ```
 
 ## Documentation

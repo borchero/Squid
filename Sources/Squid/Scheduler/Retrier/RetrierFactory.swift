@@ -12,6 +12,10 @@ import Foundation
 /// across requests, each request requires its own instance of the retrier. Consequently, any entity
 /// implementing the `HttpService` protocol needs to provide a retrier factory yielding retriers
 /// instead of a retrier instance.
+///
+/// When using your own retriers, you will most likely use the same retrier no matter the request.
+/// In this case, you do not have to define a type implementing this protocol, but have a look at
+/// `AnyRetrierFactory` instead.
 public protocol RetrierFactory {
     
     /// Returns some retrier for the given request. This method is only called when the given

@@ -56,11 +56,23 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="01-basics.html">01: Basics</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="02-retriers.html">02: Retriers</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="03-websockets.html">03: WebSockets</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/BackoffRetrier.html">BackoffRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/BackoffRetrier/Strategy.html">– Strategy</a>
+              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/Paginator.html">Paginator</a>
               </li>
@@ -134,6 +146,9 @@
                 <a class="nav-group-task-link" href="Protocols/JsonRequest.html">JsonRequest</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/JsonStreamRequest.html">JsonStreamRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/NetworkRequest.html">NetworkRequest</a>
               </li>
               <li class="nav-group-task">
@@ -147,9 +162,6 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/RetrierFactory.html">RetrierFactory</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/StatelessRetrier.html">StatelessRetrier</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/StreamRequest.html">StreamRequest</a>
@@ -169,13 +181,10 @@
                 <a class="nav-group-task-link" href="Structs/AnyRequest.html">AnyRequest</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyRetrierFactory.html">AnyRetrierFactory</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/AnyStreamRequest.html">AnyStreamRequest</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Structs/BackoffRetrier.html">BackoffRetrier</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Structs/BackoffRetrier/Strategy.html">– Strategy</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/HttpHeader.html">HttpHeader</a>
@@ -426,36 +435,6 @@ exponentially long to ensure that a request is fulfilled at some time.</p>
                     </section>
                   </div>
                 </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5Squid16StatelessRetrierP"></a>
-                    <a name="//apple_ref/swift/Protocol/StatelessRetrier" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5Squid16StatelessRetrierP">StatelessRetrier</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A stateless retrier is a retrier which does not need to track any state across retries. This
-implies that the stateless retrier does <strong>not</strong> allow multiple retries. As it is stateless, it
-must be initializable with no parameters. The advantage is that a factory can easily be derived.</p>
-
-                        <a href="Protocols/StatelessRetrier.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">StatelessRetrier</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Retrier.html">Retrier</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
               </ul>
             </div>
             <div class="task-group">
@@ -478,6 +457,10 @@ reason for using the factory is to allow for stateful retriers. As they cannot e
 across requests, each request requires its own instance of the retrier. Consequently, any entity
 implementing the <code><a href="Protocols/HttpService.html">HttpService</a></code> protocol needs to provide a retrier factory yielding retriers
 instead of a retrier instance.</p>
+
+<p>When using your own retriers, you will most likely use the same retrier no matter the request.
+In this case, you do not have to define a type implementing this protocol, but have a look at
+<code><a href="Structs/AnyRetrierFactory.html">AnyRetrierFactory</a></code> instead.</p>
 
                         <a href="Protocols/RetrierFactory.html" class="slightly-smaller">See more</a>
                       </div>
@@ -564,6 +547,41 @@ retriers as well as its headers are ignored. Still, the <code>Service.process(_:
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid17JsonStreamRequestP"></a>
+                    <a name="//apple_ref/swift/Protocol/JsonStreamRequest" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid17JsonStreamRequestP">JsonStreamRequest</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Similarly to the <code><a href="Protocols/JsonRequest.html">JsonRequest</a></code>, this entity may be used whenever a JSON API is used, i.e. all
+messages being received and being sent are encoded as JSON. This requires messages to conform
+to the <code>Encodable</code> protocol as well as responses to conform to the <code>Decodable</code> protocol.</p>
+
+<p>This entity then provides default implementations for encoding and decoding messages. Note that
+messages are always encoded to <code>Data</code> for a more efficient transmission. Messages received can
+be either <code>String</code> or <code>Data</code>: in both cases, they are decoded equally (note that <code>Data</code> messages
+might be more efficient.</p>
+
+                        <a href="Protocols/JsonStreamRequest.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">JsonStreamRequest</span> <span class="p">:</span> <span class="kt"><a href="Protocols/StreamRequest.html">StreamRequest</a></span> <span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Message</span> <span class="p">:</span> <span class="kt">Encodable</span><span class="p">,</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Result</span> <span class="p">:</span> <span class="kt">Decodable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
             <div class="task-group">
@@ -605,7 +623,7 @@ a url. The conversion to this url may fail, however.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-14)</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-15)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

@@ -46,7 +46,7 @@ where Upstream: Publisher, Upstream.Failure == Squid.Error, RequestType: Request
 fileprivate class RetrierConduit<Upstream, Downstream, RequestType>: Subscriber, Subscription
 where Upstream: Publisher, Downstream: Subscriber, RequestType: Request,
     Upstream.Output == Downstream.Input, Upstream.Failure == Downstream.Failure,
-Upstream.Failure == Squid.Error {
+    Upstream.Failure == Squid.Error {
     
     typealias Input = Upstream.Output
     typealias Failure = Upstream.Failure
@@ -58,8 +58,9 @@ Upstream.Failure == Squid.Error {
     
     private let upstream: Upstream
     private let request: RequestType
-    private var retrier: Retrier
+    private let retrier: Retrier
     
+    private var isFirstRetry = true
     private var postponeCancel = false
     
     init(upstream: Upstream, downstream: Downstream, request: RequestType, retrier: Retrier) {
@@ -85,6 +86,13 @@ Upstream.Failure == Squid.Error {
         switch completion {
         case .failure(let error):
             // In case of failure, the retrier actually comes alive.
+            // First, let's check whether the retrier allows multiple retries.
+            guard self.isFirstRetry || self.retrier.allowsMultipleRetries else {
+                self.downstream?.receive(completion: completion)
+                return
+            }
+            self.isFirstRetry = true
+            
             // First, we need to check whether we ought to retry the failed request.
             // In case the request should be retried, we need to subscribe to the publisher again
             // since the original subscription got destroyed upon error.

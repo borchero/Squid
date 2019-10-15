@@ -55,11 +55,23 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="01-basics.html">01: Basics</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="02-retriers.html">02: Retriers</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="03-websockets.html">03: WebSockets</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/BackoffRetrier.html">BackoffRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/BackoffRetrier/Strategy.html">– Strategy</a>
+              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/Paginator.html">Paginator</a>
               </li>
@@ -133,6 +145,9 @@
                 <a class="nav-group-task-link" href="Protocols/JsonRequest.html">JsonRequest</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/JsonStreamRequest.html">JsonStreamRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/NetworkRequest.html">NetworkRequest</a>
               </li>
               <li class="nav-group-task">
@@ -146,9 +161,6 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/RetrierFactory.html">RetrierFactory</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/StatelessRetrier.html">StatelessRetrier</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/StreamRequest.html">StreamRequest</a>
@@ -168,13 +180,10 @@
                 <a class="nav-group-task-link" href="Structs/AnyRequest.html">AnyRequest</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyRetrierFactory.html">AnyRetrierFactory</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/AnyStreamRequest.html">AnyStreamRequest</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Structs/BackoffRetrier.html">BackoffRetrier</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Structs/BackoffRetrier/Strategy.html">– Strategy</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/HttpHeader.html">HttpHeader</a>
@@ -231,10 +240,16 @@
 <h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
 
 <p>Using the Swift Package Manager is the simplest option to use Squid. In Xcode, simply go to <code>File &gt; Swift Packages &gt; Add Package Dependency...</code> and add this repository.</p>
+
+<p>If you are developing a Swift package, adding Squid as a dependency is as easy as adding it to the dependencies of your Package.swift like so:</p>
+<pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/borchero/Squid.git"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"1.1.0"</span><span class="p">)</span>
+<span class="p">]</span>
+</code></pre>
 <h3 id='cocoapods' class='heading'>CocoaPods</h3>
 
 <p>If you are still using CocoaPods or are required to use it due to other dependencies that are not yet available for the Swift Package Manager, you can include the following line in your Podfile to use the latest version of Squid:</p>
-<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'Squid'</span><span class="p">,</span> <span class="s1">'~&gt; 1.0.0'</span>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'Squid'</span><span class="p">,</span> <span class="s1">'~&gt; 1.1.0'</span>
 </code></pre>
 <h2 id='documentation' class='heading'>Documentation</h2>
 
@@ -250,7 +265,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-14)</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-15)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
