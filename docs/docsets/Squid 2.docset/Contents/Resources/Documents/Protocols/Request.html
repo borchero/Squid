@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Request Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Protocol/Request" class="dashAnchor"></a>
+
+    <a title="Request Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          Squid Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/borchero/squid">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Fgithub%2Ecom%2Fborchero%2FSquid%2Fblob%2Fmaster%2FSquid%2Exml%3Fraw%3Dtrue">
+            <img class="header-icon" src="../img/dash.png"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Squid Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      Request Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Guides.html">Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../01-basics.html">01: Basics</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../02-retriers.html">02: Retriers</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../03-websockets.html">03: WebSockets</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BackoffRetrier.html">BackoffRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BackoffRetrier/Strategy.html">– Strategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Paginator.html">Paginator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Stream.html">Stream</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/HttpData.html">HttpData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/HttpData/Empty.html">– Empty</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/HttpData/Image.html">– Image</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/HttpData/Json.html">– Json</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/HttpMethod.html">HttpMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/HttpMimeType.html">HttpMimeType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/RequestPriority.html">RequestPriority</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Publisher.html">Publisher</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Publishers.html">Publishers</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Publishers/IgnoreError.html">– IgnoreError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Publishers/IgnoreResultErrors.html">– IgnoreResultErrors</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/URL.html">URL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/HttpBody.html">HttpBody</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/HttpService.html">HttpService</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/JsonRequest.html">JsonRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/JsonStreamRequest.html">JsonStreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/NetworkRequest.html">NetworkRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/PaginatedData.html">PaginatedData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Retrier.html">Retrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/RetrierFactory.html">RetrierFactory</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/StreamRequest.html">StreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/UrlConvertible.html">UrlConvertible</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnyHttpService.html">AnyHttpService</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnyRequest.html">AnyRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnyRetrierFactory.html">AnyRetrierFactory</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnyStreamRequest.html">AnyStreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/HttpHeader.html">HttpHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/HttpHeader/Field.html">– Field</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/HttpQuery.html">HttpQuery</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/HttpRoute.html">HttpRoute</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/NilRetrier.html">NilRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Squid.html">Squid</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Squid/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Squid/Logger.html">– Logger</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>Request</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Request</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/NetworkRequest.html">NetworkRequest</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>The request protocol is the core building block of the Squid framework. The general idea of a
+request is that it declaratively defines the content of an HTTP request. It is then <em>scheduled</em>
+against an API that is represented by a <code><a href="../Protocols/HttpService.html">HttpService</a></code>. Scheduling the request returns a
+<code><a href="../Classes/Response.html">Response</a></code>. This response is a shared publisher that can be subscribed to.</p>
+
+<p>The reason for abstracting requests away from APIs, i.e. HTTP services, is that often, requests
+are issued against differing domains with differing security requirements during testing/staging
+and development. Hence, it makes sense to capture methods, routing paths, headers, etc. in the
+request itself but abstract away the actual URL and common API headers into the <code><a href="../Protocols/HttpService.html">HttpService</a></code>.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Types"></a>
+                <a name="//apple_ref/swift/Section/Types" class="dashAnchor"></a>
+                <a href="#/Types">
+                  <h3 class="section-name">Types</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid7RequestP6ResultQa"></a>
+                    <a name="//apple_ref/swift/Alias/Result" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid7RequestP6ResultQa">Result</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The expected type of the server&rsquo;s response upon a successful request.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">Result</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Request%20Specification"></a>
+                <a name="//apple_ref/swift/Section/Request Specification" class="dashAnchor"></a>
+                <a href="#/Request%20Specification">
+                  <h3 class="section-name">Request Specification</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid7RequestP6methodAA10HttpMethodOvp"></a>
+                    <a name="//apple_ref/swift/Property/method" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid7RequestP6methodAA10HttpMethodOvp">method</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The HTTP method of the request. Defaults to GET.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">method</span><span class="p">:</span> <span class="kt"><a href="../Enums/HttpMethod.html">HttpMethod</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid7RequestP4bodyAA8HttpBody_pvp"></a>
+                    <a name="//apple_ref/swift/Property/body" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid7RequestP4bodyAA8HttpBody_pvp">body</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The HTTP body of the request. May only be set to an instance of something other than
+<code><a href="../Enums/HttpData/Empty.html">HttpData.Empty</a></code> if <code><a href="../Protocols/Request.html#/s:5Squid7RequestP6methodAA10HttpMethodOvp">method</a></code> is set to PUT or GET. By default, an instance of
+<code><a href="../Enums/HttpData/Empty.html">HttpData.Empty</a></code> is returned.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kt"><a href="../Protocols/HttpBody.html">HttpBody</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Expected%20Response"></a>
+                <a name="//apple_ref/swift/Section/Expected Response" class="dashAnchor"></a>
+                <a href="#/Expected%20Response">
+                  <h3 class="section-name">Expected Response</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid7RequestP19acceptedStatusCodesSNySiGvp"></a>
+                    <a name="//apple_ref/swift/Property/acceptedStatusCodes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid7RequestP19acceptedStatusCodesSNySiGvp">acceptedStatusCodes</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The range of accepted status codes for the request. Whenever the response&rsquo;s status code is
+not in the provided range, the request is considered to have failed. By default, all 2xx
+status codes are accepted.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">acceptedStatusCodes</span><span class="p">:</span> <span class="kt">CountableClosedRange</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid7RequestP6decodey6ResultQz10Foundation4DataVKF"></a>
+                    <a name="//apple_ref/swift/Method/decode(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid7RequestP6decodey6ResultQz10Foundation4DataVKF">decode(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Upon successful completion of the HTTP request itself, this method is responsible for
+transforming the raw <code>Data</code> returned by the HTTP response into the response&rsquo;s result type.
+If this method throws an exception, the request is also considered to have failed. As a
+result, retriers are called and the <code><a href="../Classes/Response.html">Response</a></code> publisher returned upon scheduling the
+request will not yield any value.</p>
+
+<p>This method has a default implementation if the request&rsquo;s result type is either <code>Void</code> or
+<code>Data</code>. In the former case, this method does nothing and returns <code>Void</code>. In the latter case,
+it simply returns the data passed as parameter. As a result, in both cases, this method will
+never throw.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">decode</span><span class="p">(</span><span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/Request.html#/s:5Squid7RequestP6ResultQa">Result</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The raw data returned by the raw HTTP response.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Scheduling%20Requests"></a>
+                <a name="//apple_ref/swift/Section/Scheduling Requests" class="dashAnchor"></a>
+                <a href="#/Scheduling%20Requests">
+                  <h3 class="section-name">Scheduling Requests</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid7RequestPAAE8schedule4withAA8ResponseCyxGAA11HttpService_p_tF"></a>
+                    <a name="//apple_ref/swift/Method/schedule(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid7RequestPAAE8schedule4withAA8ResponseCyxGAA11HttpService_p_tF">schedule(with:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Schedules the request against the API specified by the given HTTP service. The response is
+a publisher that yields the request&rsquo;s result type upon success or an error upon failure.
+The <code>schedule</code> method is the only method that may be used to obtain responses for requests.
+When the application is compiled in <code>DEBUG</code> mode and <code><a href="../Structs/Squid/Logger.html">Squid.Logger</a></code> has not been silenced,
+the request also prints debugging statements to the console: firstly, the request itself
+is printed as soon as it is scheduled. Secondly, the response (or an error) is printed as
+soon as it has been returned. Printing in <code>RELEASE</code> mode is not possible as the respective
+print statements are not included in the binary.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">schedule</span><span class="p">(</span><span class="n">with</span> <span class="nv">service</span><span class="p">:</span> <span class="kt"><a href="../Protocols/HttpService.html">HttpService</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Response.html">Response</a></span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>service</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The service representing the API against which to schedule this
+                 request.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid7RequestPAAE8schedule17forPaginationWith5chunk18zeroBasedPageIndex6decodeAA9PaginatorCyxqd__GAA11HttpService_p_SiSbqd__10Foundation4DataV_xtKctAA09PaginatedQ0Rd__0Q4TypeQyd__6ResultRtzlF"></a>
+                    <a name="//apple_ref/swift/Method/schedule(forPaginationWith:chunk:zeroBasedPageIndex:decode:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid7RequestPAAE8schedule17forPaginationWith5chunk18zeroBasedPageIndex6decodeAA9PaginatorCyxqd__GAA11HttpService_p_SiSbqd__10Foundation4DataV_xtKctAA09PaginatedQ0Rd__0Q4TypeQyd__6ResultRtzlF">schedule(forPaginationWith:chunk:zeroBasedPageIndex:decode:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Schedules the request as paginated request against the API specified by the given HTTP
+service. The response is a <code>PaginationResponse</code>. Consult its documentation to know how to
+work with a paginated request.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">schedule</span><span class="o">&lt;</span><span class="kt">P</span><span class="o">&gt;</span><span class="p">(</span>
+    <span class="n">forPaginationWith</span> <span class="nv">service</span><span class="p">:</span> <span class="kt"><a href="../Protocols/HttpService.html">HttpService</a></span><span class="p">,</span> <span class="nv">chunk</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">zeroBasedPageIndex</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">decode</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Data</span><span class="p">,</span> <span class="k">Self</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">P</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Paginator.html">Paginator</a></span><span class="o">&lt;</span><span class="k">Self</span><span class="p">,</span> <span class="kt">P</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">P</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PaginatedData.html">PaginatedData</a></span><span class="p">,</span> <span class="kt">P</span><span class="o">.</span><span class="kt">DataType</span> <span class="o">==</span> <span class="kt"><a href="../Protocols/Request.html#/s:5Squid7RequestP6ResultQa">Result</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>service</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The service representing the API against which to schedule paginated
+                 requests.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>chunk</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The (maximum) number of elements that are requested per page. The number
+               of returned elements is only smaller than the given chunk if the given
+               page index is the index of the last page and the number of elements is
+               not divisible by the chunk.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>zeroBasedPageIndex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether the API endpoint that the request is scheduled
+                            against indexes the first page with 0. By default, the first
+                            page is indexed by 1.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>decode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A closure that is used to decode the received data to the defined type
+                of <code><a href="../Protocols/PaginatedData.html">PaginatedData</a></code>. The closure receives both the body and the request
+                as the original <code><a href="../Protocols/Request.html#/s:5Squid7RequestP6decodey6ResultQz10Foundation4DataVKF">Request.decode(_:)</a></code> method might want to be used.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-15)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

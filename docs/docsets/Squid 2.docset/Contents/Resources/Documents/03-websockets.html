@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>03: WebSockets  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+
+    <a title="03: WebSockets  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          Squid Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/borchero/squid">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Fgithub%2Ecom%2Fborchero%2FSquid%2Fblob%2Fmaster%2FSquid%2Exml%3Fraw%3Dtrue">
+            <img class="header-icon" src="img/dash.png"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">Squid Reference</a>
+      <img class="carat" src="img/carat.png" />
+      03: WebSockets  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Guides.html">Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="01-basics.html">01: Basics</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="02-retriers.html">02: Retriers</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="03-websockets.html">03: WebSockets</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/BackoffRetrier.html">BackoffRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/BackoffRetrier/Strategy.html">– Strategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Paginator.html">Paginator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Stream.html">Stream</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData.html">HttpData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData/Empty.html">– Empty</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData/Image.html">– Image</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData/Json.html">– Json</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpMethod.html">HttpMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpMimeType.html">HttpMimeType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/RequestPriority.html">RequestPriority</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publisher.html">Publisher</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publishers.html">Publishers</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publishers/IgnoreError.html">– IgnoreError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publishers/IgnoreResultErrors.html">– IgnoreResultErrors</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/URL.html">URL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/HttpBody.html">HttpBody</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/HttpService.html">HttpService</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/JsonRequest.html">JsonRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/JsonStreamRequest.html">JsonStreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/NetworkRequest.html">NetworkRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/PaginatedData.html">PaginatedData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/Retrier.html">Retrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RetrierFactory.html">RetrierFactory</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/StreamRequest.html">StreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/UrlConvertible.html">UrlConvertible</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyHttpService.html">AnyHttpService</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyRequest.html">AnyRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyRetrierFactory.html">AnyRetrierFactory</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyStreamRequest.html">AnyStreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpHeader.html">HttpHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpHeader/Field.html">– Field</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpQuery.html">HttpQuery</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpRoute.html">HttpRoute</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/NilRetrier.html">NilRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Squid.html">Squid</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Squid/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Squid/Logger.html">– Logger</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            
+            <h1 id='websockets' class='heading'>WebSockets</h1>
+
+<p>Nowadays, <a href="https://en.wikipedia.org/wiki/WebSocket">WebSockets</a> are the de facto standard for enabling bidirectional communication between client and server.
+In fact, establishing a WebSocket is very similar to sending a normal HTTP request. The first request being sent is always a simple GET request which then gets <em>upgraded</em> to a WebSocket (WS) connection.
+Despite the apparent similarity of sending requests to HTTP and WS endpoints, programmers on iOS are usually forced to use two entirely different libraries for HTTP and WS requests.</p>
+
+<p>Squid solves this issue by providing an interface for WebSocket communication that aims to be as consistent as possible with its normal HTTP requests.</p>
+<h2 id='setting-up-a-service' class='heading'>Setting Up a Service</h2>
+
+<p>Just as for a normal HTTP request, you need to define a <code><a href="Protocols/HttpService.html">HttpService</a></code> which must be used to schedule a WebSocket request:</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">MyApi</span><span class="p">:</span> <span class="kt">HttpService</span> <span class="p">{</span>
+
+    <span class="k">var</span> <span class="nv">apiUrl</span><span class="p">:</span> <span class="kt">UrlConvertible</span> <span class="p">{</span>
+        <span class="s">"echo.websocket.org"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Note that you do not need to explicitly provide the protocol (e.g. <code>wss://</code>) as this will be inferred automatically when scheduling a request. As a result, you can use the same service for sending HTTP requests as well as WebSocket requests.</p>
+<h2 id='creating-a-request-for-a-websocket' class='heading'>Creating a Request for a WebSocket</h2>
+
+<p>As pointed out earlier, sending a request for a WebSocket is very similar to sending an HTTP request. As the request is, however, constrained to be a GET request, fewer parameters are available for specifying the request.</p>
+
+<p>In practice, we conform to the <code><a href="Protocols/StreamRequest.html">StreamRequest</a></code> protocol when specifying a request for a WebSocket. Since a WebSocket enables bidirectional communication, however, we not only need to define the type of the server&rsquo;s messages but also the type of the client messages.</p>
+
+<p>For this guide, we will simply choose client and server messages to be of type <code>String</code> as then, we do not need to provide any custom encoding or decoding functions. Note that these functions are also implemented automatically when using the <code><a href="Protocols/JsonStreamRequest.html">JsonStreamRequest</a></code> protocol (similarly to the <code><a href="Protocols/JsonRequest.html">JsonRequest</a></code> protocol for normal HTTP requests).</p>
+
+<p>Nonetheless, the echo server that we are contacting in this guide only requires a very simply stream request:</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">EchoRequest</span><span class="p">:</span> <span class="kt">StreamRequest</span> <span class="p">{</span>
+
+    <span class="kd">typealias</span> <span class="kt">Message</span> <span class="o">=</span> <span class="kt">String</span>
+    <span class="kd">typealias</span> <span class="kt">Result</span> <span class="o">=</span> <span class="kt">String</span>
+<span class="p">}</span>
+</code></pre>
+<h2 id='scheduling-a-request-for-a-websocket' class='heading'>Scheduling a Request for a WebSocket</h2>
+
+<p>Finally, you want to establish a connection. This is hardly any different from sending a request as it is simply scheduled against an API:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">service</span> <span class="o">=</span> <span class="kt">MyApi</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">EchoRequest</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">stream</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="nf">schedule</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">service</span><span class="p">)</span>
+</code></pre>
+
+<p>In contrast to a normal HTTP request, however, the returned value is a <code><a href="Classes/Stream.html">Stream</a></code> and behaves a bit differently.</p>
+
+<p>Once subscribed to the stream, the connection is initiated and the stream emits messages sent by the server. Likewise, messages can be sent to the server. Note that messages are queued (in no particular order) if messages are sent before anyone has subscribed. They are sent simultaneously as soon as the stream exists.</p>
+
+<p>When there are multiple subscribers, they receive values from the same stream. Be aware that messages sent over the stream are <em>not</em> buffered but delivered as they arrive.</p>
+<h2 id='listening-for-messages' class='heading'>Listening for Messages</h2>
+
+<p>When listening to messages, we need to understand the <code><a href="Classes/Stream.html">Stream</a></code> publisher. The stream emits <code>Result</code> objects that either deliver the actual result (<code>String</code> in our case) or an error if receiving the message fails for some reason (e.g. message cannot be decoded). The stream only errors out when the WebSocket connection fails entirely.</p>
+
+<p>Therefore, we subscribe to the stream as follows:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">c</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="nf">sink</span><span class="p">(</span><span class="nv">receiveCompletion</span><span class="p">:</span> <span class="p">{</span> <span class="n">completion</span> <span class="k">in</span>
+    <span class="k">switch</span> <span class="n">completion</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"WebSocket was closed with error: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nv">finished</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"WebSocket was closed without error."</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">})</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+    <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">message</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"Received message: </span><span class="se">\(</span><span class="n">message</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"Receiving message failed due to: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h2 id='sending-messages' class='heading'>Sending Messages</h2>
+
+<p>While the stream is active, messages can be sent over the stream. The result is a publisher that publishes exactly once and never fails. As, however, sending the message might fail, the response is a <code>Result</code> object. We can therefore send a message as follows:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">s</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="s">"Hello Stream!"</span><span class="p">)</span><span class="o">.</span><span class="n">sink</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+    <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">_</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"Sending the message succeeded."</span><span class="p">)</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"Sending the message failed due to: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>In our case, the subscriber will then receive the sent value by the echo server.</p>
+
+<p><em>Note that, at the moment, sending from multiple threads simultaneously is not guaranteed to work as Apple does not yet provide sufficient documentation for its new WebSocket API inside <code>URLSession</code>.</em></p>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2019 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2019-10-15)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
