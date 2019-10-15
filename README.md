@@ -22,6 +22,14 @@ Squid is available via the [Swift Package Manager](https://swift.org/package-man
 
 Using the Swift Package Manager is the simplest option to use Squid. In Xcode, simply go to `File > Swift Packages > Add Package Dependency...` and add this repository.
 
+If you are developing a Swift package, adding Squid as a dependency is as easy as adding it to the dependencies of your Package.swift like so:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/borchero/Squid.git", from: "1.0.0")
+]
+```
+
 ### CocoaPods
 
 If you are still using CocoaPods or are required to use it due to other dependencies that are not yet available for the Swift Package Manager, you can include the following line in your Podfile to use the latest version of Squid:
