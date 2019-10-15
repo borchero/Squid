@@ -13,4 +13,5 @@ jazzy \
     --build-tool-arguments -Xswiftc,-swift-version,-Xswiftc,5 \
     --documentation=examples/*.md \
     --theme fullwidth \
+    --dash_url https://github.com/borchero/Squid/blob/master/dash_feed.xml?raw=true \
     --output docs
