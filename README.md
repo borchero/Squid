@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="https://borchero.fra1.digitaloceanspaces.com/squid-171019.png" width="500" title="Squid">
-</p>
+![Squid](https://borchero.fra1.digitaloceanspaces.com/squid-171019.png)
 
 Squid is a declarative and reactive networking library for Swift. Developed for Swift 5, it aims to make use of the latest language features. The framework's ultimate goal is to enable easy networking that makes it easy to write well-maintainable code.
 
