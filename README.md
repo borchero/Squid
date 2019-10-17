@@ -1,5 +1,3 @@
-# Squid
-
 <p align="center">
   <img src="https://borchero.fra1.digitaloceanspaces.com/squid.png" width="500" title="Squid Logo">
 </p>
