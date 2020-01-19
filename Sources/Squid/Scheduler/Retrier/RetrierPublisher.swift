@@ -100,6 +100,7 @@ where Upstream: Publisher, Downstream: Subscriber, RequestType: Request,
                 .sink { retry in
                     // We don't need to do anything if no retry is required.
                     guard retry else {
+                        self.downstream?.receive(completion: completion)
                         return
                     }
                     

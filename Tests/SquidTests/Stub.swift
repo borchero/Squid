@@ -104,8 +104,8 @@ class StubFactory {
                 && request.url?.path == "/users/0/image"
                 && request.httpMethod == "POST"
                 && request.allHTTPHeaderFields?["Content-Type"] == "image/jpeg"
-                && request.allHTTPHeaderFields?["Content-Length"] == "30962"
-                && data.count == 30962
+                && request.allHTTPHeaderFields?["Content-Length"] == "30904"
+                && data.count == 30904
                 && data == originalData
         }) { _ -> OHHTTPStubsResponse in
             return .init(data: Data(), statusCode: 201, headers: [:])

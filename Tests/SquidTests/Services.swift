@@ -15,6 +15,13 @@ struct MyApi: HttpService {
     }
 }
 
+struct My404Api: HttpService {
+    
+    var apiUrl: UrlConvertible {
+        return "xxx.yyy.zzz"
+    }
+}
+
 struct MyRetryingApi: HttpService {
     
     var apiUrl: UrlConvertible {

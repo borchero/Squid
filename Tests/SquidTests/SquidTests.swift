@@ -246,6 +246,23 @@ final class SquidRequestTests: XCTestCase {
         k?.cancel()
     }
     
+    func test404() {
+        let expectation = XCTestExpectation()
+    
+        let service = My404Api()
+        let request = UsersRequest()
+        let response = request.schedule(with: service)
+        
+        let c = response.sink(receiveCompletion: { completion in
+            if case .failure = completion {
+                expectation.fulfill()
+            }
+        }) { _ in }
+        
+        wait(for: [expectation], timeout: 0.1)
+        c.cancel()
+    }
+    
     func testAtomicCounter() {
         let counter = MyAtomicCounter()
         
