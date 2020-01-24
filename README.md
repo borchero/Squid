@@ -44,4 +44,4 @@ Documentation is available [here](https://borchero.github.io/Squid/) and provide
 
 ## License
 
-Squid is licensed under the [MIT License](LICENSE).
+Squid is licensed under the [MIT License](https://github.com/borchero/Squid/blob/master/LICENSE).
