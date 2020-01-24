@@ -114,3 +114,14 @@ struct PaginatedUsersRequest: JsonRequest {
         return ["pagination"]
     }
 }
+
+struct ProcessingUsersRequest: JsonRequest {
+    
+    typealias Result = [UserContainer]
+    
+    func prepare(_ request: URLRequest) -> URLRequest {
+        var request = request
+        request.url = request.url?.appendingPathComponent("users")
+        return request
+    }
+}

@@ -31,6 +31,20 @@ public protocol Request: NetworkRequest {
     /// `HttpData.Empty` is returned.
     var body: HttpBody { get }
     
+    /// Prepares the URL request that will be sent. The function is passed the request as assembled
+    /// based on all other properties. You may modify the request as you wish. By default, the
+    /// request being passed in is returned without any modifications.
+    ///
+    /// - Note: This function should only be used if it is not possible to specify the request in a
+    ///         fully declarative form.
+    /// - Attention: For performance reasons, you should not modify the request's body at the
+    ///              moment. When you modify it and debug statements are printed, the old body may
+    ///              be printed although this is not the body being sent.
+    ///
+    /// - Parameter request: The request, pre-populated with all properties specified in the
+    ///                      request.
+    func prepare(_ request: URLRequest) -> URLRequest
+    
     // MARK: Expected Response
     /// The range of accepted status codes for the request. Whenever the response's status code is
     /// not in the provided range, the request is considered to have failed. By default, all 2xx
@@ -60,6 +74,10 @@ extension Request {
     
     public var body: HttpBody {
         return HttpData.Empty()
+    }
+    
+    public func prepare(_ request: URLRequest) -> URLRequest {
+        return request
     }
     
     public var acceptedStatusCodes: CountableClosedRange<Int> {

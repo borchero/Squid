@@ -1,0 +1,11 @@
+author: Oliver Borchert
+author_url: https://github.com/borchero
+module: Squid
+module_version: "1.1.2"
+output: docs
+clean: true
+readme: README.md
+documentation: examples/*.md
+theme: fullwidth
+dash_url: https://github.com/borchero/Squid/Squid.xml
+github_url: https://github.com/borchero/Squid

@@ -263,6 +263,26 @@ final class SquidRequestTests: XCTestCase {
         c.cancel()
     }
     
+    func testRequestPreparation() {
+        StubFactory.shared.usersGet()
+        
+        let expectation = XCTestExpectation()
+
+        let service = MyApi()
+        let request = ProcessingUsersRequest()
+        let c = request.schedule(with: service).ignoreError()
+            .sink { users in
+                XCTAssertEqual(users.count, 2)
+                XCTAssertEqual(users[0].id, 0)
+                XCTAssertEqual(users[0].firstname, "John")
+                XCTAssertEqual(users[1].lastname, "Mustermann")
+                expectation.fulfill()
+            }
+
+        wait(for: [expectation], timeout: 0.1)
+        c.cancel()
+    }
+    
     func testAtomicCounter() {
         let counter = MyAtomicCounter()
         

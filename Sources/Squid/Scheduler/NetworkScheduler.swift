@@ -60,6 +60,7 @@ internal class NetworkScheduler {
                     .with(query: request.query)
                     .with(header: service.header + request.header)
                     .with(body: request.body)
+                    .process(with: request.prepare(_:))
             } catch {
                 promise(.failure(.ensure(error)))
             }

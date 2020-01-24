@@ -65,6 +65,11 @@ internal struct HttpRequest {
         try body.add(to: &request)
         return HttpRequest(request, body)
     }
+    
+    func process(with execute: (URLRequest) -> URLRequest) -> HttpRequest {
+        let newRequest = execute(self.urlRequest)
+        return HttpRequest(newRequest, self.body)
+    }
 }
 
 /// :nodoc:
