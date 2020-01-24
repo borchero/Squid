@@ -22,7 +22,7 @@ Squid is available via the [Swift Package Manager](https://swift.org/package-man
 
 Using the Swift Package Manager is the simplest option to use Squid. In Xcode, simply go to `File > Swift Packages > Add Package Dependency...` and add this repository.
 
-If you are developing a Swift package, adding Squid as a dependency is as easy as adding it to the dependencies of your Package.swift like so:
+If you are developing a Swift package, adding Squid as a dependency is as easy as adding it to the dependencies of your `Package.swift` like so:
 
 ```swift
 dependencies: [
@@ -44,4 +44,4 @@ Documentation is available [here](https://borchero.github.io/Squid/) and provide
 
 ## License
 
-Squid is licensed under the [MIT License](https://github.com/borchero/Squid/LICENSE).
+Squid is licensed under the [MIT License](LICENSE).
