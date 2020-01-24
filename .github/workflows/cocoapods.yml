@@ -1,0 +1,16 @@
+name: Swift
+
+on:
+  push:
+    tags: ["*"]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Deploy to CocoaPods
+      uses: michaelhenry/deploy-to-cocoapods-github-action@1.0.9
+      with:
+        COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
