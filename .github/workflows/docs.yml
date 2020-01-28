@@ -11,10 +11,7 @@ jobs:
         -   name: Checkout
             uses: actions/checkout@v2
         -   name: Set Version
-            uses: danielr1996/envsubst-action@1.0.0
-            with:
-                input: .jazzy.tmpl.yaml
-                output: .jazzy.yaml
+            run: envsubst < .jazzy.tmpl.yaml > .jazzy.yaml
             env:
                 VERSION: ${{ github.ref }}
         -   name: Generate Documentation

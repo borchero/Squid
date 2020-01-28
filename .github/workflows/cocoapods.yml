@@ -17,5 +17,5 @@ jobs:
                 set -eo pipefail
                 pod lib lint --allow-warnings
                 pod trunk push --allow-warnings
-            with:
+            env:
                 COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
