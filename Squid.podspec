@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
 
-    s.name = 'Squid'
-    s.version = ENV['GITHUB_REF']
+    s.name    = 'Squid'
+    s.version = ENV['GITHUB_REF'].split('/')[-1]
     s.license = 'MIT'
     s.summary = 'Declarative and Reactive Networking in Swift.'
 
