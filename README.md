@@ -2,6 +2,7 @@
 
 ![Build](https://github.com/borchero/Squid/workflows/Build/badge.svg?branch=master)
 ![CocoaPods](https://github.com/borchero/Squid/workflows/CocoaPods/badge.svg?branch=master)
+![Documentation](https://github.com/borchero/Squid/workflows/Documentation/badge.svg?branch=master)
 
 Squid is a declarative and reactive networking library for Swift. Developed for Swift 5, it aims to make use of the latest language features. The framework's ultimate goal is to enable easy networking that makes it easy to write well-maintainable code.
 
