@@ -1,16 +1,21 @@
 name: CocoaPods
 
 on:
-  push:
-    tags: ["*"]
+    release:
+        types: [published]
 
 jobs:
-  build:
-    runs-on: macos-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v1
-    - name: Deploy to CocoaPods
-      uses: michaelhenry/deploy-to-cocoapods-github-action@1.0.9
-      with:
-        COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+    build:
+        runs-on: macos-latest
+        steps:
+        -   name: Checkout
+            uses: actions/checkout@v2
+        -   name: Install CocoaPods
+            run: gem install cocoapods
+        -   name: Deploy to CocoaPods
+            run: |
+                set -eo pipefail
+                pod lib lint --allow-warnings
+                pod trunk push --allow-warnings
+            with:
+                COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}

@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import OHHTTPStubsCore
+import OHHTTPStubs
 import OHHTTPStubsSwift
 import Combine
 @testable import Squid
@@ -28,7 +28,7 @@ final class SquidRequestTests: XCTestCase {
     ]
     
     override func setUp() {
-        OHHTTPStubs.removeAllStubs()
+        HTTPStubs.removeAllStubs()
     }
     
     func testAnyRequest() {

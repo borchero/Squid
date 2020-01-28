@@ -9,12 +9,12 @@
 Pod::Spec.new do |s|
 
     s.name = 'Squid'
-    s.version = '1.1.2'
+    s.version = ENV['GITHUB_REF']
     s.license = 'MIT'
     s.summary = 'Declarative and Reactive Networking in Swift.'
 
     s.homepage = 'https://borchero.github.io/Squid/'
-    s.authors = { 'Oliver Borchert' => 'borchero@in.tum.de' }
+    s.authors = { 'Oliver Borchert' => 'borchero@icloud.com' }
     s.source = {
         :git => 'https://github.com/borchero/Squid.git',
         :tag => s.version

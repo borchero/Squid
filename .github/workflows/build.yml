@@ -1,15 +1,14 @@
 name: Build
 
 on:
-  push:
-    branches:
-    - master
+    push:
+        branches: [master]
 
 jobs:
-  build:
-    runs-on: macos-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v1
-    - name: Build
-      run: swift build
+    build:
+        runs-on: macos-latest
+        steps:
+        -   name: Checkout
+            uses: actions/checkout@v2
+        -   name: Build
+            run: swift build

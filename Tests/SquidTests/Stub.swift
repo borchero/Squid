@@ -8,7 +8,7 @@
 import XCTest
 import Foundation
 import UIKit
-import OHHTTPStubsCore
+import OHHTTPStubs
 import OHHTTPStubsSwift
 @testable import Squid
 
@@ -22,7 +22,7 @@ class StubFactory {
     func usersGet(expectation: XCTestExpectation? = nil) {
         let descriptor = stub(
             condition: isHost("squid.borchero.com") && isMethodGET() && isPath("/users")
-        ) { _ -> OHHTTPStubsResponse in
+        ) { _ -> HTTPStubsResponse in
             expectation?.fulfill()
             let path = OHPathForFile("users.json", type(of: self))!
             return fixture(
@@ -38,7 +38,7 @@ class StubFactory {
         let descriptor = stub(
             condition: isHost("squid.borchero.com") && isMethodGET() && isPath("/users")
                 && containsQueryParams(["lastname": "Doe"])
-        ) { _ -> OHHTTPStubsResponse in
+        ) { _ -> HTTPStubsResponse in
             let path = OHPathForFile("users.json", type(of: self))!
             let data = try! Data(contentsOf: URL(fileURLWithPath: path))
             let json = try! JSONSerialization.jsonObject(
@@ -68,7 +68,7 @@ class StubFactory {
                 && Set(json.keys) == ["firstname", "lastname"]
                 && json["firstname"] == "John"
                 && json["lastname"] == "Doe"
-        }) { request -> OHHTTPStubsResponse in
+        }) { request -> HTTPStubsResponse in
             let data = request.ohhttpStubs_httpBody!
             let json = try! JSONSerialization.jsonObject(
                 with: data, options: []
@@ -107,7 +107,7 @@ class StubFactory {
                 && request.allHTTPHeaderFields?["Content-Length"] == "30904"
                 && data.count == 30904
                 && data == originalData
-        }) { _ -> OHHTTPStubsResponse in
+        }) { _ -> HTTPStubsResponse in
             return .init(data: Data(), statusCode: 201, headers: [:])
         }
         descriptor.name = "Users Image POST Stub"
@@ -120,7 +120,7 @@ class StubFactory {
     func throttlingRequest() {
         let descriptor = stub(
             condition: isHost("squid.borchero.com") && isMethodGET() && isPath("/throttle")
-        ) { _ -> OHHTTPStubsResponse in
+        ) { _ -> HTTPStubsResponse in
             if self.requestIsThrottled.value {
                 return .init(data: Data(), statusCode: 429, headers: [:])
             }
@@ -135,7 +135,7 @@ class StubFactory {
                 && hasHeaderNamed("Authorization", value: "letmepass")
                 && hasHeaderNamed("Content-Type", value: "application/json")
                 && hasHeaderNamed("Accept-Language", value: "en")
-        ) { _ -> OHHTTPStubsResponse in
+        ) { _ -> HTTPStubsResponse in
             return .init(data: Data(), statusCode: 200, headers: [:])
         }
         descriptor.name = "Authorization Stub"
@@ -150,7 +150,7 @@ class StubFactory {
                 && request.httpMethod == "GET"
                 && (request.url?.query == "page=\(expectedIndex)&chunk=1"
                     || request.url?.query == "chunk=1&page=\(expectedIndex)")
-        }) { request -> OHHTTPStubsResponse in
+        }) { request -> HTTPStubsResponse in
             let path = OHPathForFile("users.json", type(of: self))!
             let data = try! Data(contentsOf: URL(fileURLWithPath: path))
             let json = try! JSONSerialization.jsonObject(
