@@ -1,7 +1,6 @@
 author: Oliver Borchert
 author_url: https://github.com/borchero
 module: Squid
-module_version: "${VERSION}"
 output: docs
 clean: true
 readme: README.md
