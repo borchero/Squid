@@ -1,6 +1,7 @@
 # Squid
 
 ![Build](https://github.com/borchero/Squid/workflows/Build/badge.svg?branch=master)
+![CocoaPods](https://github.com/borchero/Squid/workflows/CocoaPods/badge.svg?branch=master)
 
 Squid is a declarative and reactive networking library for Swift. Developed for Swift 5, it aims to make use of the latest language features. The framework's ultimate goal is to enable easy networking that makes it easy to write well-maintainable code.
 
@@ -28,7 +29,7 @@ If you are developing a Swift package, adding Squid as a dependency is as easy a
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/borchero/Squid.git", from: "1.1.2")
+    .package(url: "https://github.com/borchero/Squid.git")
 ]
 ```
 
@@ -37,8 +38,12 @@ dependencies: [
 If you are still using CocoaPods or are required to use it due to other dependencies that are not yet available for the Swift Package Manager, you can include the following line in your Podfile to use the latest version of Squid:
 
 ```ruby
-pod 'Squid', '~> 1.1.2'
+pod 'Squid'
 ```
+
+### Specifying Versions
+
+If you want to use a particular version, consult the `Releases` page for the exact latest available version. Currently, the latest version is `1.1.x`.
 
 ## Documentation
 
