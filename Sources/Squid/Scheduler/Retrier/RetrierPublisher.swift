@@ -91,7 +91,7 @@ where Upstream: Publisher, Downstream: Subscriber, RequestType: Request,
                 self.downstream?.receive(completion: completion)
                 return
             }
-            self.isFirstRetry = true
+            self.isFirstRetry = false
             
             // First, we need to check whether we ought to retry the failed request.
             // In case the request should be retried, we need to subscribe to the publisher again

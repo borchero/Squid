@@ -7,3 +7,5 @@ readme: README.md
 documentation: examples/*.md
 theme: fullwidth
 github_url: https://github.com/borchero/Squid
+swift_build_tool: spm
+build_tool_arguments: -Xswiftc,-swift-version,-Xswiftc,5

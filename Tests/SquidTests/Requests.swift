@@ -17,6 +17,15 @@ struct UsersRequest: JsonRequest {
     }
 }
 
+struct AuthorizeRequest: Request {
+    
+    typealias Result = Void
+    
+    var routes: HttpRoute {
+        return ["authorize"]
+    }
+}
+
 struct UserCreateRequest: JsonRequest {
     
     typealias Result = UserContainer

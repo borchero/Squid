@@ -141,6 +141,15 @@ class StubFactory {
         descriptor.name = "Authorization Stub"
     }
     
+    func unauthorizedRequest() {
+        let descriptor = stub(
+            condition: isHost("squid.borchero.com") && isMethodGET() && isPath("/authorize")
+        ) { _ -> HTTPStubsResponse in
+            return .init(data: Data(), statusCode: 401, headers: [:])
+        }
+        descriptor.name = "401 Stub"
+    }
+    
     func paginatingRequest() {
         var counter = 0
         let descriptor = stub(condition: { request -> Bool in

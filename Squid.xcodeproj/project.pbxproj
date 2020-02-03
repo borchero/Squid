@@ -1,0 +1,844 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C911D3CC23E7C2570065CD7D /* Squid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C911D3C223E7C2570065CD7D /* Squid.framework */; };
+		C911D41B23E7C3010065CD7D /* Squid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3DF23E7C3010065CD7D /* Squid.swift */; };
+		C911D41C23E7C3010065CD7D /* WSTaskSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3E323E7C3010065CD7D /* WSTaskSubscription.swift */; };
+		C911D41D23E7C3010065CD7D /* WSTaskPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3E423E7C3010065CD7D /* WSTaskPublisher.swift */; };
+		C911D41E23E7C3010065CD7D /* URLSessionDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3E623E7C3010065CD7D /* URLSessionDelegateProxy.swift */; };
+		C911D41F23E7C3010065CD7D /* Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3E723E7C3010065CD7D /* Delegates.swift */; };
+		C911D42023E7C3010065CD7D /* HttpTaskPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3E923E7C3010065CD7D /* HttpTaskPublisher.swift */; };
+		C911D42123E7C3010065CD7D /* HttpTaskSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3EA23E7C3010065CD7D /* HttpTaskSubscription.swift */; };
+		C911D42223E7C3010065CD7D /* HttpData+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3EC23E7C3010065CD7D /* HttpData+Empty.swift */; };
+		C911D42323E7C3010065CD7D /* HttpData+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3ED23E7C3010065CD7D /* HttpData+Image.swift */; };
+		C911D42423E7C3010065CD7D /* HttpBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3EE23E7C3010065CD7D /* HttpBody.swift */; };
+		C911D42523E7C3010065CD7D /* HttpData+Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3EF23E7C3010065CD7D /* HttpData+Json.swift */; };
+		C911D42623E7C3010065CD7D /* HttpRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3F123E7C3010065CD7D /* HttpRoute.swift */; };
+		C911D42723E7C3010065CD7D /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3F223E7C3010065CD7D /* HttpRequest.swift */; };
+		C911D42823E7C3010065CD7D /* HttpMimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3F323E7C3010065CD7D /* HttpMimeType.swift */; };
+		C911D42923E7C3010065CD7D /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3F423E7C3010065CD7D /* HttpMethod.swift */; };
+		C911D42A23E7C3010065CD7D /* HttpHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3F523E7C3010065CD7D /* HttpHeader.swift */; };
+		C911D42B23E7C3010065CD7D /* HttpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3F623E7C3010065CD7D /* HttpQuery.swift */; };
+		C911D42C23E7C3010065CD7D /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3F823E7C3010065CD7D /* Stream.swift */; };
+		C911D42D23E7C3010065CD7D /* Paginator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3F923E7C3010065CD7D /* Paginator.swift */; };
+		C911D42E23E7C3010065CD7D /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3FA23E7C3010065CD7D /* Response.swift */; };
+		C911D42F23E7C3010065CD7D /* PaginatedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3FC23E7C3010065CD7D /* PaginatedData.swift */; };
+		C911D43023E7C3010065CD7D /* PaginationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3FD23E7C3010065CD7D /* PaginationRequest.swift */; };
+		C911D43123E7C3010065CD7D /* NetworkScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3FF23E7C3010065CD7D /* NetworkScheduler.swift */; };
+		C911D43223E7C3010065CD7D /* AnyRetrierFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D40123E7C3010065CD7D /* AnyRetrierFactory.swift */; };
+		C911D43323E7C3010065CD7D /* RetrierPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D40323E7C3010065CD7D /* RetrierPublisher.swift */; };
+		C911D43423E7C3010065CD7D /* Retrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D40423E7C3010065CD7D /* Retrier.swift */; };
+		C911D43523E7C3010065CD7D /* RetrierFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D40523E7C3010065CD7D /* RetrierFactory.swift */; };
+		C911D43623E7C3010065CD7D /* BackoffRetrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D40723E7C3010065CD7D /* BackoffRetrier.swift */; };
+		C911D43723E7C3010065CD7D /* NilRetrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D40823E7C3010065CD7D /* NilRetrier.swift */; };
+		C911D43823E7C3010065CD7D /* StreamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D40A23E7C3010065CD7D /* StreamRequest.swift */; };
+		C911D43923E7C3010065CD7D /* AnyStreamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D40B23E7C3010065CD7D /* AnyStreamRequest.swift */; };
+		C911D43A23E7C3010065CD7D /* Replay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D40D23E7C3010065CD7D /* Replay.swift */; };
+		C911D43B23E7C3010065CD7D /* Concurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D40E23E7C3010065CD7D /* Concurrency.swift */; };
+		C911D43C23E7C3010065CD7D /* IgnoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D40F23E7C3010065CD7D /* IgnoreError.swift */; };
+		C911D43D23E7C3010065CD7D /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D41023E7C3010065CD7D /* Dictionary.swift */; };
+		C911D43E23E7C3010065CD7D /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D41123E7C3010065CD7D /* Url.swift */; };
+		C911D43F23E7C3010065CD7D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D41223E7C3010065CD7D /* String.swift */; };
+		C911D44023E7C3010065CD7D /* RequestPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D41423E7C3010065CD7D /* RequestPriority.swift */; };
+		C911D44123E7C3010065CD7D /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D41523E7C3010065CD7D /* Request.swift */; };
+		C911D44223E7C3010065CD7D /* AnyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D41623E7C3010065CD7D /* AnyRequest.swift */; };
+		C911D44323E7C3010065CD7D /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D41723E7C3010065CD7D /* NetworkRequest.swift */; };
+		C911D44423E7C3010065CD7D /* AnyHttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D41923E7C3010065CD7D /* AnyHttpService.swift */; };
+		C911D44523E7C3010065CD7D /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D41A23E7C3010065CD7D /* HttpService.swift */; };
+		C911D45623E7C32F0065CD7D /* Containers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D44B23E7C32F0065CD7D /* Containers.swift */; };
+		C911D45723E7C32F0065CD7D /* Bags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D44C23E7C32F0065CD7D /* Bags.swift */; };
+		C911D45823E7C32F0065CD7D /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D44D23E7C32F0065CD7D /* Services.swift */; };
+		C911D45923E7C32F0065CD7D /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = C911D44F23E7C32F0065CD7D /* users.json */; };
+		C911D45A23E7C32F0065CD7D /* cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C911D45023E7C32F0065CD7D /* cat.jpg */; };
+		C911D45B23E7C32F0065CD7D /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D45123E7C32F0065CD7D /* Requests.swift */; };
+		C911D45C23E7C32F0065CD7D /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D45223E7C32F0065CD7D /* Stub.swift */; };
+		C911D45D23E7C32F0065CD7D /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D45323E7C32F0065CD7D /* XCTestManifests.swift */; };
+		C911D45E23E7C32F0065CD7D /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D45423E7C32F0065CD7D /* Utility.swift */; };
+		C911D45F23E7C32F0065CD7D /* SquidTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D45523E7C32F0065CD7D /* SquidTests.swift */; };
+		C911D46223E7C41C0065CD7D /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C911D46123E7C41C0065CD7D /* OHHTTPStubsSwift */; };
+		C911D46423E7C41C0065CD7D /* OHHTTPStubs in Frameworks */ = {isa = PBXBuildFile; productRef = C911D46323E7C41C0065CD7D /* OHHTTPStubs */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C911D3CD23E7C2570065CD7D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C911D3B923E7C2560065CD7D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C911D3C123E7C2560065CD7D;
+			remoteInfo = Squid;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C911D3C223E7C2570065CD7D /* Squid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Squid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C911D3CB23E7C2570065CD7D /* SquidTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SquidTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C911D3DF23E7C3010065CD7D /* Squid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Squid.swift; sourceTree = "<group>"; };
+		C911D3E323E7C3010065CD7D /* WSTaskSubscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WSTaskSubscription.swift; sourceTree = "<group>"; };
+		C911D3E423E7C3010065CD7D /* WSTaskPublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WSTaskPublisher.swift; sourceTree = "<group>"; };
+		C911D3E623E7C3010065CD7D /* URLSessionDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionDelegateProxy.swift; sourceTree = "<group>"; };
+		C911D3E723E7C3010065CD7D /* Delegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delegates.swift; sourceTree = "<group>"; };
+		C911D3E923E7C3010065CD7D /* HttpTaskPublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpTaskPublisher.swift; sourceTree = "<group>"; };
+		C911D3EA23E7C3010065CD7D /* HttpTaskSubscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpTaskSubscription.swift; sourceTree = "<group>"; };
+		C911D3EC23E7C3010065CD7D /* HttpData+Empty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpData+Empty.swift"; sourceTree = "<group>"; };
+		C911D3ED23E7C3010065CD7D /* HttpData+Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpData+Image.swift"; sourceTree = "<group>"; };
+		C911D3EE23E7C3010065CD7D /* HttpBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpBody.swift; sourceTree = "<group>"; };
+		C911D3EF23E7C3010065CD7D /* HttpData+Json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HttpData+Json.swift"; sourceTree = "<group>"; };
+		C911D3F123E7C3010065CD7D /* HttpRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRoute.swift; sourceTree = "<group>"; };
+		C911D3F223E7C3010065CD7D /* HttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
+		C911D3F323E7C3010065CD7D /* HttpMimeType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMimeType.swift; sourceTree = "<group>"; };
+		C911D3F423E7C3010065CD7D /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
+		C911D3F523E7C3010065CD7D /* HttpHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHeader.swift; sourceTree = "<group>"; };
+		C911D3F623E7C3010065CD7D /* HttpQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpQuery.swift; sourceTree = "<group>"; };
+		C911D3F823E7C3010065CD7D /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
+		C911D3F923E7C3010065CD7D /* Paginator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paginator.swift; sourceTree = "<group>"; };
+		C911D3FA23E7C3010065CD7D /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		C911D3FC23E7C3010065CD7D /* PaginatedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedData.swift; sourceTree = "<group>"; };
+		C911D3FD23E7C3010065CD7D /* PaginationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationRequest.swift; sourceTree = "<group>"; };
+		C911D3FF23E7C3010065CD7D /* NetworkScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkScheduler.swift; sourceTree = "<group>"; };
+		C911D40123E7C3010065CD7D /* AnyRetrierFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyRetrierFactory.swift; sourceTree = "<group>"; };
+		C911D40323E7C3010065CD7D /* RetrierPublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrierPublisher.swift; sourceTree = "<group>"; };
+		C911D40423E7C3010065CD7D /* Retrier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Retrier.swift; sourceTree = "<group>"; };
+		C911D40523E7C3010065CD7D /* RetrierFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrierFactory.swift; sourceTree = "<group>"; };
+		C911D40723E7C3010065CD7D /* BackoffRetrier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackoffRetrier.swift; sourceTree = "<group>"; };
+		C911D40823E7C3010065CD7D /* NilRetrier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NilRetrier.swift; sourceTree = "<group>"; };
+		C911D40A23E7C3010065CD7D /* StreamRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamRequest.swift; sourceTree = "<group>"; };
+		C911D40B23E7C3010065CD7D /* AnyStreamRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyStreamRequest.swift; sourceTree = "<group>"; };
+		C911D40D23E7C3010065CD7D /* Replay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Replay.swift; sourceTree = "<group>"; };
+		C911D40E23E7C3010065CD7D /* Concurrency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Concurrency.swift; sourceTree = "<group>"; };
+		C911D40F23E7C3010065CD7D /* IgnoreError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IgnoreError.swift; sourceTree = "<group>"; };
+		C911D41023E7C3010065CD7D /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		C911D41123E7C3010065CD7D /* Url.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
+		C911D41223E7C3010065CD7D /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		C911D41423E7C3010065CD7D /* RequestPriority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestPriority.swift; sourceTree = "<group>"; };
+		C911D41523E7C3010065CD7D /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		C911D41623E7C3010065CD7D /* AnyRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyRequest.swift; sourceTree = "<group>"; };
+		C911D41723E7C3010065CD7D /* NetworkRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		C911D41923E7C3010065CD7D /* AnyHttpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyHttpService.swift; sourceTree = "<group>"; };
+		C911D41A23E7C3010065CD7D /* HttpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
+		C911D44623E7C30C0065CD7D /* Squid-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Squid-Info.plist"; path = "Sources/Squid-Info.plist"; sourceTree = "<group>"; };
+		C911D44823E7C31D0065CD7D /* SquidTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "SquidTests-Info.plist"; path = "Tests/SquidTests-Info.plist"; sourceTree = "<group>"; };
+		C911D44B23E7C32F0065CD7D /* Containers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Containers.swift; sourceTree = "<group>"; };
+		C911D44C23E7C32F0065CD7D /* Bags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bags.swift; sourceTree = "<group>"; };
+		C911D44D23E7C32F0065CD7D /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		C911D44F23E7C32F0065CD7D /* users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
+		C911D45023E7C32F0065CD7D /* cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat.jpg; sourceTree = "<group>"; };
+		C911D45123E7C32F0065CD7D /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
+		C911D45223E7C32F0065CD7D /* Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
+		C911D45323E7C32F0065CD7D /* XCTestManifests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
+		C911D45423E7C32F0065CD7D /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		C911D45523E7C32F0065CD7D /* SquidTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquidTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C911D3BF23E7C2560065CD7D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C911D3C823E7C2570065CD7D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C911D3CC23E7C2570065CD7D /* Squid.framework in Frameworks */,
+				C911D46423E7C41C0065CD7D /* OHHTTPStubs in Frameworks */,
+				C911D46223E7C41C0065CD7D /* OHHTTPStubsSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C911D3B823E7C2560065CD7D = {
+			isa = PBXGroup;
+			children = (
+				C911D44623E7C30C0065CD7D /* Squid-Info.plist */,
+				C911D44823E7C31D0065CD7D /* SquidTests-Info.plist */,
+				C911D3DE23E7C3010065CD7D /* Squid */,
+				C911D44A23E7C32F0065CD7D /* SquidTests */,
+				C911D3C323E7C2570065CD7D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C911D3C323E7C2570065CD7D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C911D3C223E7C2570065CD7D /* Squid.framework */,
+				C911D3CB23E7C2570065CD7D /* SquidTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C911D3DE23E7C3010065CD7D /* Squid */ = {
+			isa = PBXGroup;
+			children = (
+				C911D3DF23E7C3010065CD7D /* Squid.swift */,
+				C911D3E023E7C3010065CD7D /* Core */,
+				C911D41823E7C3010065CD7D /* Service */,
+				C911D41323E7C3010065CD7D /* Request */,
+				C911D3F723E7C3010065CD7D /* Response */,
+				C911D3FB23E7C3010065CD7D /* PaginationRequest */,
+				C911D40923E7C3010065CD7D /* StreamRequest */,
+				C911D3FE23E7C3010065CD7D /* Scheduler */,
+				C911D40C23E7C3010065CD7D /* Utils */,
+			);
+			name = Squid;
+			path = Sources/Squid;
+			sourceTree = "<group>";
+		};
+		C911D3E023E7C3010065CD7D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C911D3E123E7C3010065CD7D /* Combine */,
+				C911D3EB23E7C3010065CD7D /* Body */,
+				C911D3F023E7C3010065CD7D /* Request */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		C911D3E123E7C3010065CD7D /* Combine */ = {
+			isa = PBXGroup;
+			children = (
+				C911D3E223E7C3010065CD7D /* WebSocket */,
+				C911D3E523E7C3010065CD7D /* Delegate */,
+				C911D3E823E7C3010065CD7D /* Http */,
+			);
+			path = Combine;
+			sourceTree = "<group>";
+		};
+		C911D3E223E7C3010065CD7D /* WebSocket */ = {
+			isa = PBXGroup;
+			children = (
+				C911D3E323E7C3010065CD7D /* WSTaskSubscription.swift */,
+				C911D3E423E7C3010065CD7D /* WSTaskPublisher.swift */,
+			);
+			path = WebSocket;
+			sourceTree = "<group>";
+		};
+		C911D3E523E7C3010065CD7D /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				C911D3E623E7C3010065CD7D /* URLSessionDelegateProxy.swift */,
+				C911D3E723E7C3010065CD7D /* Delegates.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		C911D3E823E7C3010065CD7D /* Http */ = {
+			isa = PBXGroup;
+			children = (
+				C911D3E923E7C3010065CD7D /* HttpTaskPublisher.swift */,
+				C911D3EA23E7C3010065CD7D /* HttpTaskSubscription.swift */,
+			);
+			path = Http;
+			sourceTree = "<group>";
+		};
+		C911D3EB23E7C3010065CD7D /* Body */ = {
+			isa = PBXGroup;
+			children = (
+				C911D3EC23E7C3010065CD7D /* HttpData+Empty.swift */,
+				C911D3ED23E7C3010065CD7D /* HttpData+Image.swift */,
+				C911D3EE23E7C3010065CD7D /* HttpBody.swift */,
+				C911D3EF23E7C3010065CD7D /* HttpData+Json.swift */,
+			);
+			path = Body;
+			sourceTree = "<group>";
+		};
+		C911D3F023E7C3010065CD7D /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				C911D3F123E7C3010065CD7D /* HttpRoute.swift */,
+				C911D3F223E7C3010065CD7D /* HttpRequest.swift */,
+				C911D3F323E7C3010065CD7D /* HttpMimeType.swift */,
+				C911D3F423E7C3010065CD7D /* HttpMethod.swift */,
+				C911D3F523E7C3010065CD7D /* HttpHeader.swift */,
+				C911D3F623E7C3010065CD7D /* HttpQuery.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		C911D3F723E7C3010065CD7D /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				C911D3F823E7C3010065CD7D /* Stream.swift */,
+				C911D3F923E7C3010065CD7D /* Paginator.swift */,
+				C911D3FA23E7C3010065CD7D /* Response.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		C911D3FB23E7C3010065CD7D /* PaginationRequest */ = {
+			isa = PBXGroup;
+			children = (
+				C911D3FC23E7C3010065CD7D /* PaginatedData.swift */,
+				C911D3FD23E7C3010065CD7D /* PaginationRequest.swift */,
+			);
+			path = PaginationRequest;
+			sourceTree = "<group>";
+		};
+		C911D3FE23E7C3010065CD7D /* Scheduler */ = {
+			isa = PBXGroup;
+			children = (
+				C911D3FF23E7C3010065CD7D /* NetworkScheduler.swift */,
+				C911D40023E7C3010065CD7D /* RetrierFactoryImpl */,
+				C911D40223E7C3010065CD7D /* Retrier */,
+				C911D40623E7C3010065CD7D /* RetrierImpl */,
+			);
+			path = Scheduler;
+			sourceTree = "<group>";
+		};
+		C911D40023E7C3010065CD7D /* RetrierFactoryImpl */ = {
+			isa = PBXGroup;
+			children = (
+				C911D40123E7C3010065CD7D /* AnyRetrierFactory.swift */,
+			);
+			path = RetrierFactoryImpl;
+			sourceTree = "<group>";
+		};
+		C911D40223E7C3010065CD7D /* Retrier */ = {
+			isa = PBXGroup;
+			children = (
+				C911D40323E7C3010065CD7D /* RetrierPublisher.swift */,
+				C911D40423E7C3010065CD7D /* Retrier.swift */,
+				C911D40523E7C3010065CD7D /* RetrierFactory.swift */,
+			);
+			path = Retrier;
+			sourceTree = "<group>";
+		};
+		C911D40623E7C3010065CD7D /* RetrierImpl */ = {
+			isa = PBXGroup;
+			children = (
+				C911D40723E7C3010065CD7D /* BackoffRetrier.swift */,
+				C911D40823E7C3010065CD7D /* NilRetrier.swift */,
+			);
+			path = RetrierImpl;
+			sourceTree = "<group>";
+		};
+		C911D40923E7C3010065CD7D /* StreamRequest */ = {
+			isa = PBXGroup;
+			children = (
+				C911D40A23E7C3010065CD7D /* StreamRequest.swift */,
+				C911D40B23E7C3010065CD7D /* AnyStreamRequest.swift */,
+			);
+			path = StreamRequest;
+			sourceTree = "<group>";
+		};
+		C911D40C23E7C3010065CD7D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C911D40D23E7C3010065CD7D /* Replay.swift */,
+				C911D40E23E7C3010065CD7D /* Concurrency.swift */,
+				C911D40F23E7C3010065CD7D /* IgnoreError.swift */,
+				C911D41023E7C3010065CD7D /* Dictionary.swift */,
+				C911D41123E7C3010065CD7D /* Url.swift */,
+				C911D41223E7C3010065CD7D /* String.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		C911D41323E7C3010065CD7D /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				C911D41423E7C3010065CD7D /* RequestPriority.swift */,
+				C911D41523E7C3010065CD7D /* Request.swift */,
+				C911D41623E7C3010065CD7D /* AnyRequest.swift */,
+				C911D41723E7C3010065CD7D /* NetworkRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		C911D41823E7C3010065CD7D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C911D41923E7C3010065CD7D /* AnyHttpService.swift */,
+				C911D41A23E7C3010065CD7D /* HttpService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		C911D44A23E7C32F0065CD7D /* SquidTests */ = {
+			isa = PBXGroup;
+			children = (
+				C911D45523E7C32F0065CD7D /* SquidTests.swift */,
+				C911D44C23E7C32F0065CD7D /* Bags.swift */,
+				C911D44B23E7C32F0065CD7D /* Containers.swift */,
+				C911D44D23E7C32F0065CD7D /* Services.swift */,
+				C911D45123E7C32F0065CD7D /* Requests.swift */,
+				C911D45223E7C32F0065CD7D /* Stub.swift */,
+				C911D45323E7C32F0065CD7D /* XCTestManifests.swift */,
+				C911D45423E7C32F0065CD7D /* Utility.swift */,
+				C911D44E23E7C32F0065CD7D /* Resources */,
+			);
+			name = SquidTests;
+			path = Tests/SquidTests;
+			sourceTree = "<group>";
+		};
+		C911D44E23E7C32F0065CD7D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C911D44F23E7C32F0065CD7D /* users.json */,
+				C911D45023E7C32F0065CD7D /* cat.jpg */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		C911D3BD23E7C2560065CD7D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		C911D3C123E7C2560065CD7D /* Squid */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C911D3D623E7C2570065CD7D /* Build configuration list for PBXNativeTarget "Squid" */;
+			buildPhases = (
+				C911D3BD23E7C2560065CD7D /* Headers */,
+				C911D3BE23E7C2560065CD7D /* Sources */,
+				C911D3BF23E7C2560065CD7D /* Frameworks */,
+				C911D3C023E7C2560065CD7D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Squid;
+			productName = Squid;
+			productReference = C911D3C223E7C2570065CD7D /* Squid.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C911D3CA23E7C2570065CD7D /* SquidTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C911D3D923E7C2570065CD7D /* Build configuration list for PBXNativeTarget "SquidTests" */;
+			buildPhases = (
+				C911D3C723E7C2570065CD7D /* Sources */,
+				C911D3C823E7C2570065CD7D /* Frameworks */,
+				C911D3C923E7C2570065CD7D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C911D3CE23E7C2570065CD7D /* PBXTargetDependency */,
+			);
+			name = SquidTests;
+			packageProductDependencies = (
+				C911D46123E7C41C0065CD7D /* OHHTTPStubsSwift */,
+				C911D46323E7C41C0065CD7D /* OHHTTPStubs */,
+			);
+			productName = SquidTests;
+			productReference = C911D3CB23E7C2570065CD7D /* SquidTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C911D3B923E7C2560065CD7D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Oliver Borchert";
+				TargetAttributes = {
+					C911D3C123E7C2560065CD7D = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					C911D3CA23E7C2570065CD7D = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+				};
+			};
+			buildConfigurationList = C911D3BC23E7C2560065CD7D /* Build configuration list for PBXProject "Squid" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C911D3B823E7C2560065CD7D;
+			packageReferences = (
+				C911D46023E7C41C0065CD7D /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
+			);
+			productRefGroup = C911D3C323E7C2570065CD7D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C911D3C123E7C2560065CD7D /* Squid */,
+				C911D3CA23E7C2570065CD7D /* SquidTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C911D3C023E7C2560065CD7D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C911D3C923E7C2570065CD7D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C911D45A23E7C32F0065CD7D /* cat.jpg in Resources */,
+				C911D45923E7C32F0065CD7D /* users.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C911D3BE23E7C2560065CD7D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C911D42B23E7C3010065CD7D /* HttpQuery.swift in Sources */,
+				C911D44123E7C3010065CD7D /* Request.swift in Sources */,
+				C911D41E23E7C3010065CD7D /* URLSessionDelegateProxy.swift in Sources */,
+				C911D42D23E7C3010065CD7D /* Paginator.swift in Sources */,
+				C911D42423E7C3010065CD7D /* HttpBody.swift in Sources */,
+				C911D43C23E7C3010065CD7D /* IgnoreError.swift in Sources */,
+				C911D43323E7C3010065CD7D /* RetrierPublisher.swift in Sources */,
+				C911D42E23E7C3010065CD7D /* Response.swift in Sources */,
+				C911D41F23E7C3010065CD7D /* Delegates.swift in Sources */,
+				C911D44323E7C3010065CD7D /* NetworkRequest.swift in Sources */,
+				C911D43423E7C3010065CD7D /* Retrier.swift in Sources */,
+				C911D41B23E7C3010065CD7D /* Squid.swift in Sources */,
+				C911D42A23E7C3010065CD7D /* HttpHeader.swift in Sources */,
+				C911D43D23E7C3010065CD7D /* Dictionary.swift in Sources */,
+				C911D44423E7C3010065CD7D /* AnyHttpService.swift in Sources */,
+				C911D43B23E7C3010065CD7D /* Concurrency.swift in Sources */,
+				C911D44523E7C3010065CD7D /* HttpService.swift in Sources */,
+				C911D43723E7C3010065CD7D /* NilRetrier.swift in Sources */,
+				C911D42223E7C3010065CD7D /* HttpData+Empty.swift in Sources */,
+				C911D44023E7C3010065CD7D /* RequestPriority.swift in Sources */,
+				C911D42C23E7C3010065CD7D /* Stream.swift in Sources */,
+				C911D42723E7C3010065CD7D /* HttpRequest.swift in Sources */,
+				C911D42623E7C3010065CD7D /* HttpRoute.swift in Sources */,
+				C911D42923E7C3010065CD7D /* HttpMethod.swift in Sources */,
+				C911D43023E7C3010065CD7D /* PaginationRequest.swift in Sources */,
+				C911D43823E7C3010065CD7D /* StreamRequest.swift in Sources */,
+				C911D43623E7C3010065CD7D /* BackoffRetrier.swift in Sources */,
+				C911D42523E7C3010065CD7D /* HttpData+Json.swift in Sources */,
+				C911D43A23E7C3010065CD7D /* Replay.swift in Sources */,
+				C911D42F23E7C3010065CD7D /* PaginatedData.swift in Sources */,
+				C911D42023E7C3010065CD7D /* HttpTaskPublisher.swift in Sources */,
+				C911D44223E7C3010065CD7D /* AnyRequest.swift in Sources */,
+				C911D41D23E7C3010065CD7D /* WSTaskPublisher.swift in Sources */,
+				C911D43F23E7C3010065CD7D /* String.swift in Sources */,
+				C911D43923E7C3010065CD7D /* AnyStreamRequest.swift in Sources */,
+				C911D42123E7C3010065CD7D /* HttpTaskSubscription.swift in Sources */,
+				C911D43123E7C3010065CD7D /* NetworkScheduler.swift in Sources */,
+				C911D43523E7C3010065CD7D /* RetrierFactory.swift in Sources */,
+				C911D43E23E7C3010065CD7D /* Url.swift in Sources */,
+				C911D42823E7C3010065CD7D /* HttpMimeType.swift in Sources */,
+				C911D41C23E7C3010065CD7D /* WSTaskSubscription.swift in Sources */,
+				C911D42323E7C3010065CD7D /* HttpData+Image.swift in Sources */,
+				C911D43223E7C3010065CD7D /* AnyRetrierFactory.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C911D3C723E7C2570065CD7D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C911D45E23E7C32F0065CD7D /* Utility.swift in Sources */,
+				C911D45723E7C32F0065CD7D /* Bags.swift in Sources */,
+				C911D45C23E7C32F0065CD7D /* Stub.swift in Sources */,
+				C911D45B23E7C32F0065CD7D /* Requests.swift in Sources */,
+				C911D45F23E7C32F0065CD7D /* SquidTests.swift in Sources */,
+				C911D45823E7C32F0065CD7D /* Services.swift in Sources */,
+				C911D45623E7C32F0065CD7D /* Containers.swift in Sources */,
+				C911D45D23E7C32F0065CD7D /* XCTestManifests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C911D3CE23E7C2570065CD7D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C911D3C123E7C2560065CD7D /* Squid */;
+			targetProxy = C911D3CD23E7C2570065CD7D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C911D3D423E7C2570065CD7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C911D3D523E7C2570065CD7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C911D3D723E7C2570065CD7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 7BEHQZ5DW9;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Sources/Squid-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.borchero.Squid;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C911D3D823E7C2570065CD7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 7BEHQZ5DW9;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Sources/Squid-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.borchero.Squid;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C911D3DA23E7C2570065CD7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7BEHQZ5DW9;
+				INFOPLIST_FILE = "Tests/SquidTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.borchero.SquidTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C911D3DB23E7C2570065CD7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7BEHQZ5DW9;
+				INFOPLIST_FILE = "Tests/SquidTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.borchero.SquidTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C911D3BC23E7C2560065CD7D /* Build configuration list for PBXProject "Squid" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C911D3D423E7C2570065CD7D /* Debug */,
+				C911D3D523E7C2570065CD7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C911D3D623E7C2570065CD7D /* Build configuration list for PBXNativeTarget "Squid" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C911D3D723E7C2570065CD7D /* Debug */,
+				C911D3D823E7C2570065CD7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C911D3D923E7C2570065CD7D /* Build configuration list for PBXNativeTarget "SquidTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C911D3DA23E7C2570065CD7D /* Debug */,
+				C911D3DB23E7C2570065CD7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C911D46023E7C41C0065CD7D /* XCRemoteSwiftPackageReference "OHHTTPStubs" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AliSoftware/OHHTTPStubs";
+			requirement = {
+				kind = revision;
+				revision = 7b6b3f3a23904d0b4bd5da1193de784e92ffa478;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C911D46123E7C41C0065CD7D /* OHHTTPStubsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C911D46023E7C41C0065CD7D /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubsSwift;
+		};
+		C911D46323E7C41C0065CD7D /* OHHTTPStubs */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C911D46023E7C41C0065CD7D /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubs;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = C911D3B923E7C2560065CD7D /* Project object */;
+}
