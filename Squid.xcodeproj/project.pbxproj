@@ -58,11 +58,16 @@
 		C911D45A23E7C32F0065CD7D /* cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C911D45023E7C32F0065CD7D /* cat.jpg */; };
 		C911D45B23E7C32F0065CD7D /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D45123E7C32F0065CD7D /* Requests.swift */; };
 		C911D45C23E7C32F0065CD7D /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D45223E7C32F0065CD7D /* Stub.swift */; };
-		C911D45D23E7C32F0065CD7D /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D45323E7C32F0065CD7D /* XCTestManifests.swift */; };
 		C911D45E23E7C32F0065CD7D /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D45423E7C32F0065CD7D /* Utility.swift */; };
 		C911D45F23E7C32F0065CD7D /* SquidTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D45523E7C32F0065CD7D /* SquidTests.swift */; };
 		C911D46223E7C41C0065CD7D /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C911D46123E7C41C0065CD7D /* OHHTTPStubsSwift */; };
 		C911D46423E7C41C0065CD7D /* OHHTTPStubs in Frameworks */ = {isa = PBXBuildFile; productRef = C911D46323E7C41C0065CD7D /* OHHTTPStubs */; };
+		C9231D3623EF16F2008A750E /* UnsharedFuture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9231D3523EF16F2008A750E /* UnsharedFuture.swift */; };
+		C9643A8023EEFFC900B286D2 /* UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9643A7E23EEFE8500B286D2 /* UtilsTests.swift */; };
+		C9643A8223EF009D00B286D2 /* RetrierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9643A8123EF009D00B286D2 /* RetrierTests.swift */; };
+		C9643A8423EF018A00B286D2 /* FailureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9643A8323EF018A00B286D2 /* FailureTests.swift */; };
+		C9643A8723EF035B00B286D2 /* RetrierStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9643A8623EF035B00B286D2 /* RetrierStub.swift */; };
+		C9643A8A23EF052700B286D2 /* Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9643A8923EF052700B286D2 /* Protected.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,9 +135,14 @@
 		C911D45023E7C32F0065CD7D /* cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat.jpg; sourceTree = "<group>"; };
 		C911D45123E7C32F0065CD7D /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
 		C911D45223E7C32F0065CD7D /* Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
-		C911D45323E7C32F0065CD7D /* XCTestManifests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		C911D45423E7C32F0065CD7D /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		C911D45523E7C32F0065CD7D /* SquidTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquidTests.swift; sourceTree = "<group>"; };
+		C9231D3523EF16F2008A750E /* UnsharedFuture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsharedFuture.swift; sourceTree = "<group>"; };
+		C9643A7E23EEFE8500B286D2 /* UtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
+		C9643A8123EF009D00B286D2 /* RetrierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrierTests.swift; sourceTree = "<group>"; };
+		C9643A8323EF018A00B286D2 /* FailureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailureTests.swift; sourceTree = "<group>"; };
+		C9643A8623EF035B00B286D2 /* RetrierStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrierStub.swift; sourceTree = "<group>"; };
+		C9643A8923EF052700B286D2 /* Protected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protected.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +343,7 @@
 		C911D40C23E7C3010065CD7D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				C9231D3523EF16F2008A750E /* UnsharedFuture.swift */,
 				C911D40D23E7C3010065CD7D /* Replay.swift */,
 				C911D40E23E7C3010065CD7D /* Concurrency.swift */,
 				C911D40F23E7C3010065CD7D /* IgnoreError.swift */,
@@ -367,13 +378,12 @@
 			isa = PBXGroup;
 			children = (
 				C911D45523E7C32F0065CD7D /* SquidTests.swift */,
-				C911D44C23E7C32F0065CD7D /* Bags.swift */,
-				C911D44B23E7C32F0065CD7D /* Containers.swift */,
-				C911D44D23E7C32F0065CD7D /* Services.swift */,
-				C911D45123E7C32F0065CD7D /* Requests.swift */,
-				C911D45223E7C32F0065CD7D /* Stub.swift */,
-				C911D45323E7C32F0065CD7D /* XCTestManifests.swift */,
-				C911D45423E7C32F0065CD7D /* Utility.swift */,
+				C9643A8123EF009D00B286D2 /* RetrierTests.swift */,
+				C9643A8323EF018A00B286D2 /* FailureTests.swift */,
+				C9643A7E23EEFE8500B286D2 /* UtilsTests.swift */,
+				C9643A8823EF04D500B286D2 /* Apis */,
+				C9643A8523EF035200B286D2 /* Stubs */,
+				C9643A7D23EE48DD00B286D2 /* Utils */,
 				C911D44E23E7C32F0065CD7D /* Resources */,
 			);
 			name = SquidTests;
@@ -387,6 +397,35 @@
 				C911D45023E7C32F0065CD7D /* cat.jpg */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		C9643A7D23EE48DD00B286D2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C911D44C23E7C32F0065CD7D /* Bags.swift */,
+				C911D44B23E7C32F0065CD7D /* Containers.swift */,
+				C911D44D23E7C32F0065CD7D /* Services.swift */,
+				C911D45123E7C32F0065CD7D /* Requests.swift */,
+				C911D45223E7C32F0065CD7D /* Stub.swift */,
+				C911D45423E7C32F0065CD7D /* Utility.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		C9643A8523EF035200B286D2 /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				C9643A8623EF035B00B286D2 /* RetrierStub.swift */,
+			);
+			path = Stubs;
+			sourceTree = "<group>";
+		};
+		C9643A8823EF04D500B286D2 /* Apis */ = {
+			isa = PBXGroup;
+			children = (
+				C9643A8923EF052700B286D2 /* Protected.swift */,
+			);
+			path = Apis;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -513,6 +552,7 @@
 				C911D42423E7C3010065CD7D /* HttpBody.swift in Sources */,
 				C911D43C23E7C3010065CD7D /* IgnoreError.swift in Sources */,
 				C911D43323E7C3010065CD7D /* RetrierPublisher.swift in Sources */,
+				C9643A8A23EF052700B286D2 /* Protected.swift in Sources */,
 				C911D42E23E7C3010065CD7D /* Response.swift in Sources */,
 				C911D41F23E7C3010065CD7D /* Delegates.swift in Sources */,
 				C911D44323E7C3010065CD7D /* NetworkRequest.swift in Sources */,
@@ -522,6 +562,7 @@
 				C911D43D23E7C3010065CD7D /* Dictionary.swift in Sources */,
 				C911D44423E7C3010065CD7D /* AnyHttpService.swift in Sources */,
 				C911D43B23E7C3010065CD7D /* Concurrency.swift in Sources */,
+				C9231D3623EF16F2008A750E /* UnsharedFuture.swift in Sources */,
 				C911D44523E7C3010065CD7D /* HttpService.swift in Sources */,
 				C911D43723E7C3010065CD7D /* NilRetrier.swift in Sources */,
 				C911D42223E7C3010065CD7D /* HttpData+Empty.swift in Sources */,
@@ -556,14 +597,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9643A8723EF035B00B286D2 /* RetrierStub.swift in Sources */,
+				C9643A8023EEFFC900B286D2 /* UtilsTests.swift in Sources */,
 				C911D45E23E7C32F0065CD7D /* Utility.swift in Sources */,
 				C911D45723E7C32F0065CD7D /* Bags.swift in Sources */,
 				C911D45C23E7C32F0065CD7D /* Stub.swift in Sources */,
 				C911D45B23E7C32F0065CD7D /* Requests.swift in Sources */,
 				C911D45F23E7C32F0065CD7D /* SquidTests.swift in Sources */,
 				C911D45823E7C32F0065CD7D /* Services.swift in Sources */,
+				C9643A8223EF009D00B286D2 /* RetrierTests.swift in Sources */,
+				C9643A8423EF018A00B286D2 /* FailureTests.swift in Sources */,
 				C911D45623E7C32F0065CD7D /* Containers.swift in Sources */,
-				C911D45D23E7C32F0065CD7D /* XCTestManifests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

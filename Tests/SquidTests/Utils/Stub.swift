@@ -113,22 +113,6 @@ class StubFactory {
         descriptor.name = "Users Image POST Stub"
     }
     
-    func enableThrottling(_ throttle: Bool) {
-        self.requestIsThrottled.value = throttle
-    }
-    
-    func throttlingRequest() {
-        let descriptor = stub(
-            condition: isHost("squid.borchero.com") && isMethodGET() && isPath("/throttle")
-        ) { _ -> HTTPStubsResponse in
-            if self.requestIsThrottled.value {
-                return .init(data: Data(), statusCode: 429, headers: [:])
-            }
-            return .init(data: Data(), statusCode: 200, headers: [:])
-        }
-        descriptor.name = "Throttling Stub"
-    }
-    
     func authorizationRequest() {
         let descriptor = stub(
             condition: isHost("squid.borchero.com") && isMethodPOST() && isPath("/login")

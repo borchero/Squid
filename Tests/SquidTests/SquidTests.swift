@@ -13,20 +13,6 @@ import Combine
 
 final class SquidRequestTests: XCTestCase {
     
-    static let allTests = [
-        ("testAnyRequest", testAnyRequest),
-        ("testRequest", testRequest),
-        ("testPostRequest", testPostRequest),
-        ("testImageRequest", testImageRequest),
-        ("testQueryRequest", testQueryRequest),
-        ("testBackoffRetrier", testBackoffRetrier),
-        ("testHttpHeaders", testHttpHeaders),
-        ("testPaginationRequest", testPaginationRequest),
-        ("testAnyStreamRequest", testAnyStreamRequest),
-        ("testMultipleSubscriptions", testMultipleSubscriptions),
-        ("testAtomicCounter", testAtomicCounter)
-    ]
-    
     override func setUp() {
         HTTPStubs.removeAllStubs()
     }
@@ -132,26 +118,6 @@ final class SquidRequestTests: XCTestCase {
         wait(for: [expectation], timeout: 0.1)
         c.cancel()
     }
-
-    func testBackoffRetrier() {
-        StubFactory.shared.enableThrottling(true)
-        StubFactory.shared.throttlingRequest()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 20) {
-            StubFactory.shared.enableThrottling(false)
-        }
-        
-        let expectation = XCTestExpectation()
-
-        let service = MyRetryingApi()
-        let request = ThrottledRequest()
-        let c = request.schedule(with: service).ignoreError()
-            .sink { _ in
-                expectation.fulfill()
-            }
-
-        wait(for: [expectation], timeout: 33)
-        c.cancel()
-    }
     
     func testHttpHeaders() {
         StubFactory.shared.authorizationRequest()
@@ -246,52 +212,6 @@ final class SquidRequestTests: XCTestCase {
         k?.cancel()
     }
     
-    func test401() {
-        StubFactory.shared.unauthorizedRequest()
-        
-        let expectation = XCTestExpectation()
-        
-        let service = MyApi()
-        let request = AuthorizeRequest()
-        let response = request.schedule(with: service)
-        
-        let c = response
-            .receive(on: RunLoop.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let error):
-                    switch error {
-                    case .requestFailed(statusCode: 401, response: _):
-                        expectation.fulfill()
-                    default:
-                        return
-                    }
-                default:
-                    return
-                }
-            }, receiveValue: { _ in })
-        
-        wait(for: [expectation], timeout: 0.2)
-        c.cancel()
-    }
-    
-    func test404() {
-        let expectation = XCTestExpectation()
-    
-        let service = My404Api()
-        let request = UsersRequest()
-        let response = request.schedule(with: service)
-        
-        let c = response.sink(receiveCompletion: { completion in
-            if case .failure = completion {
-                expectation.fulfill()
-            }
-        }) { _ in }
-        
-        wait(for: [expectation], timeout: 0.2)
-        c.cancel()
-    }
-    
     func testRequestPreparation() {
         StubFactory.shared.usersGet()
         
@@ -310,33 +230,5 @@ final class SquidRequestTests: XCTestCase {
 
         wait(for: [expectation], timeout: 0.1)
         c.cancel()
-    }
-    
-    func testAtomicCounter() {
-        let counter = MyAtomicCounter()
-        
-        threadPool(10) {
-            for _ in 0..<1_000 {
-                counter.increment()
-            }
-        }
-        
-        XCTAssertEqual(counter.count.value, 10_000)
-    }
-    
-    private func threadPool(_ count: Int = 8, execute: @escaping () -> Void) {
-        var threads: [Thread] = []
-        
-        // Create threads
-        for _ in 0..<count {
-            let thread = Thread(block: execute)
-            threads.append(thread)
-            thread.start()
-        }
-        
-        // "Join" threads (busy waiting)
-        for thread in threads {
-            while !thread.isFinished { }
-        }
     }
 }

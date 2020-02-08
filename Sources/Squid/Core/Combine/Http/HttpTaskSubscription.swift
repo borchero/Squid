@@ -44,6 +44,7 @@ where S: Subscriber, S.Input == HttpTaskPublisher.Output, S.Failure == HttpTaskP
         if self.task?.state == .running {
             self.task?.cancel()
         }
+        self.subscriber = nil
     }
     
     deinit {

@@ -62,6 +62,9 @@ public protocol Request: NetworkRequest {
     /// it simply returns the data passed as parameter. As a result, in both cases, this method will
     /// never throw.
     ///
+    /// In addition, it has a default implementation if the return type is `String`. The data is
+    /// expected to be encoded with UTF-8.
+    ///
     /// - Parameter data: The raw data returned by the raw HTTP response.
     func decode(_ data: Data) throws -> Result
 }
@@ -138,6 +141,16 @@ extension Request where Result == Void {
     
     public func decode(_ data: Data) throws -> Result {
         return ()
+    }
+}
+
+extension Request where Result == String {
+    
+    public func decode(_ data: Data) throws -> Result {
+        guard let string = String(data: data, encoding: .utf8) else {
+            throw Squid.Error.decodingFailed
+        }
+        return string
     }
 }
 

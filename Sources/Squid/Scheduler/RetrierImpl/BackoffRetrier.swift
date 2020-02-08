@@ -115,3 +115,10 @@ extension BackoffRetrier {
         }
     }
 }
+
+extension BackoffRetrier {
+    
+    public var allowsMultipleRetries: Bool {
+        return true
+    }
+}

@@ -32,6 +32,10 @@ public struct Squid {
         /// into a valid HTTP request.
         case encodingFailed
         
+        /// A request's response failed due to some decoding failure when serializing the response.
+        /// This error is *not* thrown when JSON decoding fails.
+        case decodingFailed
+        
         // MARK: Connection Error
         /// The scheduled request did not receive a response from the server due to a timeout.
         case timeout
@@ -78,6 +82,11 @@ public struct Squid {
     public struct Logger {
         
         internal private(set) static var shared = Logger()
+        private let formatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH:mm:ss.SSS"
+            return formatter
+        }()
         
         /// Globally enables or disables logging for the Squid library. Has no effect in release
         /// compiles.
@@ -92,7 +101,11 @@ public struct Squid {
         internal func log(_ text: @autoclosure () -> String) {
             #if DEBUG
             if !silenced {
-                print((" \n" + text() + "\n ").prefixed(with: "[Squid] "))
+                let date = self.formatter.string(from: Date())
+                print(
+                    " \n".prefixed(with: "[Squid @ \(date)]") + "\n" +
+                    (text() + "\n ").prefixed(with: "[Squid] ")
+                )
             }
             #endif
         }

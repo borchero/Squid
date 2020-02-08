@@ -44,7 +44,7 @@ internal class NetworkScheduler {
         #endif
         
         // 1) Build HTTP request
-        let httpRequest = Future<HttpRequest, Squid.Error> { promise in
+        let httpRequest = UnsharedFuture<HttpRequest, Squid.Error> { promise in
             // 1.1) Initialize request with destination URL
             guard var httpRequest = HttpRequest(url: service.apiUrl) else {
                 promise(.failure(.invalidUrl))
