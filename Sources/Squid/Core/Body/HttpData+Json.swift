@@ -48,12 +48,18 @@ extension HttpData.Json {
     
     // MARK: CustomStringConvertible
     public var description: String {
-        let debugEncoder = JSONEncoder()
-        debugEncoder.outputFormatting = .prettyPrinted
-        return String(
-            data: (try? debugEncoder.encode(self.value)) ?? Data(),
+        let outputFormatting = self.encoder.outputFormatting
+        
+        self.encoder.outputFormatting = .prettyPrinted
+        
+        let result = String(
+            data: (try? self.encoder.encode(self.value)) ?? Data(),
             encoding: .utf8
         ) ?? ""
+        
+        self.encoder.outputFormatting = outputFormatting
+        
+        return result
     }
 }
 
