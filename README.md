@@ -19,6 +19,54 @@ At the moment, the most important features of Squid can be summarized as follows
 * Sending and receiving messages over WebSockets.
 * Abstraction of API endpoints and security mechanisms for a set of requests.
 
+## Quickstart
+
+When first using Squid, you might want to try out requests against a [Test API](https://jsonplaceholder.typicode.com/).
+
+To perform a sample request at this API, we first define an API to manage its endpoint:
+
+```swift
+struct MyApi: HttpService {
+
+    var apiUrl: UrlConvertible {
+        "jsonplaceholder.typicode.com"
+    }
+}
+```
+
+Afterwards, we can define the request itself:
+
+```swift
+struct Todo: Decodable {
+
+    let userId: Int
+    let id: Int
+    let title: String
+    let completed: Bool
+}
+
+struct TodoRequest: JsonRequest {
+
+    typealias Result = Todo
+    
+    let id: Int
+    
+    var routes: [HttpRoute] {
+        return ["todos", id]
+    }
+}
+```
+
+And schedule the request as follows:
+
+```swift
+let api = MyApi()
+let request = TodoRequest(id: 1)
+request.schedule(with: api).ignoreError().sink { value in 
+    // work with Todo here
+}
+```
+
 ## Installation
 
 Squid is available via the [Swift Package Manager](https://swift.org/package-manager/) as well as [CocoaPods](https://cocoapods.org).
