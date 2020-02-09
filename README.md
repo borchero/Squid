@@ -51,7 +51,7 @@ struct TodoRequest: JsonRequest {
     
     let id: Int
     
-    var routes: [HttpRoute] {
+    var routes: HttpRoute {
         return ["todos", id]
     }
 }
@@ -62,8 +62,10 @@ And schedule the request as follows:
 ```swift
 let api = MyApi()
 let request = TodoRequest(id: 1)
-request.schedule(with: api).ignoreError().sink { value in 
-    // work with Todo here
+
+// The following request will be scheduled to `https://jsonplaceholder.typicode.com/todos/1`
+request.schedule(with: api).ignoreError().sink { todo in 
+    // work with `todo` here
 }
 ```
 
