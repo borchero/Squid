@@ -52,7 +52,7 @@ struct TodoRequest: JsonRequest {
     let id: Int
     
     var routes: HttpRoute {
-        return ["todos", id]
+        ["todos", id]
     }
 }
 ```
