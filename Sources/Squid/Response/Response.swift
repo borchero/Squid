@@ -20,23 +20,23 @@ import Combine
 /// Lastly, the class cannot be initialized by the user but is only returned by Squid upon
 /// scheduling a request.
 public class Response<RequestType>: Publisher where RequestType: Request {
-    
+
     // MARK: Types
     public typealias Output = RequestType.Result
     public typealias Failure = Squid.Error
-    
+
     private let publisher: AnyPublisher<Output, Failure>
     private let request: RequestType
-    
+
     internal init<P>(publisher: P, request: RequestType)
     where P: Publisher, P.Output == Output, P.Failure == Failure {
         self.publisher = publisher.shareReplayLatest()
         self.request = request
     }
-    
+
     // MARK: Publisher
     public func receive<S>(subscriber: S)
-    where S: Subscriber,Failure == S.Failure, Output == S.Input {
+    where S: Subscriber, Failure == S.Failure, Output == S.Input {
         self.publisher.receive(subscriber: subscriber)
     }
 }

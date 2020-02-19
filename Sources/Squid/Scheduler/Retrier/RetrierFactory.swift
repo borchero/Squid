@@ -17,7 +17,7 @@ import Foundation
 /// In this case, you do not have to define a type implementing this protocol, but have a look at
 /// `AnyRetrierFactory` instead.
 public protocol RetrierFactory {
-    
+
     /// Returns some retrier for the given request. This method is only called when the given
     /// request has failed. The factory may return different kinds of retriers for different
     /// requests. Whenever a retrier is stateful, it is also the responsibility of the factory

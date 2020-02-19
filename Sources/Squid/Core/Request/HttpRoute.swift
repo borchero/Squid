@@ -11,9 +11,9 @@ import Foundation
 /// simply be represented by an array of strings. However, this entity enables initializing HTTP
 /// routes without having to explicitly convert all path components to `String`.
 public struct HttpRoute {
-    
+
     private let paths: [String]
-    
+
     // MARK: Initialization
     /// Initializes a new HTTP route.
     ///
@@ -31,7 +31,7 @@ public struct HttpRoute {
 }
 
 extension HttpRoute: ExpressibleByArrayLiteral {
-    
+
     public init(arrayLiteral elements: Any...) {
         self.init(elements)
     }
@@ -39,7 +39,7 @@ extension HttpRoute: ExpressibleByArrayLiteral {
 
 // MARK: Operators
 extension HttpRoute {
-    
+
     /// Combines the routing paths of two HTTP routes by appending the paths of the latter route to
     /// the paths of the former route.
     public static func + (lhs: HttpRoute, rhs: HttpRoute) -> HttpRoute {

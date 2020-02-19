@@ -10,21 +10,21 @@ import Combine
 
 internal class HttpTaskSubscription<S>: Subscription
 where S: Subscriber, S.Input == HttpTaskPublisher.Output, S.Failure == HttpTaskPublisher.Failure {
-    
+
     private let urlSession: URLSession
     private let urlRequest: URLRequest
     private var task: URLSessionTask?
     private var subscriber: S?
     private var taskWasScheduled = false
-    
+
     private var data: Data?
-    
+
     init(subscriber: S, request: URLRequest, session: URLSession) {
         self.urlRequest = request
         self.urlSession = session
         self.subscriber = subscriber
     }
-    
+
     func request(_ demand: Subscribers.Demand) {
         // We do not need to look `taskWasScheduled` as long as there is a single subscription
         // --> this should be the case
@@ -39,15 +39,16 @@ where S: Subscriber, S.Input == HttpTaskPublisher.Output, S.Failure == HttpTaskP
         self.task = task
         self.taskWasScheduled = true
     }
-    
+
     func cancel() {
         if self.task?.state == .running {
             self.task?.cancel()
         }
         self.subscriber = nil
     }
-    
+
     deinit {
+        // swiftlint:disable identifier_name
         if let id = self.task?.taskIdentifier {
             URLSessionDelegateProxy[self.urlSession].deregister(forIdentifier: id)
         }
@@ -56,7 +57,7 @@ where S: Subscriber, S.Input == HttpTaskPublisher.Output, S.Failure == HttpTaskP
 }
 
 extension HttpTaskSubscription: HttpTaskSubscriptionDelegate {
-    
+
     func receive(_ data: Data) {
         if let currentData = self.data {
             self.data = currentData + data
@@ -64,7 +65,7 @@ extension HttpTaskSubscription: HttpTaskSubscriptionDelegate {
             self.data = data
         }
     }
-    
+
     func finalize(response: URLResponse?, error: Error?) {
         let result = self.processResponse(data: self.data, response: response, error: error)
         switch result {
@@ -78,7 +79,7 @@ extension HttpTaskSubscription: HttpTaskSubscriptionDelegate {
 }
 
 extension HttpTaskSubscription {
-    
+
     private func processResponse(
         data: Data?, response: URLResponse?, error: Error?
     ) -> Result<(Data, URLResponse), Squid.Error> {
@@ -96,17 +97,17 @@ extension HttpTaskSubscription {
                 return .failure(.unknown(error as Error))
             }
         }
-        
+
         guard let response = response else {
             return .failure(.invalidResponse)
         }
-        
+
         return .success((data ?? Data(), response))
     }
 }
 
 extension URLRequest {
-    
+
     fileprivate func getTask(in session: URLSession) -> URLSessionTask {
         switch self.httpMethod {
         case "PUT", "POST":

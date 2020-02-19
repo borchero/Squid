@@ -60,6 +60,19 @@ struct MyProtectedApi: HttpService {
     }
 }
 
+struct MyAsyncProtectedApi: HttpService {
+
+    var apiUrl: UrlConvertible {
+        return "squid.borchero.com"
+    }
+
+    var asyncHeader: AnyPublisher<HttpHeader, Error> {
+        return Future { promise in
+            promise(.success([.authorization: "mytoken"]))
+        }.eraseToAnyPublisher()
+    }
+}
+
 // MARK: Requests
 
 struct TokenRequest: Request {

@@ -21,23 +21,23 @@ import Foundation
 ///
 /// **Note that this entity does not allow to make insecure requests over HTTP (only HTTPS).**
 public struct AnyRequest: Request {
-    
+
     // MARK: Types
     public typealias Result = Data
-    
+
     // MARK: Properties
     private let service: HttpService
-    
+
     public let routes: HttpRoute
-    
+
     public let method: HttpMethod
     public let query: HttpQuery
     public let header: HttpHeader
     public let body: HttpBody
-    
+
     public let acceptedStatusCodes: CountableClosedRange<Int>
     public let priority: RequestPriority
-    
+
     // MARK: Initialization
     /// Initializes a new request for a particular URL.
     ///
@@ -62,7 +62,7 @@ public struct AnyRequest: Request {
             service: AnyHttpService(at: url)
         )
     }
-    
+
     /// Initializes a new request based on a predefined `HttpService`.
     ///
     /// - Parameter method: The HTTP method for the request. Defaults to GET.

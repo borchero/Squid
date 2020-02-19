@@ -9,33 +9,33 @@
 import Combine
 
 internal struct UnsharedFuture<Output, Failure>: Publisher where Failure: Error {
-    
+
     typealias Promise = (Result<Output, Failure>) -> Void
-    
+
     private let promise: (@escaping Promise) -> Void
-    
+
     public init(_ attemptToFulfill: @escaping (@escaping Promise) -> Void) {
         self.promise = attemptToFulfill
     }
-    
+
     func receive<S>(subscriber: S) where S: Subscriber, Failure == S.Failure, Output == S.Input {
         let subscription = FutureSubscription(subscriber: subscriber, promise: self.promise)
         subscriber.receive(subscription: subscription)
     }
 }
 
-fileprivate class FutureSubscription<S>: Subscription where S: Subscriber {
-    
+private class FutureSubscription<S>: Subscription where S: Subscriber {
+
     typealias Promise = (Result<S.Input, S.Failure>) -> Void
-    
+
     private var subscriber: S?
     private let promise: (@escaping Promise) -> Void
-    
+
     init(subscriber: S, promise: @escaping (@escaping Promise) -> Void) {
         self.subscriber = subscriber
         self.promise = promise
     }
-    
+
     func request(_ demand: Subscribers.Demand) {
         guard demand > 0 else {
             return
@@ -50,11 +50,11 @@ fileprivate class FutureSubscription<S>: Subscription where S: Subscriber {
             }
         }
     }
-    
+
     func cancel() {
         self.subscriber = nil
     }
-    
+
     deinit {
         self.cancel()
     }

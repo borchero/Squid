@@ -9,7 +9,7 @@ let package = Package(
     products: [.library(name: "Squid", targets: ["Squid"])],
     dependencies: [],
     targets: [
-        .target(name: "Squid", dependencies: []),
+        .target(name: "Squid", dependencies: [])
     ],
     swiftLanguageVersions: [.v5]
 )

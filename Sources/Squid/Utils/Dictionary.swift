@@ -8,7 +8,7 @@
 import Foundation
 
 extension Dictionary where Key == String, Value == String {
-    
+
     internal var httpHeaderDescription: String? {
         if self.isEmpty {
             return nil

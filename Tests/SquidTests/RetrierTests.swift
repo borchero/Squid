@@ -27,13 +27,13 @@ final class RetrierTests: XCTestCase {
         let expectation = XCTestExpectation()
         let service = MyRetryingApi()
         let request = ThrottledRequest()
-        let c = request.schedule(with: service).ignoreError()
+        let cancellable = request.schedule(with: service).ignoreError()
             .sink { _ in
                 expectation.fulfill()
             }
 
         wait(for: [expectation], timeout: 33)
-        c.cancel()
+        cancellable.cancel()
     }
     
     func testTokenRefreshRetrier() {
@@ -47,13 +47,27 @@ final class RetrierTests: XCTestCase {
         let api = MyProtectedApi(auth: auth)
         
         let request = ProtectedRequest()
-        let c = request.schedule(with: api).sink(receiveCompletion: { completion in
-            print(completion)
-        }) { _ in
+        let c = request.schedule(with: api).ignoreError().sink { _ in
             expectation.fulfill()
         }
         
         wait(for: [expectation], timeout: 3)
+        c.cancel()
+    }
+
+    func testAsynchronousToken() {
+        RetrierStubFactory.shared.protectedRoute()
+
+        let expectation = XCTestExpectation()
+
+        let api = MyAsyncProtectedApi()
+
+        let request = ProtectedRequest()
+        let c = request.schedule(with: api).ignoreError().sink { _ in
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1)
         c.cancel()
     }
 }

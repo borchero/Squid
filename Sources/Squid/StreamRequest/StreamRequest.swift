@@ -19,10 +19,10 @@ public protocol StreamRequest: NetworkRequest {
     /// Defines the type of the values sent by the client to the peer. By default, this is set to
     /// `Void`, indicating unidirectional communication from the peer to the client.
     associatedtype Message = Void
-    
+
     /// Defines the type of the values sent from the peer to the client.
     associatedtype Result
-    
+
     // MARK: Encoding Data for Sending
     /// Encodes a message sent from the client to the peer into an appropriate format for WebSocket
     /// communication. There exist default implementations for the case where `Message` is of type
@@ -32,7 +32,7 @@ public protocol StreamRequest: NetworkRequest {
     ///
     /// - Parameter message: The message to be sent from the client to the peer.
     func encode(_ message: Message) throws -> URLSessionWebSocketTask.Message
-    
+
     // MARK: Decoding Data for Receiving
     /// Decodes a message sent by the peer into the stream's result type. There exist default
     /// implementations for result types `Void`, `Data` and `String`. In the former case, a `Void`
@@ -44,7 +44,7 @@ public protocol StreamRequest: NetworkRequest {
 }
 
 extension StreamRequest {
-    
+
     // MARK: Establishing Streams
     /// Schedules the stream request against the API specified by the given HTTP service. The
     /// returned value is the stream over which messages can be sent (bidirectionally). Note that
@@ -58,35 +58,35 @@ extension StreamRequest {
 }
 
 extension StreamRequest where Message == Void {
-    
+
     public func encode(_ message: Message) throws -> URLSessionWebSocketTask.Message {
         throw Squid.Error.encodingFailed
     }
 }
 
 extension StreamRequest where Message == Data {
-    
+
     public func encode(_ message: Message) throws -> URLSessionWebSocketTask.Message {
         return .data(message)
     }
 }
 
 extension StreamRequest where Message == String {
-    
+
     public func encode(_ message: Message) throws -> URLSessionWebSocketTask.Message {
         return .string(message)
     }
 }
 
 extension StreamRequest where Result == Void {
-    
+
     public func decode(_ message: URLSessionWebSocketTask.Message) throws -> Result {
         return ()
     }
 }
 
 extension StreamRequest where Result == Data {
-    
+
     public func decode(_ message: URLSessionWebSocketTask.Message) throws -> Result {
         switch message {
         case .data(let data):
@@ -100,7 +100,7 @@ extension StreamRequest where Result == Data {
 }
 
 extension StreamRequest where Result == String {
-    
+
     public func decode(_ message: URLSessionWebSocketTask.Message) throws -> Result {
         switch message {
         case .string(let string):
@@ -122,7 +122,7 @@ extension StreamRequest where Result == String {
 /// be either `String` or `Data`: in both cases, they are decoded equally (note that `Data` messages
 /// might be more efficient.
 public protocol JsonStreamRequest: StreamRequest where Message: Encodable, Result: Decodable {
-    
+
     /// Defines whether the encoder and decoder camel case in the Swift code as snake case in the
     /// JSON (i.e. `userID` would be encoded as/decoded from the field `user_id` if not specified
     /// explicity in the type to decode to). By default, attributes are encoded/decoded using snake
@@ -131,29 +131,29 @@ public protocol JsonStreamRequest: StreamRequest where Message: Encodable, Resul
 }
 
 extension JsonStreamRequest {
-    
+
     public var decodeSnakeCase: Bool {
         return true
     }
 }
 
 extension JsonStreamRequest {
-    
+
     public func encode(_ message: Message) throws -> URLSessionWebSocketTask.Message {
         let encoder = JSONEncoder()
         if self.decodeSnakeCase {
             encoder.keyEncodingStrategy = .convertToSnakeCase
         }
-        
+
         return .data(try encoder.encode(message))
     }
-    
+
     public func decode(_ message: URLSessionWebSocketTask.Message) throws -> Result {
         let decoder = JSONDecoder()
         if self.decodeSnakeCase {
             decoder.keyDecodingStrategy = .convertFromSnakeCase
         }
-        
+
         switch message {
         case .string(let string):
             let data = Data(string.utf8)

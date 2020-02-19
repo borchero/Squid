@@ -9,18 +9,18 @@ import Foundation
 import Combine
 
 internal class NetworkScheduler {
-    
+
     // MARK: Static
     static let shared = NetworkScheduler()
-    
+
     #if DEBUG
     private let runningIdentifier = AtomicInt()
     #endif
-    
+
     // MARK: Properties
     private let lockingQueue = DispatchQueue(label: "squid-scheduler-locking-queue")
     private var sessions: [URLSessionConfiguration: URLSession] = [:]
-    
+
     private let queues: [RequestPriority: DispatchQueue] = {
         return [
             .utility: DispatchQueue(
@@ -36,46 +36,20 @@ internal class NetworkScheduler {
             )
         ]
     }()
-    
+
     // MARK: HTTP Request
     func schedule<R>(_ request: R, service: HttpService) -> Response<R> where R: Request {
         #if DEBUG
         let requestId = self.runningIdentifier++
         #endif
-        
+
         // 1) Build HTTP request
-        let httpRequest = UnsharedFuture<HttpRequest, Squid.Error> { promise in
-            // 1.1) Initialize request with destination URL
-            guard var httpRequest = HttpRequest(url: service.apiUrl) else {
-                promise(.failure(.invalidUrl))
-                return
-            }
-            
-            // 1.2) Modify request to carry all required data
-            do {
-                httpRequest = try httpRequest
-                    .with(scheme: request.usesSecureProtocol ? "https" : "http")
-                    .with(method: request.method)
-                    .with(route: request.routes)
-                    .with(query: request.query)
-                    .with(header: service.header + request.header)
-                    .with(body: request.body)
-                    .process(with: request.prepare(_:))
-            } catch {
-                promise(.failure(.ensure(error)))
-            }
-            
-            // 1.3) Validate request
-            if let error = request.validate() {
-                promise(.failure(error))
-            }
-            
-            promise(.success(httpRequest))
-        }
-        
+        let asyncHeader = service.asyncHeader.mapError(Squid.Error.ensure(_:))
+        let httpRequest = asyncHeader.attachToHttpRequest(request, service: service)
+
         // 2) Get URL session
         let session = self.lockingQueue.sync { self.getSession(for: service.sessionConfiguration) }
-        
+
         // 3) Submit task
         #if DEBUG
         let task = httpRequest
@@ -85,7 +59,7 @@ internal class NetworkScheduler {
         let task = httpRequest
             .flatMap { return HttpTaskPublisher(request: $0, in: session) }
         #endif
-        
+
         // 3.1) Debug response if necessary
         #if DEBUG
         let httpTask = task
@@ -95,15 +69,15 @@ internal class NetworkScheduler {
         let httpTask = task
             .httpResponse()
         #endif
-        
+
         // 4) Check for response code
         let validatedResponse = httpTask
             .validate(statusCodeIn: request.acceptedStatusCodes)
-        
+
         // 5) Run retriers if necessary
         let retriedResponse = validatedResponse
             .retryOnFailure(request: request, retrier: service.retrierFactory.create(for: request))
-        
+
         // 6) Process error in service context
         let processedResponse = retriedResponse
             .handleEvents(receiveCompletion: { completion in
@@ -114,51 +88,33 @@ internal class NetworkScheduler {
                     return
                 }
             })
-        
+
         // 7) Decode for required type
         let decodedResponse = processedResponse
             .tryMap(request.decode)
             .mapError(Squid.Error.ensure)
-        
+
         // 8) Dispatch onto background thread depending on priority
         let dispatchedResponse = decodedResponse
             .subscribe(on: self.queues[request.priority]!)
-        
+
         return Response(publisher: dispatchedResponse, request: request)
     }
-    
+
     // MARK: Web Socket Request
+    // swiftlint:disable function_body_length
     func schedule<R>(_ request: R, service: HttpService) -> Stream<R> where R: StreamRequest {
         #if DEBUG
         let requestId = self.runningIdentifier++
         #endif
-        
+
         // 1) Build WebSocket request
-        let httpRequest = Future<HttpRequest, Squid.Error> { promise in
-            // 1.1) Initialize request with destination URL
-            guard var httpRequest = HttpRequest(url: service.apiUrl) else {
-                promise(.failure(.invalidUrl))
-                return
-            }
-            
-            // 1.2) Modify request to carry all required data
-            do {
-                httpRequest = try httpRequest
-                    .with(scheme: request.usesSecureProtocol ? "wss" : "ws")
-                    .with(method: .get)
-                    .with(route: request.routes)
-                    .with(query: request.query)
-                    .with(header: request.header)
-            } catch {
-                promise(.failure(.ensure(error)))
-            }
-            
-            promise(.success(httpRequest))
-        }
-        
+        let asyncHeader = service.asyncHeader.mapError(Squid.Error.ensure(_:))
+        let httpRequest = asyncHeader.attachToStreamRequest(request, service: service)
+
         // 2) Get URL session
         let session = self.lockingQueue.sync { self.getSession(for: service.sessionConfiguration) }
-        
+
         // 3) Submit task - somehow, we need to capture the task here
         let taskSubject = CurrentValueSubject<URLSessionWebSocketTask?, Never>(nil)
         #if DEBUG
@@ -169,7 +125,7 @@ internal class NetworkScheduler {
         let task = httpRequest
             .flatMap { return WSTaskPublisher(request: $0, in: session, taskSubject: taskSubject) }
         #endif
-        
+
         // 3.1) Debug messages if necessary
         #if DEBUG
         let debuggedTask = task
@@ -177,7 +133,7 @@ internal class NetworkScheduler {
         #else
         let debuggedTask = task
         #endif
-        
+
         // 4) Process error
         let processedResponse = debuggedTask
             .handleEvents(receiveOutput: { result in
@@ -195,7 +151,7 @@ internal class NetworkScheduler {
                     return
                 }
             })
-        
+
         // 5) Decode for required type
         let decodedResponse = processedResponse
             .tryMap({ result -> Result<R.Result, Squid.Error> in
@@ -207,14 +163,14 @@ internal class NetworkScheduler {
                 }
             })
             .mapError(Squid.Error.ensure)
-        
+
         // 6) Dispatch onto background thread depending on priority
         let dispatchedResponse = decodedResponse
             .subscribe(on: self.queues[request.priority]!)
-        
+
         return Stream(publisher: dispatchedResponse, task: taskSubject, request: request)
     }
-    
+
     // MARK: Private Methods
     private func getSession(for configuration: URLSessionConfiguration) -> URLSession {
         if let session = self.sessions[configuration] {
@@ -228,7 +184,8 @@ internal class NetworkScheduler {
 
 // MARK: Extensions
 extension Publisher where Output == HttpRequest {
-    
+
+    // swiftlint:disable identifier_name
     func debug<R, N>(request: R, withId id: N) -> Publishers.HandleEvents<Self>
     where R: NetworkRequest, N: Numeric {
         return self.handleEvents(receiveOutput: { httpRequest in
@@ -241,7 +198,7 @@ extension Publisher where Output == HttpRequest {
 }
 
 extension Publisher where Output == (data: Data, response: URLResponse), Failure == Squid.Error {
-    
+
     func httpResponse() -> Publishers.TryMap<Self, (data: Data, response: HTTPURLResponse)> {
         return self.tryMap { input in
             guard let response = input.response as? HTTPURLResponse else {
@@ -253,7 +210,8 @@ extension Publisher where Output == (data: Data, response: URLResponse), Failure
 }
 
 extension Publisher where Output == (data: Data, response: HTTPURLResponse) {
-    
+
+    // swiftlint:disable identifier_name
     fileprivate func debugResponse<R, N>(
         of request: R, withId id: N
     ) -> Publishers.HandleEvents<Self> where R: Request, N: Numeric {
@@ -274,8 +232,7 @@ extension Publisher where Output == (data: Data, response: HTTPURLResponse) {
             }
         })
     }
-    
-    // TODO: Use `some Publisher` as soon as opaque return types are more powerful
+
     typealias ValidationReturn = Publishers.MapError<Publishers.TryMap<Self, Data>, Squid.Error>
 
     fileprivate func validate(statusCodeIn range: CountableClosedRange<Int>) -> ValidationReturn {
@@ -290,7 +247,8 @@ extension Publisher where Output == (data: Data, response: HTTPURLResponse) {
 }
 
 extension Publisher where Output == Result<URLSessionWebSocketTask.Message, Squid.Error> {
-    
+
+    // swiftlint:disable identifier_name
     fileprivate func debugItem<R, N>(
         of request: R, withId id: N
     ) -> Publishers.HandleEvents<Self> where R: StreamRequest, N: Numeric {
@@ -321,13 +279,80 @@ extension Publisher where Output == Result<URLSessionWebSocketTask.Message, Squi
     }
 }
 
+extension Publisher where Output == HttpHeader, Failure == Squid.Error {
+
+    fileprivate func attachToHttpRequest<R>(
+        _ request: R, service: HttpService
+    ) -> Publishers.FlatMap<UnsharedFuture<HttpRequest, Squid.Error>, Self> where R: Request {
+        return self.flatMap { header -> UnsharedFuture<HttpRequest, Squid.Error> in
+            return UnsharedFuture<HttpRequest, Squid.Error> { promise in
+                // 1) Initialize request with destination URL
+                guard var httpRequest = HttpRequest(url: service.apiUrl) else {
+                    promise(.failure(.invalidUrl))
+                    return
+                }
+
+                // 2) Modify request to carry all required data
+                do {
+                    httpRequest = try httpRequest
+                        .with(scheme: request.usesSecureProtocol ? "https" : "http")
+                        .with(method: request.method)
+                        .with(route: request.routes)
+                        .with(query: request.query)
+                        .with(header: service.header + header + request.header)
+                        .with(body: request.body)
+                        .process(with: request.prepare(_:))
+                } catch {
+                    promise(.failure(.ensure(error)))
+                }
+
+                // 3) Validate request
+                if let error = request.validate() {
+                    promise(.failure(error))
+                }
+
+                promise(.success(httpRequest))
+            }
+        }
+    }
+
+    fileprivate func attachToStreamRequest<R>(
+        _ request: R, service: HttpService
+    ) -> Publishers.FlatMap<UnsharedFuture<HttpRequest, Squid.Error>, Self>
+    where R: StreamRequest {
+        return self.flatMap { header -> UnsharedFuture<HttpRequest, Squid.Error> in
+            return UnsharedFuture<HttpRequest, Squid.Error> { promise in
+                // 1.1) Initialize request with destination URL
+                guard var httpRequest = HttpRequest(url: service.apiUrl) else {
+                    promise(.failure(.invalidUrl))
+                    return
+                }
+
+                // 1.2) Modify request to carry all required data
+                do {
+                    httpRequest = try httpRequest
+                        .with(scheme: request.usesSecureProtocol ? "wss" : "ws")
+                        .with(method: .get)
+                        .with(route: request.routes)
+                        .with(query: request.query)
+                        .with(header: service.header + header + request.header)
+                } catch {
+                    promise(.failure(.ensure(error)))
+                }
+
+                promise(.success(httpRequest))
+            }
+        }
+    }
+}
+
 extension HTTPURLResponse {
-    
+
     fileprivate func description(for data: Data) -> String {
         let headerString = (self.allHeaderFields as? [String: String])?
             .httpHeaderDescription?.indent(spaces: 12, skipLines: 1)
         let jsonBody = data.prettyPrintedJson.map { "\n" + $0.indent(spaces: 12) }
-        
+
         return """
         - Status:   \(self.statusCode)
         - Headers:  \(headerString ?? "<none>")
@@ -337,7 +362,7 @@ extension HTTPURLResponse {
 }
 
 extension Data {
-    
+
     fileprivate var prettyPrintedJson: String? {
         guard let object = try? JSONSerialization.jsonObject(with: self, options: []) else {
             return nil

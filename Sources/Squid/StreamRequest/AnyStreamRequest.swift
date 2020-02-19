@@ -12,18 +12,18 @@ import Foundation
 /// of this entity are very similar to the specifics of `AnyRequest`. Note, however, that this
 /// entity restricts messages being sent and received to be of type `String`.
 public struct AnyStreamRequest: StreamRequest {
-    
+
     // MARK: Types
     public typealias Message = String
     public typealias Result = String
-    
+
     // MARK: Properties
     private let service: HttpService
-    
+
     public let routes: HttpRoute
     public let query: HttpQuery
     public let priority: RequestPriority
-    
+
     // MARK: Initialization
     /// Initializes a new stream request for a particular URL.
     ///
@@ -37,7 +37,7 @@ public struct AnyStreamRequest: StreamRequest {
             routes: [], query: query, priority: priority, service: AnyHttpService(at: url)
         )
     }
-    
+
     /// Initializes a new stream request based on a predefined `HttpService`.
     ///
     /// - Parameter routes: The routing paths for the request. The final URL is constructed by

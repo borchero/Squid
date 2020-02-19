@@ -193,9 +193,9 @@
 				C911D3E023E7C3010065CD7D /* Core */,
 				C911D41823E7C3010065CD7D /* Service */,
 				C911D41323E7C3010065CD7D /* Request */,
-				C911D3F723E7C3010065CD7D /* Response */,
 				C911D3FB23E7C3010065CD7D /* PaginationRequest */,
 				C911D40923E7C3010065CD7D /* StreamRequest */,
+				C911D3F723E7C3010065CD7D /* Response */,
 				C911D3FE23E7C3010065CD7D /* Scheduler */,
 				C911D40C23E7C3010065CD7D /* Utils */,
 			);
@@ -277,9 +277,9 @@
 		C911D3F723E7C3010065CD7D /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				C911D3FA23E7C3010065CD7D /* Response.swift */,
 				C911D3F823E7C3010065CD7D /* Stream.swift */,
 				C911D3F923E7C3010065CD7D /* Paginator.swift */,
-				C911D3FA23E7C3010065CD7D /* Response.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -358,9 +358,9 @@
 			isa = PBXGroup;
 			children = (
 				C911D41423E7C3010065CD7D /* RequestPriority.swift */,
+				C911D41723E7C3010065CD7D /* NetworkRequest.swift */,
 				C911D41523E7C3010065CD7D /* Request.swift */,
 				C911D41623E7C3010065CD7D /* AnyRequest.swift */,
-				C911D41723E7C3010065CD7D /* NetworkRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -368,8 +368,8 @@
 		C911D41823E7C3010065CD7D /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				C911D41923E7C3010065CD7D /* AnyHttpService.swift */,
 				C911D41A23E7C3010065CD7D /* HttpService.swift */,
+				C911D41923E7C3010065CD7D /* AnyHttpService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -446,6 +446,7 @@
 			buildConfigurationList = C911D3D623E7C2570065CD7D /* Build configuration list for PBXNativeTarget "Squid" */;
 			buildPhases = (
 				C911D3BD23E7C2560065CD7D /* Headers */,
+				C9861B6523FDD79C00E756C8 /* Swiftlint */,
 				C911D3BE23E7C2560065CD7D /* Sources */,
 				C911D3BF23E7C2560065CD7D /* Frameworks */,
 				C911D3C023E7C2560065CD7D /* Resources */,
@@ -539,6 +540,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C9861B6523FDD79C00E756C8 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"Warning: SwiftLint is not installed. Linting will be skipped.\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C911D3BE23E7C2560065CD7D /* Sources */ = {

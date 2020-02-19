@@ -17,20 +17,20 @@ import Foundation
 /// and development. Hence, it makes sense to capture methods, routing paths, headers, etc. in the
 /// request itself but abstract away the actual URL and common API headers into the `HttpService`.
 public protocol Request: NetworkRequest {
-    
+
     // MARK: Types
     /// The expected type of the server's response upon a successful request.
     associatedtype Result
-    
+
     // MARK: Request Specification
     /// The HTTP method of the request. Defaults to GET.
     var method: HttpMethod { get }
-    
+
     /// The HTTP body of the request. May only be set to an instance of something other than
     /// `HttpData.Empty` if `method` is set to PUT or GET. By default, an instance of
     /// `HttpData.Empty` is returned.
     var body: HttpBody { get }
-    
+
     /// Prepares the URL request that will be sent. The function is passed the request as assembled
     /// based on all other properties. You may modify the request as you wish. By default, the
     /// request being passed in is returned without any modifications.
@@ -44,13 +44,13 @@ public protocol Request: NetworkRequest {
     /// - Parameter request: The request, pre-populated with all properties specified in the
     ///                      request.
     func prepare(_ request: URLRequest) -> URLRequest
-    
+
     // MARK: Expected Response
     /// The range of accepted status codes for the request. Whenever the response's status code is
     /// not in the provided range, the request is considered to have failed. By default, all 2xx
     /// status codes are accepted.
     var acceptedStatusCodes: CountableClosedRange<Int> { get }
-    
+
     /// Upon successful completion of the HTTP request itself, this method is responsible for
     /// transforming the raw `Data` returned by the HTTP response into the response's result type.
     /// If this method throws an exception, the request is also considered to have failed. As a
@@ -70,23 +70,23 @@ public protocol Request: NetworkRequest {
 }
 
 extension Request {
-    
+
     public var method: HttpMethod {
         return .get
     }
-    
+
     public var body: HttpBody {
         return HttpData.Empty()
     }
-    
+
     public func prepare(_ request: URLRequest) -> URLRequest {
         return request
     }
-    
+
     public var acceptedStatusCodes: CountableClosedRange<Int> {
         return 200...299
     }
-    
+
     // MARK: Scheduling Requests
     /// Schedules the request against the API specified by the given HTTP service. The response is
     /// a publisher that yields the request's result type upon success or an error upon failure.
@@ -102,7 +102,7 @@ extension Request {
     public func schedule(with service: HttpService) -> Response<Self> {
         return NetworkScheduler.shared.schedule(self, service: service)
     }
-    
+
     /// Schedules the request as paginated request against the API specified by the given HTTP
     /// service. The response is a `PaginationResponse`. Consult its documentation to know how to
     /// work with a paginated request.
@@ -131,21 +131,21 @@ extension Request {
 }
 
 extension Request where Result == Data {
-    
+
     public func decode(_ data: Data) throws -> Result {
         return data
     }
 }
 
 extension Request where Result == Void {
-    
+
     public func decode(_ data: Data) throws -> Result {
         return ()
     }
 }
 
 extension Request where Result == String {
-    
+
     public func decode(_ data: Data) throws -> Result {
         guard let string = String(data: data, encoding: .utf8) else {
             throw Squid.Error.decodingFailed
@@ -155,7 +155,7 @@ extension Request where Result == String {
 }
 
 extension Request {
-    
+
     internal func validate() -> Squid.Error? {
         if (self.method == .get || self.method == .delete) && !(self.body is HttpData.Empty) {
             return .invalidRequest(
@@ -177,7 +177,7 @@ extension Request {
 /// type. `decodeSnakeCase` can further be used to modify the behavior of the aforementioned
 /// decoder.
 public protocol JsonRequest: Request where Result: Decodable {
-    
+
     /// Defines whether the decoder decoding the raw data to the result type should consider
     /// camel case in the Swift code as snake case in the JSON (i.e. `userID` would be parsed from
     /// the field `user_id` if not specified explicity in the type to decode to). By default,
@@ -186,11 +186,11 @@ public protocol JsonRequest: Request where Result: Decodable {
 }
 
 extension JsonRequest {
-    
+
     public var decodeSnakeCase: Bool {
         return true
     }
-    
+
     public func decode(_ data: Data) throws -> Result {
         let decoder = JSONDecoder()
         if self.decodeSnakeCase {
@@ -201,7 +201,7 @@ extension JsonRequest {
 }
 
 extension JsonRequest {
-    
+
     /// This method is very similar to the method
     /// `Request.schedule(forPaginationWith:chunk:zeroBasedPageIndex:decode:)`, however, the user
     /// does not have to explicitly define a `decode` function whenever both the actual result and

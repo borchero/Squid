@@ -13,7 +13,7 @@ import Combine
 /// `BackoffRetrier.Strategy`). It also defines a maximum duration after which a failed request
 /// is deemed unsuccessful.
 public class BackoffRetrier: Retrier {
-    
+
     // MARK: Static Methods
     /// Initializes a new factory yielding instances of backoff retriers for requests.
     ///
@@ -33,7 +33,7 @@ public class BackoffRetrier: Retrier {
                                   retryCondition: retryCondition)
         }
     }
-    
+
     /// Defines the default condition that a request is retried based on the error that has occured.
     /// Retrying by backing off is attempted in the case of:
     ///
@@ -46,7 +46,7 @@ public class BackoffRetrier: Retrier {
     ///                    the request ought to be retried.
     public static func defaultRetryCondition(_ error: Squid.Error) -> Bool {
         switch error {
-        case .noConnection, .timeout, .unknown(_):
+        case .noConnection, .timeout, .unknown:
             return true
         case .requestFailed(statusCode: 429, response: _):
             return true
@@ -54,12 +54,12 @@ public class BackoffRetrier: Retrier {
             return false
         }
     }
-    
+
     private let strategy: Strategy
     private let maxBackoff: TimeInterval
     private let retryCondition: (Squid.Error) -> Bool
     private var backoffDuration: TimeInterval
-    
+
     internal init(strategy: Strategy, maxBackoff: TimeInterval,
                   retryCondition: @escaping (Squid.Error) -> Bool) {
         self.strategy = strategy
@@ -67,7 +67,7 @@ public class BackoffRetrier: Retrier {
         self.retryCondition = retryCondition
         self.backoffDuration = strategy.initial
     }
-    
+
     // MARK: Retrier
     public func retry<R>(
         _ request: R, failingWith error: Squid.Error
@@ -75,9 +75,9 @@ public class BackoffRetrier: Retrier {
         let duration = self.backoffDuration
         let attemptsRetry = duration < self.maxBackoff
         self.backoffDuration = self.strategy.next(duration)
-        
+
         let requiresRetry = self.retryCondition(error)
-        
+
         return Future { promise in
             guard attemptsRetry, requiresRetry else {
                 promise(.success(false))
@@ -91,22 +91,22 @@ public class BackoffRetrier: Retrier {
 }
 
 extension BackoffRetrier {
-    
+
     /// The strategy of a backoff retrier essentially defines the time to wait before repeating the
     /// request.
     public enum Strategy {
-        
+
         /// The exponential binary strategy starts by waiting one second. After each successive
         /// failure of the request, it backs off twice as long as before.
         case exponentialBinary
-        
+
         var initial: TimeInterval {
             switch self {
             case .exponentialBinary:
                 return 1
             }
         }
-        
+
         func next(_ current: TimeInterval) -> TimeInterval {
             switch self {
             case .exponentialBinary:
@@ -117,7 +117,7 @@ extension BackoffRetrier {
 }
 
 extension BackoffRetrier {
-    
+
     public var allowsMultipleRetries: Bool {
         return true
     }

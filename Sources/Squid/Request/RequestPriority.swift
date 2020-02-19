@@ -14,14 +14,14 @@ import Foundation
 /// into Squid and allow for more fine-grained control over the point in time when requests are
 /// scheduled.
 public enum RequestPriority {
-    
+
     /// The utility priority indicates that the request may be scheduled at some time in the future.
     /// Scheduling is performed on some background thread.
     case utility
-    
+
     /// The default priority indicates that requests is likely to be scheduled right away.
     case `default`
-    
+
     /// The user initiated priority is the highest available priority and essentially guarantees
     /// that the request is scheduled right away.
     case userInitiated

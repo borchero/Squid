@@ -14,11 +14,11 @@ import Combine
 /// retrier is to retry multiple times. A common example might be a retrier that "backs off"
 /// exponentially long to ensure that a request is fulfilled at some time.
 public protocol Retrier {
-    
+
     /// Whether the retrier may retry requests for multiple times or if - when the request fails -
     /// the retrier is not called again. Defaults to `false`.
     var allowsMultipleRetries: Bool { get }
-    
+
     /// Retries the given request that failed with the given error. Based on this information,
     /// the retrier is expected to perform any action such that the probability of the request
     /// succeeding when scheduled for the next time is increased. The function returns a future
@@ -34,7 +34,7 @@ public protocol Retrier {
 }
 
 extension Retrier {
-    
+
     public var allowsMultipleRetries: Bool {
         return false
     }

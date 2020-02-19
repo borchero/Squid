@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 extension Publisher {
-    
+
     internal func shareReplayLatest() -> AnyPublisher<Output, Failure> {
         let subject = CurrentValueSubject<Output?, Failure>(nil)
         return self.map(Optional.some)

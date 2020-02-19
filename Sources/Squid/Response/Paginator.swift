@@ -18,14 +18,14 @@ import Combine
 public class Paginator<BaseRequestType, PaginationType>
 where BaseRequestType: Request, PaginationType: PaginatedData,
     PaginationType.DataType == BaseRequestType.Result {
-    
+
     // MARK: Types
     private let base: BaseRequestType
     private let service: HttpService
     private let chunk: Int
     private let zeroBasedPageIndex: Bool
     private let _decode: (Data, BaseRequestType) throws -> PaginationType
-    
+
     internal init(base: BaseRequestType, service: HttpService, chunk: Int, zeroBasedPageIndex: Bool,
                   decode: @escaping (Data, BaseRequestType) throws -> PaginationType) {
         self.base = base
@@ -34,7 +34,7 @@ where BaseRequestType: Request, PaginationType: PaginatedData,
         self.zeroBasedPageIndex = zeroBasedPageIndex
         self._decode = decode
     }
-    
+
     // MARK: Instance Methods
     /// This method is used to initiate pagination calls. Once subscribed, the request for the
     /// initial page is sent automatically. Every subsequent request is sent when the given
@@ -73,29 +73,29 @@ where BaseRequestType: Request, PaginationType: PaginatedData,
     }
 }
 
-fileprivate class PaginatorConduit<BaseRequestType, PaginationType>
+private class PaginatorConduit<BaseRequestType, PaginationType>
 where BaseRequestType: Request, PaginationType: PaginatedData,
     PaginationType.DataType == BaseRequestType.Result {
-    
+
     private enum State {
-        
+
         case waiting
         case running
         case failed
         case finishedAll
     }
-    
+
     typealias ScheduleType = Publishers.HandleEvents<
         Response<PaginationRequest<BaseRequestType, PaginationType>>>
-    
+
     private let base: BaseRequestType
     private let service: HttpService
     private let chunk: Int
     private let _decode: (Data, BaseRequestType) throws -> PaginationType
-    
+
     private var currentPage: Int
     private var requestState = Locked<State>(.waiting)
-    
+
     init(base: BaseRequestType, service: HttpService, chunk: Int, zeroBasedPageIndex: Bool,
          decode: @escaping (Data, BaseRequestType) throws -> PaginationType) {
         self.base = base
@@ -104,7 +104,7 @@ where BaseRequestType: Request, PaginationType: PaginatedData,
         self.currentPage = zeroBasedPageIndex ? 0 : 1
         self._decode = decode
     }
-    
+
     func guardState() -> Bool {
         return self.requestState.locking { state in
             if state == .waiting {
@@ -114,7 +114,7 @@ where BaseRequestType: Request, PaginationType: PaginatedData,
             return false
         }
     }
-    
+
     func advancePage(_ data: PaginationType) {
         self.currentPage += 1
         if data.isLastPage {
@@ -123,7 +123,7 @@ where BaseRequestType: Request, PaginationType: PaginatedData,
             self.requestState.value = .waiting
         }
     }
-    
+
     func handleCompletion(_ completion: Subscribers.Completion<Squid.Error>) {
         switch completion {
         case .failure:
@@ -132,7 +132,7 @@ where BaseRequestType: Request, PaginationType: PaginatedData,
             return
         }
     }
-    
+
     func schedule() -> ScheduleType {
         let request = PaginationRequest(base: self.base, page: self.currentPage,
                                         chunk: self.chunk, decode: self._decode)
@@ -143,48 +143,48 @@ where BaseRequestType: Request, PaginationType: PaginatedData,
 }
 
 extension Publisher where Output: PaginatedData {
-    
+
     fileprivate func extractData() -> DataExtractionPublisher<Self> {
         return DataExtractionPublisher(upstream: self)
     }
 }
 
-fileprivate struct DataExtractionPublisher<Upstream>: Publisher
+private struct DataExtractionPublisher<Upstream>: Publisher
 where Upstream: Publisher, Upstream.Output: PaginatedData {
-    
+
     typealias Output = Upstream.Output.DataType
     typealias Failure = Upstream.Failure
-    
+
     private let upstream: Upstream
-    
+
     init(upstream: Upstream) {
         self.upstream = upstream
     }
-    
+
     func receive<S>(subscriber: S) where S: Subscriber, Failure == S.Failure, Output == S.Input {
         let subscriber = DataExtractionSubscriber<S, Upstream.Output>(subscriber: subscriber)
         self.upstream.subscribe(subscriber)
     }
 }
 
-fileprivate struct DataExtractionSubscriber<S, Input>: Subscriber
+private struct DataExtractionSubscriber<S, Input>: Subscriber
 where S: Subscriber, Input: PaginatedData, Input.DataType == S.Input {
-    
+
     typealias Input = Input
     typealias Failure = S.Failure
-    
+
     let combineIdentifier = CombineIdentifier()
-    
+
     private let subscriber: S
-    
+
     init(subscriber: S) {
         self.subscriber = subscriber
     }
-    
+
     func receive(subscription: Subscription) {
         self.subscriber.receive(subscription: subscription)
     }
-    
+
     func receive(_ input: Input) -> Subscribers.Demand {
         let demand = self.subscriber.receive(input.data)
         if input.isLastPage {
@@ -192,7 +192,7 @@ where S: Subscriber, Input: PaginatedData, Input.DataType == S.Input {
         }
         return demand
     }
-    
+
     func receive(completion: Subscribers.Completion<S.Failure>) {
         self.subscriber.receive(completion: completion)
     }

@@ -12,7 +12,7 @@ import Combine
 /// Upon calling the `retry` method, the returned Future immediately delivers a message that the
 /// request does not need to be retried.
 public struct NilRetrier: Retrier {
-    
+
     /// Initializes a new factory yielding instances of nil retriers for requests (i.e. requests are
     /// never retried).
     public static func factory() -> RetrierFactory {
@@ -21,14 +21,14 @@ public struct NilRetrier: Retrier {
         let retrier = NilRetrier()
         return AnyRetrierFactory { return retrier }
     }
-    
+
     // MARK: Initialization
     /// Initializes a new never-retrying retrier. The implementation does nothing.
     public init() { }
-    
+
     // MARK: Retrier
     public func retry<R>(_ request: R, failingWith error: Squid.Error) -> Future<Bool, Never>
-    where R : Request {
+    where R: Request {
         return Future { promise in
             promise(.success(false))
         }
