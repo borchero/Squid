@@ -11,7 +11,7 @@ jobs:
         -   name: Checkout
             uses: actions/checkout@v2
         -   name: Generate Documentation
-            uses: borchero/publish-jazzy-docs@v1.1.1
+            uses: steven0351/publish-jazzy-docs@v1.1.1
             with:
                 personal_access_token: ${{ secrets.ACCESS_TOKEN }}
                 config: .jazzy.yaml
