@@ -93,10 +93,6 @@ If you are still using CocoaPods or are required to use it due to other dependen
 pod 'Squid'
 ```
 
-### Specifying Versions
-
-If you want to use a particular version, consult the `Releases` page for the exact latest available version. Currently, the latest version is `1.1.x`.
-
 ## Documentation
 
 Documentation is available [here](https://borchero.github.io/Squid/) and provides both comprehensive documentation of the library's public interface as well as a series of guides teaching you how to use Squid to great effect. Expect more guides to be added shortly.
