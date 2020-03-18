@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 internal struct HttpRequest {
 
@@ -85,5 +86,76 @@ extension HttpRequest: CustomStringConvertible {
         - Headers:  \(headerString ?? "<none>")
         - Body:     \(self.body?.description.indent(spaces: 12, skipLines: 1) ?? "<none>")
         """
+    }
+}
+
+// MARK: Extension
+extension HttpRequest {
+
+    internal static func publisher<R>(
+        for request: R, service: HttpService
+    ) -> AnyPublisher<HttpRequest, Squid.Error> where R: Request {
+        return service.asyncHeader
+            .mapError(Squid.Error.ensure(_:))
+            .flatMap { header -> Future<HttpRequest, Squid.Error> in
+                return .init { promise in
+                    // 1) Initialize request with destination URL
+                    guard var httpRequest = HttpRequest(url: service.apiUrl) else {
+                        promise(.failure(.invalidUrl))
+                        return
+                    }
+
+                    // 2) Modify request to carry all required data
+                    do {
+                        httpRequest = try httpRequest
+                            .with(scheme: request.usesSecureProtocol ? "https" : "http")
+                            .with(method: request.method)
+                            .with(route: request.routes)
+                            .with(query: request.query)
+                            .with(header: service.header + header + request.header)
+                            .with(body: request.body)
+                            .process(with: request.prepare(_:))
+                    } catch {
+                        promise(.failure(.ensure(error)))
+                    }
+
+                    // 3) Validate request
+                    if let error = request.validate() {
+                        promise(.failure(error))
+                    }
+
+                    promise(.success(httpRequest))
+                }
+            }.eraseToAnyPublisher()
+    }
+
+    internal static func streamPublisher<R>(
+        for request: R, service: HttpService
+    ) -> AnyPublisher<HttpRequest, Squid.Error> where R: StreamRequest {
+        return service.asyncHeader
+            .mapError(Squid.Error.ensure(_:))
+            .flatMap { header -> Future<HttpRequest, Squid.Error> in
+                return .init { promise in
+                    // 1) Initialize request with destination URL
+                    guard var httpRequest = HttpRequest(url: service.apiUrl) else {
+                        promise(.failure(.invalidUrl))
+                        return
+                    }
+
+                    // 2) Modify request to carry all required data
+                    do {
+                        httpRequest = try httpRequest
+                            .with(scheme: request.usesSecureProtocol ? "wss" : "ws")
+                            .with(method: .get)
+                            .with(route: request.routes)
+                            .with(query: request.query)
+                            .with(header: service.header + header + request.header)
+                    } catch {
+                        promise(.failure(.ensure(error)))
+                    }
+
+                    promise(.success(httpRequest))
+                }
+            }.eraseToAnyPublisher()
     }
 }

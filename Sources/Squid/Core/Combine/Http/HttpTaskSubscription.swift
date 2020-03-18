@@ -70,7 +70,11 @@ extension HttpTaskSubscription: HttpTaskSubscriptionDelegate {
         let result = self.processResponse(data: self.data, response: response, error: error)
         switch result {
         case .success(let value):
-            _ = self.subscriber?.receive(value)
+            guard let response = value.1 as? HTTPURLResponse else {
+                self.subscriber?.receive(completion: .failure(.invalidResponse))
+                return
+            }
+            _ = self.subscriber?.receive((value.0, response))
             self.subscriber?.receive(completion: .finished)
         case .failure(let error):
             self.subscriber?.receive(completion: .failure(error))

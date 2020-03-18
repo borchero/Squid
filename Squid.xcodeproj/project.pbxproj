@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C908D40024218035008352C0 /* ServiceHookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C908D3FF24218035008352C0 /* ServiceHookTests.swift */; };
+		C908D402242180A5008352C0 /* Hook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C908D401242180A5008352C0 /* Hook.swift */; };
 		C911D3CC23E7C2570065CD7D /* Squid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C911D3C223E7C2570065CD7D /* Squid.framework */; };
 		C911D41B23E7C3010065CD7D /* Squid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3DF23E7C3010065CD7D /* Squid.swift */; };
 		C911D41C23E7C3010065CD7D /* WSTaskSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3E323E7C3010065CD7D /* WSTaskSubscription.swift */; };
@@ -32,7 +34,6 @@
 		C911D43023E7C3010065CD7D /* PaginationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3FD23E7C3010065CD7D /* PaginationRequest.swift */; };
 		C911D43123E7C3010065CD7D /* NetworkScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3FF23E7C3010065CD7D /* NetworkScheduler.swift */; };
 		C911D43223E7C3010065CD7D /* AnyRetrierFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D40123E7C3010065CD7D /* AnyRetrierFactory.swift */; };
-		C911D43323E7C3010065CD7D /* RetrierPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D40323E7C3010065CD7D /* RetrierPublisher.swift */; };
 		C911D43423E7C3010065CD7D /* Retrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D40423E7C3010065CD7D /* Retrier.swift */; };
 		C911D43523E7C3010065CD7D /* RetrierFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D40523E7C3010065CD7D /* RetrierFactory.swift */; };
 		C911D43623E7C3010065CD7D /* BackoffRetrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D40723E7C3010065CD7D /* BackoffRetrier.swift */; };
@@ -60,14 +61,16 @@
 		C911D45C23E7C32F0065CD7D /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D45223E7C32F0065CD7D /* Stub.swift */; };
 		C911D45E23E7C32F0065CD7D /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D45423E7C32F0065CD7D /* Utility.swift */; };
 		C911D45F23E7C32F0065CD7D /* SquidTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D45523E7C32F0065CD7D /* SquidTests.swift */; };
-		C911D46223E7C41C0065CD7D /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C911D46123E7C41C0065CD7D /* OHHTTPStubsSwift */; };
-		C911D46423E7C41C0065CD7D /* OHHTTPStubs in Frameworks */ = {isa = PBXBuildFile; productRef = C911D46323E7C41C0065CD7D /* OHHTTPStubs */; };
-		C9231D3623EF16F2008A750E /* UnsharedFuture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9231D3523EF16F2008A750E /* UnsharedFuture.swift */; };
 		C9643A8023EEFFC900B286D2 /* UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9643A7E23EEFE8500B286D2 /* UtilsTests.swift */; };
 		C9643A8223EF009D00B286D2 /* RetrierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9643A8123EF009D00B286D2 /* RetrierTests.swift */; };
 		C9643A8423EF018A00B286D2 /* FailureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9643A8323EF018A00B286D2 /* FailureTests.swift */; };
 		C9643A8723EF035B00B286D2 /* RetrierStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9643A8623EF035B00B286D2 /* RetrierStub.swift */; };
 		C9643A8A23EF052700B286D2 /* Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9643A8923EF052700B286D2 /* Protected.swift */; };
+		C9E6FCA72415BE2B0077ABF2 /* OHHTTPStubs in Frameworks */ = {isa = PBXBuildFile; productRef = C9E6FCA62415BE2B0077ABF2 /* OHHTTPStubs */; };
+		C9E6FCA92415BE2B0077ABF2 /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C9E6FCA82415BE2B0077ABF2 /* OHHTTPStubsSwift */; };
+		C9F2E25424155181007F2977 /* ServiceHook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2E25324155181007F2977 /* ServiceHook.swift */; };
+		C9F2E257241552C9007F2977 /* CachingServiceHook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2E256241552C9007F2977 /* CachingServiceHook.swift */; };
+		C9F2E2592415A321007F2977 /* NilServiceHook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2E2582415A321007F2977 /* NilServiceHook.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C908D3FF24218035008352C0 /* ServiceHookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHookTests.swift; sourceTree = "<group>"; };
+		C908D401242180A5008352C0 /* Hook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hook.swift; sourceTree = "<group>"; };
 		C911D3C223E7C2570065CD7D /* Squid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Squid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C911D3CB23E7C2570065CD7D /* SquidTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SquidTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C911D3DF23E7C3010065CD7D /* Squid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Squid.swift; sourceTree = "<group>"; };
@@ -107,7 +112,6 @@
 		C911D3FD23E7C3010065CD7D /* PaginationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationRequest.swift; sourceTree = "<group>"; };
 		C911D3FF23E7C3010065CD7D /* NetworkScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkScheduler.swift; sourceTree = "<group>"; };
 		C911D40123E7C3010065CD7D /* AnyRetrierFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyRetrierFactory.swift; sourceTree = "<group>"; };
-		C911D40323E7C3010065CD7D /* RetrierPublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrierPublisher.swift; sourceTree = "<group>"; };
 		C911D40423E7C3010065CD7D /* Retrier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Retrier.swift; sourceTree = "<group>"; };
 		C911D40523E7C3010065CD7D /* RetrierFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrierFactory.swift; sourceTree = "<group>"; };
 		C911D40723E7C3010065CD7D /* BackoffRetrier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackoffRetrier.swift; sourceTree = "<group>"; };
@@ -137,12 +141,14 @@
 		C911D45223E7C32F0065CD7D /* Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
 		C911D45423E7C32F0065CD7D /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		C911D45523E7C32F0065CD7D /* SquidTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquidTests.swift; sourceTree = "<group>"; };
-		C9231D3523EF16F2008A750E /* UnsharedFuture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsharedFuture.swift; sourceTree = "<group>"; };
 		C9643A7E23EEFE8500B286D2 /* UtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
 		C9643A8123EF009D00B286D2 /* RetrierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrierTests.swift; sourceTree = "<group>"; };
 		C9643A8323EF018A00B286D2 /* FailureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailureTests.swift; sourceTree = "<group>"; };
 		C9643A8623EF035B00B286D2 /* RetrierStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrierStub.swift; sourceTree = "<group>"; };
 		C9643A8923EF052700B286D2 /* Protected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protected.swift; sourceTree = "<group>"; };
+		C9F2E25324155181007F2977 /* ServiceHook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHook.swift; sourceTree = "<group>"; };
+		C9F2E256241552C9007F2977 /* CachingServiceHook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingServiceHook.swift; sourceTree = "<group>"; };
+		C9F2E2582415A321007F2977 /* NilServiceHook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilServiceHook.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,8 +164,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C911D3CC23E7C2570065CD7D /* Squid.framework in Frameworks */,
-				C911D46423E7C41C0065CD7D /* OHHTTPStubs in Frameworks */,
-				C911D46223E7C41C0065CD7D /* OHHTTPStubsSwift in Frameworks */,
+				C9E6FCA92415BE2B0077ABF2 /* OHHTTPStubsSwift in Frameworks */,
+				C9E6FCA72415BE2B0077ABF2 /* OHHTTPStubs in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +180,7 @@
 				C911D3DE23E7C3010065CD7D /* Squid */,
 				C911D44A23E7C32F0065CD7D /* SquidTests */,
 				C911D3C323E7C2570065CD7D /* Products */,
+				C9E6FCA52415BE2B0077ABF2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -253,9 +260,9 @@
 		C911D3EB23E7C3010065CD7D /* Body */ = {
 			isa = PBXGroup;
 			children = (
+				C911D3EE23E7C3010065CD7D /* HttpBody.swift */,
 				C911D3EC23E7C3010065CD7D /* HttpData+Empty.swift */,
 				C911D3ED23E7C3010065CD7D /* HttpData+Image.swift */,
-				C911D3EE23E7C3010065CD7D /* HttpBody.swift */,
 				C911D3EF23E7C3010065CD7D /* HttpData+Json.swift */,
 			);
 			path = Body;
@@ -264,12 +271,12 @@
 		C911D3F023E7C3010065CD7D /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				C911D3F123E7C3010065CD7D /* HttpRoute.swift */,
 				C911D3F223E7C3010065CD7D /* HttpRequest.swift */,
-				C911D3F323E7C3010065CD7D /* HttpMimeType.swift */,
 				C911D3F423E7C3010065CD7D /* HttpMethod.swift */,
-				C911D3F523E7C3010065CD7D /* HttpHeader.swift */,
+				C911D3F123E7C3010065CD7D /* HttpRoute.swift */,
 				C911D3F623E7C3010065CD7D /* HttpQuery.swift */,
+				C911D3F523E7C3010065CD7D /* HttpHeader.swift */,
+				C911D3F323E7C3010065CD7D /* HttpMimeType.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -297,9 +304,9 @@
 			isa = PBXGroup;
 			children = (
 				C911D3FF23E7C3010065CD7D /* NetworkScheduler.swift */,
-				C911D40023E7C3010065CD7D /* RetrierFactoryImpl */,
 				C911D40223E7C3010065CD7D /* Retrier */,
 				C911D40623E7C3010065CD7D /* RetrierImpl */,
+				C911D40023E7C3010065CD7D /* RetrierFactoryImpl */,
 			);
 			path = Scheduler;
 			sourceTree = "<group>";
@@ -315,7 +322,6 @@
 		C911D40223E7C3010065CD7D /* Retrier */ = {
 			isa = PBXGroup;
 			children = (
-				C911D40323E7C3010065CD7D /* RetrierPublisher.swift */,
 				C911D40423E7C3010065CD7D /* Retrier.swift */,
 				C911D40523E7C3010065CD7D /* RetrierFactory.swift */,
 			);
@@ -343,7 +349,6 @@
 		C911D40C23E7C3010065CD7D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				C9231D3523EF16F2008A750E /* UnsharedFuture.swift */,
 				C911D40D23E7C3010065CD7D /* Replay.swift */,
 				C911D40E23E7C3010065CD7D /* Concurrency.swift */,
 				C911D40F23E7C3010065CD7D /* IgnoreError.swift */,
@@ -357,10 +362,10 @@
 		C911D41323E7C3010065CD7D /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				C911D41423E7C3010065CD7D /* RequestPriority.swift */,
 				C911D41723E7C3010065CD7D /* NetworkRequest.swift */,
 				C911D41523E7C3010065CD7D /* Request.swift */,
 				C911D41623E7C3010065CD7D /* AnyRequest.swift */,
+				C911D41423E7C3010065CD7D /* RequestPriority.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -370,6 +375,7 @@
 			children = (
 				C911D41A23E7C3010065CD7D /* HttpService.swift */,
 				C911D41923E7C3010065CD7D /* AnyHttpService.swift */,
+				C9F2E255241552B8007F2977 /* Hooks */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -379,6 +385,7 @@
 			children = (
 				C911D45523E7C32F0065CD7D /* SquidTests.swift */,
 				C9643A8123EF009D00B286D2 /* RetrierTests.swift */,
+				C908D3FF24218035008352C0 /* ServiceHookTests.swift */,
 				C9643A8323EF018A00B286D2 /* FailureTests.swift */,
 				C9643A7E23EEFE8500B286D2 /* UtilsTests.swift */,
 				C9643A8823EF04D500B286D2 /* Apis */,
@@ -424,8 +431,26 @@
 			isa = PBXGroup;
 			children = (
 				C9643A8923EF052700B286D2 /* Protected.swift */,
+				C908D401242180A5008352C0 /* Hook.swift */,
 			);
 			path = Apis;
+			sourceTree = "<group>";
+		};
+		C9E6FCA52415BE2B0077ABF2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C9F2E255241552B8007F2977 /* Hooks */ = {
+			isa = PBXGroup;
+			children = (
+				C9F2E25324155181007F2977 /* ServiceHook.swift */,
+				C9F2E2582415A321007F2977 /* NilServiceHook.swift */,
+				C9F2E256241552C9007F2977 /* CachingServiceHook.swift */,
+			);
+			path = Hooks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -456,6 +481,8 @@
 			dependencies = (
 			);
 			name = Squid;
+			packageProductDependencies = (
+			);
 			productName = Squid;
 			productReference = C911D3C223E7C2570065CD7D /* Squid.framework */;
 			productType = "com.apple.product-type.framework";
@@ -475,8 +502,8 @@
 			);
 			name = SquidTests;
 			packageProductDependencies = (
-				C911D46123E7C41C0065CD7D /* OHHTTPStubsSwift */,
-				C911D46323E7C41C0065CD7D /* OHHTTPStubs */,
+				C9E6FCA62415BE2B0077ABF2 /* OHHTTPStubs */,
+				C9E6FCA82415BE2B0077ABF2 /* OHHTTPStubsSwift */,
 			);
 			productName = SquidTests;
 			productReference = C911D3CB23E7C2570065CD7D /* SquidTests.xctest */;
@@ -510,7 +537,7 @@
 			);
 			mainGroup = C911D3B823E7C2560065CD7D;
 			packageReferences = (
-				C911D46023E7C41C0065CD7D /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
+				C9E6FCA02415BE1D0077ABF2 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
 			);
 			productRefGroup = C911D3C323E7C2570065CD7D /* Products */;
 			projectDirPath = "";
@@ -573,7 +600,6 @@
 				C911D42D23E7C3010065CD7D /* Paginator.swift in Sources */,
 				C911D42423E7C3010065CD7D /* HttpBody.swift in Sources */,
 				C911D43C23E7C3010065CD7D /* IgnoreError.swift in Sources */,
-				C911D43323E7C3010065CD7D /* RetrierPublisher.swift in Sources */,
 				C9643A8A23EF052700B286D2 /* Protected.swift in Sources */,
 				C911D42E23E7C3010065CD7D /* Response.swift in Sources */,
 				C911D41F23E7C3010065CD7D /* Delegates.swift in Sources */,
@@ -584,8 +610,9 @@
 				C911D43D23E7C3010065CD7D /* Dictionary.swift in Sources */,
 				C911D44423E7C3010065CD7D /* AnyHttpService.swift in Sources */,
 				C911D43B23E7C3010065CD7D /* Concurrency.swift in Sources */,
-				C9231D3623EF16F2008A750E /* UnsharedFuture.swift in Sources */,
+				C9F2E257241552C9007F2977 /* CachingServiceHook.swift in Sources */,
 				C911D44523E7C3010065CD7D /* HttpService.swift in Sources */,
+				C9F2E2592415A321007F2977 /* NilServiceHook.swift in Sources */,
 				C911D43723E7C3010065CD7D /* NilRetrier.swift in Sources */,
 				C911D42223E7C3010065CD7D /* HttpData+Empty.swift in Sources */,
 				C911D44023E7C3010065CD7D /* RequestPriority.swift in Sources */,
@@ -611,6 +638,7 @@
 				C911D42823E7C3010065CD7D /* HttpMimeType.swift in Sources */,
 				C911D41C23E7C3010065CD7D /* WSTaskSubscription.swift in Sources */,
 				C911D42323E7C3010065CD7D /* HttpData+Image.swift in Sources */,
+				C9F2E25424155181007F2977 /* ServiceHook.swift in Sources */,
 				C911D43223E7C3010065CD7D /* AnyRetrierFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -625,10 +653,12 @@
 				C911D45723E7C32F0065CD7D /* Bags.swift in Sources */,
 				C911D45C23E7C32F0065CD7D /* Stub.swift in Sources */,
 				C911D45B23E7C32F0065CD7D /* Requests.swift in Sources */,
+				C908D402242180A5008352C0 /* Hook.swift in Sources */,
 				C911D45F23E7C32F0065CD7D /* SquidTests.swift in Sources */,
 				C911D45823E7C32F0065CD7D /* Services.swift in Sources */,
 				C9643A8223EF009D00B286D2 /* RetrierTests.swift in Sources */,
 				C9643A8423EF018A00B286D2 /* FailureTests.swift in Sources */,
+				C908D40024218035008352C0 /* ServiceHookTests.swift in Sources */,
 				C911D45623E7C32F0065CD7D /* Containers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -883,9 +913,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C911D46023E7C41C0065CD7D /* XCRemoteSwiftPackageReference "OHHTTPStubs" */ = {
+		C9E6FCA02415BE1D0077ABF2 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AliSoftware/OHHTTPStubs";
+			repositoryURL = "git@github.com:AliSoftware/OHHTTPStubs.git";
 			requirement = {
 				kind = revision;
 				revision = 7b6b3f3a23904d0b4bd5da1193de784e92ffa478;
@@ -894,15 +924,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C911D46123E7C41C0065CD7D /* OHHTTPStubsSwift */ = {
+		C9E6FCA62415BE2B0077ABF2 /* OHHTTPStubs */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C911D46023E7C41C0065CD7D /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
-			productName = OHHTTPStubsSwift;
-		};
-		C911D46323E7C41C0065CD7D /* OHHTTPStubs */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C911D46023E7C41C0065CD7D /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			package = C9E6FCA02415BE1D0077ABF2 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
 			productName = OHHTTPStubs;
+		};
+		C9E6FCA82415BE2B0077ABF2 /* OHHTTPStubsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9E6FCA02415BE1D0077ABF2 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubsSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

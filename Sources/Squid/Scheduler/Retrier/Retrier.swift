@@ -16,7 +16,7 @@ import Combine
 public protocol Retrier {
 
     /// Whether the retrier may retry requests for multiple times or if - when the request fails -
-    /// the retrier is not called again. Defaults to `false`.
+    /// the retrier is not called again.
     var allowsMultipleRetries: Bool { get }
 
     /// Retries the given request that failed with the given error. Based on this information,
@@ -35,6 +35,7 @@ public protocol Retrier {
 
 extension Retrier {
 
+    /// Defaults to `false`.
     public var allowsMultipleRetries: Bool {
         return false
     }

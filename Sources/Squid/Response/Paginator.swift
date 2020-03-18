@@ -44,7 +44,7 @@ where BaseRequestType: Request, PaginationType: PaginatedData,
     /// The returned publisher emits the requests' responses (one for each page, strictly
     /// chronological), i.e. the first response yields the contents of page 0, the second the one
     /// of page 1, etc. In case any request fails, the returned publisher errors out and no more
-    /// pages can be requested. In case all pages have been successfully received, the publishers
+    /// pages can be requested. In case all pages have been successfully received, the publisher
     /// completes. Note that the returned publisher is shared and can therefore be subscribed to
     /// arbitraily often.
     ///

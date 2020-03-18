@@ -13,7 +13,7 @@ extension HttpData {
     /// JPEG images are supported. When adding the image's data to the body of the request, this
     /// body also sets the "Content-Type" header to the appropriate MIME type as well as the
     /// "Content-Length" header to the size of the image in bytes.
-    public struct Image: HttpBody {
+    public struct Image: HttpBody, Hashable {
 
         let mime: HttpMimeType
         let data: Data
@@ -45,7 +45,6 @@ extension HttpData {
 
 extension HttpData.Image {
 
-    // MARK: CustomStringConvertible
     public var description: String {
         return "<binary data of size \(self.data.count)>"
     }

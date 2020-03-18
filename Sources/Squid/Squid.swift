@@ -73,10 +73,6 @@ public struct Squid {
         /// An unknown error occured which cannot be described more precisely by using a particular
         /// `Squid.Error`.
         case unknown(Swift.Error)
-
-        /// An error that is only thrown as a result of Combine's type system. You should never
-        /// encounter this error.
-        case undefined
     }
 
     /// By default, the logger logs all requests and their responses to the command line. However,

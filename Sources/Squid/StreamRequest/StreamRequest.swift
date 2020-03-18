@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 /// A request for a steram is similar to a `Request`, only that it does not send an HTTP request,
 /// but asks for a web socket. Instead of a `Response` that yields at most one value, it therefore
@@ -163,5 +164,29 @@ extension JsonStreamRequest {
         @unknown default:
             throw Squid.Error.invalidResponse
         }
+    }
+}
+
+// MARK: Internal
+extension StreamRequest {
+
+    internal func responsePublisher(
+        service: HttpService, session: URLSession,
+        socket: CurrentValueSubject<URLSessionWebSocketTask?, Never>, requestId: Int
+    ) -> AnyPublisher<WSTaskPublisher.Output, Squid.Error> {
+        let httpRequest = HttpRequest
+            .streamPublisher(for: self, service: service)
+
+        #if DEBUG
+        let response = httpRequest
+            .debug(request: self, requestId: requestId)
+            .flatMap { WSTaskPublisher(request: $0, in: session, taskSubject: socket) }
+            .debugItem(of: self, requestId: requestId)
+        #else
+        let response = httpRequest
+            .flatMap { WSTaskPublisher(request: $0, in: session, taskSubject: socket) }
+        #endif
+
+        return response.eraseToAnyPublisher()
     }
 }

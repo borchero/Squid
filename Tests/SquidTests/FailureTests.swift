@@ -57,7 +57,7 @@ final class FailureTests: XCTestCase {
                 expectation.fulfill()
             }
         }) { _ in }
-        
+
         wait(for: [expectation], timeout: 0.2)
         c.cancel()
     }

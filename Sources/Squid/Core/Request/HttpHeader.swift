@@ -51,6 +51,21 @@ public struct HttpHeader {
     }
 }
 
+// MARK: Protocol Conformances
+extension HttpHeader: Equatable {
+
+    public static func == (lhs: HttpHeader, rhs: HttpHeader) -> Bool {
+        return lhs.fields == rhs.fields
+    }
+}
+
+extension HttpHeader: Hashable {
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.fields)
+    }
+}
+
 extension HttpHeader: ExpressibleByDictionaryLiteral {
 
     public init(dictionaryLiteral elements: (Field, String)...) {
@@ -95,7 +110,7 @@ extension HttpHeader.Field {
     public static let apiKey: HttpHeader.Field = "X-Api-Key"
 }
 
-// MARK: Initialization
+// MARK: Protocol Conformances
 extension HttpHeader.Field: ExpressibleByStringLiteral {
 
     public init(stringLiteral value: String) {
@@ -103,7 +118,13 @@ extension HttpHeader.Field: ExpressibleByStringLiteral {
     }
 }
 
-// MARK: Hashable
+extension HttpHeader.Field: Equatable {
+
+    public static func == (lhs: HttpHeader.Field, rhs: HttpHeader.Field) -> Bool {
+        return lhs.name == rhs.name
+    }
+}
+
 extension HttpHeader.Field: Hashable {
 
     public func hash(into hasher: inout Hasher) {

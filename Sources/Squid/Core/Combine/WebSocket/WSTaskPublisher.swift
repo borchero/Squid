@@ -37,3 +37,32 @@ internal struct WSTaskPublisher: Publisher {
         subscriber.receive(subscription: subscription)
     }
 }
+
+// MARK: Extensions
+extension Publisher where Output == WSTaskPublisher.Output {
+
+    func debugItem<R>(of request: R, requestId: Int) -> Publishers.HandleEvents<Self> where R: StreamRequest {
+        return self.handleEvents(receiveOutput: { result in
+            switch result {
+            case .success(let message):
+                Squid.Logger.shared.log(
+                    "Stream `\(type(of: request))` with identifier \(requestId) received message:\n" +
+                    "- Message: \(message)".indent(spaces: 4)
+                )
+            case .failure(let error):
+                Squid.Logger.shared.log(
+                    "Stream `\(type(of: request))` with identifier \(requestId) received error:\n" +
+                    "- Error: \(error)".indent(spaces: 4)
+                )
+            }
+        }, receiveCompletion: { completion in
+            guard case .failure(let error) = completion else {
+                return
+            }
+            Squid.Logger.shared.log(
+                "Cancelled stream `\(type(of: request))` with identifier \(requestId):\n" +
+                "- Error: \(error)".indent(spaces: 4)
+            )
+        })
+    }
+}

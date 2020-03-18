@@ -23,61 +23,60 @@ public protocol HttpService {
     /// A header that ought to be used by all requests issued against the API represented by this
     /// HTTP service. Most commonly, this header contains fields such as the API key or some form
     /// of Authorization. Request headers always overwrite header fields set by the HTTP service
-    /// they are used with. By default, the HTTP service does not set any headers.
+    /// they are used with.
     var header: HttpHeader { get }
 
     /// A header that is provided asynchronously. If possible, use the `header` property instead.
     /// Implementing this property might be useful if some third-party component is used to e.g.
-    /// fetch access tokens asynchronously. By default, the returned header is empty. It will
-    /// overwrite any values set in the `header` property if keys conflict.
-    ///
-    /// - Attention: When returning a Future here, make sure that the retriers do not change the
-    ///              value that should be returned by the future. When retrying a request, a Future
-    ///              will *not* be evaluated again.
-    var asyncHeader: AnyPublisher<HttpHeader, Error> { get }
+    /// fetch access tokens asynchronously. It will overwrite any values set in the `header`
+    /// property if keys conflict.
+    var asyncHeader: Future<HttpHeader, Error> { get }
 
     // MARK: Low-Level Configuration
-    /// The session configuration to use for all requests using this service. By default,
-    /// `URLSessionConfiguration.default` is used.
+    /// The session configuration to use for all requests using this service.
     var sessionConfiguration: URLSessionConfiguration { get }
 
     // MARK: Error Handling
-    /// The retrier factory provides retriers for requests. By default, the default factory of the
-    /// stateless `NilRetrier` is used, i.e. requests are never retried.
+    /// The retrier factory provides retriers for requests.
+    ///
+    /// - Note: When scheduling a `StreamRequest`, retriers will be ignored.
     var retrierFactory: RetrierFactory { get }
 
-    /// This method may be implemented to perform some action upon failure of a particular request
-    /// issued against the API represented by this service. As the method does not return anything,
-    /// it is mainly intended to be used for debugging or global notifications. A common example is,
-    /// e.g. notifying the user that something has happened via some kind of alert. You may use the
-    /// notification center to publish failures that are worth reporting to the user. By default,
-    /// this method does nothing.
+    // MARK: Hooks
+    /// The hook describes a component that is called whenever a request is scheduled for this
+    /// service and a result was obtained for a request. If an error occurs during scheduling,
+    /// an error is indicated.
     ///
-    /// - Parameter error: The error that caused the failure of a scheduled request.
-    func process(_ error: Squid.Error)
+    /// - Note: When scheduling a `StreamRequest`, only the `onFailure` of the hook will be called
+    ///         when an error occurs.
+    var hook: ServiceHook { get }
 }
 
 extension HttpService {
 
+    /// By default, the HTTP service does not set any headers.
     public var header: HttpHeader {
         return [:]
     }
 
-    public var asyncHeader: AnyPublisher<HttpHeader, Error> {
-        return Just(HttpHeader([:]))
-            .mapError { _ in Squid.Error.undefined }
-            .eraseToAnyPublisher()
+    // By default, an empty publisher is returned which is equal to having a an empty async header.
+    public var asyncHeader: Future<HttpHeader, Error> {
+        return Future { promise in promise(.success([:])) }
     }
 
+    /// By default, `URLSessionConfiguration.default` is used.
     public var sessionConfiguration: URLSessionConfiguration {
         return .default
     }
 
+    /// By default, the default factory of the stateless `NilRetrier` is used, i.e. requests are
+    /// never retried.
     public var retrierFactory: RetrierFactory {
         return NilRetrier.factory()
     }
 
-    public func process(_ error: Squid.Error) {
-        return
+    /// By default, a hook that does nothing is used.
+    public var hook: ServiceHook {
+        return NilServiceHook()
     }
 }

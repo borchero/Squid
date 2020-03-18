@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 /// The request protocol is the core building block of the Squid framework. The general idea of a
 /// request is that it declaratively defines the content of an HTTP request. It is then *scheduled*
@@ -23,7 +24,7 @@ public protocol Request: NetworkRequest {
     associatedtype Result
 
     // MARK: Request Specification
-    /// The HTTP method of the request. Defaults to GET.
+    /// The HTTP method of the request.
     var method: HttpMethod { get }
 
     /// The HTTP body of the request. May only be set to an instance of something other than
@@ -32,8 +33,7 @@ public protocol Request: NetworkRequest {
     var body: HttpBody { get }
 
     /// Prepares the URL request that will be sent. The function is passed the request as assembled
-    /// based on all other properties. You may modify the request as you wish. By default, the
-    /// request being passed in is returned without any modifications.
+    /// based on all other properties. You may modify the request as you wish.
     ///
     /// - Note: This function should only be used if it is not possible to specify the request in a
     ///         fully declarative form.
@@ -47,8 +47,7 @@ public protocol Request: NetworkRequest {
 
     // MARK: Expected Response
     /// The range of accepted status codes for the request. Whenever the response's status code is
-    /// not in the provided range, the request is considered to have failed. By default, all 2xx
-    /// status codes are accepted.
+    /// not in the provided range, the request is considered to have failed.
     var acceptedStatusCodes: CountableClosedRange<Int> { get }
 
     /// Upon successful completion of the HTTP request itself, this method is responsible for
@@ -71,18 +70,22 @@ public protocol Request: NetworkRequest {
 
 extension Request {
 
+    /// Defaults to GET.
     public var method: HttpMethod {
         return .get
     }
 
+    /// Defaults to an empty body.
     public var body: HttpBody {
         return HttpData.Empty()
     }
 
+    /// The default implementation returns the request without any modifications.
     public func prepare(_ request: URLRequest) -> URLRequest {
         return request
     }
 
+    /// By default, all 2xx status codes are accepted.
     public var acceptedStatusCodes: CountableClosedRange<Int> {
         return 200...299
     }
@@ -170,6 +173,7 @@ extension Request {
     }
 }
 
+// MARK: JSON
 /// This request protocol is a specialization of the `Request` protocol. It can be used often when
 /// working with a JSON API where the returned data is a JSON object. As a requirement, the
 /// request's result type must implement the `Decodable` protocol. The `decode(_:)` method is then
@@ -232,5 +236,95 @@ extension JsonRequest {
             }
             return try decoder.decode(P.self, from: data)
         }
+    }
+}
+
+// MARK: Internal
+extension Request {
+
+    internal func responsePublisher(
+        service: HttpService, session: URLSession, subject: CurrentValueSubject<URLRequest?, Never>,
+        requestId: Int
+    ) -> AnyPublisher<Data, Squid.Error> {
+        let httpRequest = HttpRequest
+            .publisher(for: self, service: service)
+            .handleEvents(receiveOutput: { subject.send($0.urlRequest) })
+
+        #if DEBUG
+        let response = httpRequest
+            .debug(request: self, requestId: requestId)
+            .flatMap { HttpTaskPublisher(request: $0.urlRequest, in: session) }
+            .debug(request: self, requestId: requestId)
+        #else
+        let response = httpRequest
+            .flatMap { HttpTaskPublisher(request: $0.urlRequest, in: session) }
+        #endif
+
+        return response
+            .validate(statusCodeIn: self.acceptedStatusCodes)
+            .map { $0.data }
+            .eraseToAnyPublisher()
+    }
+
+    internal func retriedResponsePublisher(
+        service: HttpService, session: URLSession, retrier: Retrier,
+        subject: CurrentValueSubject<URLRequest?, Never>, requestId: Int
+    ) -> AnyPublisher<Data, Squid.Error> {
+        let response = self.responsePublisher(
+            service: service, session: session, subject: subject, requestId: requestId
+        )
+
+        return response
+            .catch { error -> AnyPublisher<Data, Squid.Error> in
+                retrier
+                    .retry(self, failingWith: error)
+                    .setFailureType(to: Squid.Error.self)
+                    .flatMap { retry -> AnyPublisher<Data, Squid.Error> in
+                        switch (retry, retrier.allowsMultipleRetries) {
+                        case (true, true):
+                            return self.retriedResponsePublisher(
+                                service: service, session: session, retrier: retrier,
+                                subject: subject, requestId: requestId
+                            )
+                        case (true, false):
+                            return self.responsePublisher(
+                                service: service, session: session, subject: subject,
+                                requestId: requestId
+                            )
+                        case (false, _):
+                            return Fail(error: error).eraseToAnyPublisher()
+                        }
+                    }.eraseToAnyPublisher()
+            }.eraseToAnyPublisher()
+    }
+}
+
+extension Publisher where Output == (data: Data, response: HTTPURLResponse) {
+
+    func validate(
+        statusCodeIn range: CountableClosedRange<Int>
+    ) -> AnyPublisher<Output, Squid.Error> {
+        return self.tryMap { response -> Output in
+            let statusCode = response.response.statusCode
+            if !range.contains(statusCode) {
+                throw Squid.Error.requestFailed(statusCode: statusCode, response: response.data)
+            }
+            return response
+        }.mapError(Squid.Error.ensure)
+        .eraseToAnyPublisher()
+    }
+}
+
+extension Publisher where Output == HttpRequest {
+
+    func debug<R>(
+        request: R, requestId: Int
+    ) -> Publishers.HandleEvents<Self> where R: NetworkRequest {
+        return self.handleEvents(receiveOutput: { httpRequest in
+            Squid.Logger.shared.log(
+                "Scheduled request `\(type(of: request))` with identifier \(requestId):\n" +
+                httpRequest.description.indent(spaces: 4)
+            )
+        })
     }
 }

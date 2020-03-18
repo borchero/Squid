@@ -52,11 +52,26 @@ public struct HttpQuery {
     }
 }
 
+// MARK: Protocol Conformance
 extension HttpQuery: ExpressibleByDictionaryLiteral {
 
     public init(dictionaryLiteral elements: (String, Any)...) {
         let dict = Dictionary(uniqueKeysWithValues: elements)
         self.init(dict)
+    }
+}
+
+extension HttpQuery: Equatable {
+
+    public static func == (lhs: HttpQuery, rhs: HttpQuery) -> Bool {
+        return lhs.parameters == rhs.parameters
+    }
+}
+
+extension HttpQuery: Hashable {
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.parameters)
     }
 }
 

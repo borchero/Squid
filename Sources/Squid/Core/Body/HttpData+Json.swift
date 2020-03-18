@@ -46,7 +46,6 @@ extension HttpData {
 
 extension HttpData.Json {
 
-    // MARK: CustomStringConvertible
     public var description: String {
         let outputFormatting = self.encoder.outputFormatting
 
@@ -60,6 +59,20 @@ extension HttpData.Json {
         self.encoder.outputFormatting = outputFormatting
 
         return result
+    }
+}
+
+extension HttpData.Json: Equatable where T: Equatable {
+
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.value == rhs.value
+    }
+}
+
+extension HttpData.Json: Hashable where T: Hashable {
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.value)
     }
 }
 

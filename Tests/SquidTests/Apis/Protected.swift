@@ -66,10 +66,10 @@ struct MyAsyncProtectedApi: HttpService {
         return "squid.borchero.com"
     }
 
-    var asyncHeader: AnyPublisher<HttpHeader, Error> {
+    var asyncHeader: Future<HttpHeader, Error> {
         return Future { promise in
             promise(.success([.authorization: "mytoken"]))
-        }.eraseToAnyPublisher()
+        }
     }
 }
 

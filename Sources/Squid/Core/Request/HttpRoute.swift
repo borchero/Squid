@@ -30,10 +30,25 @@ public struct HttpRoute {
     }
 }
 
+// MARK: Protocol Conformance
 extension HttpRoute: ExpressibleByArrayLiteral {
 
     public init(arrayLiteral elements: Any...) {
         self.init(elements)
+    }
+}
+
+extension HttpRoute: Equatable {
+
+    public static func == (lhs: HttpRoute, rhs: HttpRoute) -> Bool {
+        return lhs.paths == rhs.paths
+    }
+}
+
+extension HttpRoute: Hashable {
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.paths)
     }
 }
 

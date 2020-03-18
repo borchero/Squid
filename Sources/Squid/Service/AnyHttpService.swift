@@ -39,9 +39,4 @@ public struct AnyHttpService: HttpService {
         self.retrierFactory = retrierFactory
         self._process = processError
     }
-
-    // MARK: Instance Methods
-    public func process(_ error: Squid.Error) {
-        self._process(error)
-    }
 }
