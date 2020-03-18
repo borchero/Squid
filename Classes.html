@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Classes  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Section/Classes" class="dashAnchor"></a>
+
+    <a title="Classes  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          Squid Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/borchero/Squid">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">Squid Reference</a>
+      <img class="carat" src="img/carat.png" />
+      Classes  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Guides.html">Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="01-basics.html">01 Basics</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="02-retriers.html">02 Retriers</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="03-websockets.html">03 WebSockets</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="04-pagination.html">04 Pagination</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/BackoffRetrier.html">BackoffRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/BackoffRetrier/Strategy.html">– Strategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/CachingServiceHook.html">CachingServiceHook</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Paginator.html">Paginator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Stream.html">Stream</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData.html">HttpData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData/Empty.html">– Empty</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData/Image.html">– Image</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData/Json.html">– Json</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpMethod.html">HttpMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpMimeType.html">HttpMimeType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/RequestPriority.html">RequestPriority</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publisher.html">Publisher</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publishers.html">Publishers</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publishers/IgnoreError.html">– IgnoreError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publishers/IgnoreResultErrors.html">– IgnoreResultErrors</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/URL.html">URL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/HttpBody.html">HttpBody</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/HttpService.html">HttpService</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/JsonRequest.html">JsonRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/JsonStreamRequest.html">JsonStreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/NetworkRequest.html">NetworkRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/PaginatedData.html">PaginatedData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/Retrier.html">Retrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RetrierFactory.html">RetrierFactory</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/ServiceHook.html">ServiceHook</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/StreamRequest.html">StreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/UrlConvertible.html">UrlConvertible</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyHttpService.html">AnyHttpService</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyRequest.html">AnyRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyRetrierFactory.html">AnyRetrierFactory</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyStreamRequest.html">AnyStreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpHeader.html">HttpHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpHeader/Field.html">– Field</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpQuery.html">HttpQuery</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpRoute.html">HttpRoute</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/NilRetrier.html">NilRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Squid.html">Squid</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Squid/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Squid/Logger.html">– Logger</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>Classes</h1>
+            <p>The following classes are available globally.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid9PaginatorC"></a>
+                    <a name="//apple_ref/swift/Class/Paginator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid9PaginatorC">Paginator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A paginator is returned whenever a request is scheduled for pagination (see
+<code><a href="Protocols/Request.html#/s:5Squid7RequestPAAE8schedule17forPaginationWith5chunk18zeroBasedPageIndex6decodeAA9PaginatorCyxqd__GAA11HttpService_p_SiSbqd__10Foundation4DataV_xtKctAA09PaginatedQ0Rd__0Q4TypeQyd__6ResultRtzlF">Request.schedule(forPaginationWith:chunk:zeroBasedPageIndex:decode:)</a></code> or
+<code><a href="Protocols/JsonRequest.html#/s:5Squid11JsonRequestPAAE8schedule17forPaginationWith5chunk18zeroBasedPageIndex13paginatedTypeAA9PaginatorCyxqd__GAA11HttpService_p_SiSbqd__mtAA13PaginatedDataRd__SeRd__0sN0AaMPQyd__6ResultRtzlF">JsonRequest.schedule(forPaginationWith:chunk:zeroBasedPageIndex:paginatedType:)</a></code>).</p>
+
+<p>In contrast to the <code><a href="Classes/Response.html">Response</a></code> publisher, this instance is no publisher itself. The
+<code><a href="Classes/Paginator.html#/s:5Squid9PaginatorC7connect4with7Combine12AnyPublisherVy6ResultQzA2AV5ErrorOGqd___tAF0G0Rd__s5NeverO7FailureRtd__lF">Paginator.connect(with:)</a></code> needs to be called which yields a publisher that emits the
+responses for successive pagination requests. See the method&rsquo;s documentation for details.</p>
+
+                        <a href="Classes/Paginator.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Paginator</span><span class="o">&lt;</span><span class="kt">BaseRequestType</span><span class="p">,</span> <span class="kt">PaginationType</span><span class="o">&gt;</span>
+<span class="k">where</span> <span class="kt">BaseRequestType</span><span class="p">:</span> <span class="kt"><a href="Protocols/Request.html">Request</a></span><span class="p">,</span> <span class="kt">PaginationType</span><span class="p">:</span> <span class="kt"><a href="Protocols/PaginatedData.html">PaginatedData</a></span><span class="p">,</span>
+    <span class="kt">PaginationType</span><span class="o">.</span><span class="kt">DataType</span> <span class="o">==</span> <span class="kt">BaseRequestType</span><span class="o">.</span><span class="kt">Result</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid8ResponseC"></a>
+                    <a name="//apple_ref/swift/Class/Response" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid8ResponseC">Response</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An instance of the response class is returned whenever a <code><a href="Protocols/Request.html">Request</a></code> is scheduled. The response
+is a <code>ConnectablePublisher</code> with the request&rsquo;s result type as output. In the future, the set of
+available properties and methods on an instance of the response may be extended.</p>
+
+<p>As there is only a single response no matter the number of subscribers, the response is
+represented as a class (i.e. it is a shared publisher). Note that the actual scheduling of the
+request is performed upon the first subscription. Subscribers that subscribe at a later point in
+time receive the result as soon as it is available and do not send the request again.</p>
+
+<p>Lastly, the class cannot be initialized by the user but is only returned by Squid upon
+scheduling a request.</p>
+
+                        <a href="Classes/Response.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Response</span><span class="o">&lt;</span><span class="kt">RequestType</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">Publisher</span> <span class="k">where</span> <span class="kt">RequestType</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Request.html">Request</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid6StreamC"></a>
+                    <a name="//apple_ref/swift/Class/Stream" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid6StreamC">Stream</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An instance of the stream class is returned whenever a <code><a href="Protocols/StreamRequest.html">StreamRequest</a></code> is scheduled. The stream
+publisher produces arbitrarily many values (depending on the messages from the connected peer).
+The publisher also provides additional <code>send</code> methods to enable bidirectional communication.
+Note that publisher <em>only</em> errors out if the stream fails and continues to exist if single
+messages from the peer cause an error. This is the reason for the stream&rsquo;s output to be of the
+type <code>Result</code>. Also note that the publisher never completes.</p>
+
+<p>Note that, in contrast to the <code><a href="Classes/Response.html">Response</a></code> publisher, this publisher does <em>not</em> replay any
+messages received.</p>
+
+                        <a href="Classes/Stream.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Stream</span><span class="o">&lt;</span><span class="kt">StreamRequestType</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">Publisher</span> <span class="k">where</span> <span class="kt">StreamRequestType</span> <span class="p">:</span> <span class="kt"><a href="Protocols/StreamRequest.html">StreamRequest</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid14BackoffRetrierC"></a>
+                    <a name="//apple_ref/swift/Class/BackoffRetrier" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid14BackoffRetrierC">BackoffRetrier</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The backoff retrier is a more complex, stateful retrier that retries a request upon certain
+failures by waiting a specified period of time defined by its strategy (see
+<code><a href="Classes/BackoffRetrier/Strategy.html">BackoffRetrier.Strategy</a></code>). It also defines a maximum duration after which a failed request
+is deemed unsuccessful.</p>
+
+                        <a href="Classes/BackoffRetrier.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">BackoffRetrier</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Retrier.html">Retrier</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5Squid18CachingServiceHookC"></a>
+                    <a name="//apple_ref/swift/Class/CachingServiceHook" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5Squid18CachingServiceHookC">CachingServiceHook</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The caching service hook caches a server&rsquo;s response for requests for a specified time and
+prevents requests from being sent again if they can be served from the cache. Caching is only
+performed for GET requests as for all other requests, side-effects on the server are assumed.</p>
+
+                        <a href="Classes/CachingServiceHook.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CachingServiceHook</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ServiceHook.html">ServiceHook</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2020 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2020-03-18)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

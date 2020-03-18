@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>04 Pagination  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+
+    <a title="04 Pagination  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          Squid Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/borchero/Squid">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">Squid Reference</a>
+      <img class="carat" src="img/carat.png" />
+      04 Pagination  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Guides.html">Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="01-basics.html">01 Basics</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="02-retriers.html">02 Retriers</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="03-websockets.html">03 WebSockets</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="04-pagination.html">04 Pagination</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/BackoffRetrier.html">BackoffRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/BackoffRetrier/Strategy.html">– Strategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/CachingServiceHook.html">CachingServiceHook</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Paginator.html">Paginator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Stream.html">Stream</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData.html">HttpData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData/Empty.html">– Empty</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData/Image.html">– Image</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpData/Json.html">– Json</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpMethod.html">HttpMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HttpMimeType.html">HttpMimeType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/RequestPriority.html">RequestPriority</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publisher.html">Publisher</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publishers.html">Publishers</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publishers/IgnoreError.html">– IgnoreError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Publishers/IgnoreResultErrors.html">– IgnoreResultErrors</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/URL.html">URL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/HttpBody.html">HttpBody</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/HttpService.html">HttpService</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/JsonRequest.html">JsonRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/JsonStreamRequest.html">JsonStreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/NetworkRequest.html">NetworkRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/PaginatedData.html">PaginatedData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/Retrier.html">Retrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RetrierFactory.html">RetrierFactory</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/ServiceHook.html">ServiceHook</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/StreamRequest.html">StreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/UrlConvertible.html">UrlConvertible</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyHttpService.html">AnyHttpService</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyRequest.html">AnyRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyRetrierFactory.html">AnyRetrierFactory</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyStreamRequest.html">AnyStreamRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpHeader.html">HttpHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpHeader/Field.html">– Field</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpQuery.html">HttpQuery</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HttpRoute.html">HttpRoute</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/NilRetrier.html">NilRetrier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Squid.html">Squid</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Squid/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Squid/Logger.html">– Logger</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            
+            <h1 id='pagination' class='heading'>Pagination</h1>
+
+<p>When fetching large lists from a server, pagination is commonly used to fetch chunks of items one after the other.</p>
+
+<p>Let&rsquo;s assume we are building a social networking application and want to fetch a user&rsquo;s followers from the server. Typically a user has several hundred followers, some may have a few million, so it isn&rsquo;t really necessary to fetch all of them.</p>
+<h2 id='defining-the-types' class='heading'>Defining the Types</h2>
+
+<p>Before we actually schedule the request and see how pagination works with Squid, we want to declare all required types, requests and services.</p>
+<h3 id='data-types' class='heading'>Data Types</h3>
+
+<p>Our followers can be represented very easily. The server returns the name and a boolean whether the person is also following the user for which the request was sent. We define it as follows:</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">Follower</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
+
+    <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="k">let</span> <span class="nv">isFollowing</span><span class="p">:</span> <span class="kt">Bool</span>
+<span class="p">}</span>
+</code></pre>
+<h3 id='service' class='heading'>Service</h3>
+
+<p>The API endpoint is simply characterized by an URL. For simplicity we don&rsquo;t employ anything such as retriers, hooks or the like.</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">OurgramApi</span><span class="p">:</span> <span class="kt">HttpService</span> <span class="p">{</span>
+
+    <span class="k">var</span> <span class="nv">apiUrl</span><span class="p">:</span> <span class="kt">UrlConvertible</span> <span class="p">{</span>
+        <span class="s">"ourgram.com"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h3 id='request' class='heading'>Request</h3>
+
+<p>Arriving at defining the request itself, the interesting part begins. In many APIs, it can be observed that a pagination request does not differ from a regular request except for adding some metadata. That metadata is included in the request (e.g. the page and the number of items) and usually also returned by the server.</p>
+
+<p>Hence, we can define the request to retrieve a user&rsquo;s followers very easily:</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">FollowerRequest</span><span class="p">:</span> <span class="kt">Request</span> <span class="p">{</span>
+
+    <span class="kd">typealias</span> <span class="kt">Result</span> <span class="o">=</span> <span class="p">[</span><span class="kt">Follower</span><span class="p">]</span>
+
+    <span class="k">let</span> <span class="nv">userId</span><span class="p">:</span> <span class="kt">UUID</span>
+
+    <span class="k">var</span> <span class="nv">routes</span><span class="p">:</span> <span class="kt">HttpRoute</span> <span class="p">{</span>
+        <span class="p">[</span><span class="s">"</span><span class="se">\(</span><span class="k">self</span><span class="o">.</span><span class="n">userId</span><span class="se">)</span><span class="s">"</span><span class="p">,</span> <span class="s">"followers"</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>As you can see, it is not yet required that the server actually performs pagination. You did not define anywhere that the request is paginated yet.</p>
+
+<p><em>Note: If your pagination API differs significantly from that format, you might need to include additional properties in the request such as the page number, the number of items, etc. Afterwards, you can schedule the request like any other.</em></p>
+
+<p><strong>Attention: Do not use such an API in the production environment. The client should never use a query parameter to &ldquo;impersonate&rdquo; a user. Use e.g. JWT tokens to identify clients that are properly logged in.</strong></p>
+<h2 id='scheduling-the-request' class='heading'>Scheduling the Request</h2>
+
+<p>Having defined all required types, we can now schedule the request against our API. When using Squid&rsquo;s pagination feature, you get some things for free, yet you get locked in a particular best-practice design of your API. Again, if you do not want that, you can implement pagination yourself by scheduling simple requests.</p>
+
+<p>Essentially, Squid provides the following:</p>
+
+<ul>
+<li>When sending a request for pagination, two query parameters are automatically added: the page being requested (either zero-based or one-based) and the number of items being requested. So your original request gets modified as follows: <code>&lt;url&gt;?&lt;parameters&gt;</code> -&gt; <code>&lt;url&gt;?&lt;parameters&gt;&amp;page=xxx&amp;chunk=yyy</code>. This format can <em>not</em> be changed.</li>
+<li>When receiving the result, you usually get some metadata delivered along with your actual data. For this, Squid provides the <code>PaginationContainer</code> type that you can use. Although it provides a lot of useful metadata along with the actual data, your API might return different information, possibly using different names. In this case, you can build your own &ldquo;wrapping&rdquo; container. Such a container must implement the <code><a href="Protocols/PaginatedData.html">PaginatedData</a></code> protocol.</li>
+</ul>
+<h3 id='initializing-a-quot-paginator-quot' class='heading'>Initializing a &ldquo;Paginator&rdquo;</h3>
+
+<p>When performing pagination, you usually have some kind of &ldquo;state&rdquo;. This state usually represents the latest page that you requested and is initialized with the first page. For this, Squid provides the <code><a href="Classes/Paginator.html">Paginator</a></code> class. You cannot initialize it yourself, but you get an instance of it when you schedule your request for pagination.</p>
+
+<p>When scheduling the request for pagination, you have to define how many items you want to have delivered per page and also the type that is returned by your server (for representing metadata). Optionally, you can also set whether the first page is indexed with 0 (by default, it&rsquo;s indexed with 1):</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">service</span> <span class="o">=</span> <span class="kt">OurgramApi</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">FollowerRequest</span><span class="p">(</span><span class="nv">userId</span><span class="p">:</span> <span class="kt">UUID</span><span class="p">())</span>
+
+<span class="k">let</span> <span class="nv">paginator</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="nf">schedule</span><span class="p">(</span><span class="nv">forPaginationWith</span><span class="p">:</span> <span class="n">service</span><span class="p">,</span> <span class="nv">chunk</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nv">paginatedType</span><span class="p">:</span> <span class="kt">PaginationContainer</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+</code></pre>
+<h3 id='receiving-data' class='heading'>Receiving Data</h3>
+
+<p>Up to this point, no request has been sent to the server. Squid uses the paginator to transparently request successive pages. In order to do that, you simply provide a publisher that provides &ldquo;ticks&rdquo;. Upon each tick, the next page is requested. To see exactly how many concurrent ticks or failures are handled, read the documentation for the <code><a href="Classes/Paginator.html#/s:5Squid9PaginatorC7connect4with7Combine12AnyPublisherVy6ResultQzA2AV5ErrorOGqd___tAF0G0Rd__s5NeverO7FailureRtd__lF">Paginator.connect(with:)</a></code> method.</p>
+
+<p>A common use case is that you want to issue a request for a new page when you reach the bottom of a table view. For this, you can e.g. create a publisher that publishes every time your last cell is visible on screen. We call this publisher <code>tableViewTicks</code>.</p>
+
+<p>When connecting this publisher to the paginator, the request for the first page is made immediately. This way, you do not have to issue a &ldquo;dummy&rdquo; tick once the table view becomes visible. Every subsequent request requires a tick:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">cancellable</span> <span class="o">=</span> <span class="n">paginator</span><span class="o">.</span><span class="nf">connect</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">tableViewTicks</span><span class="p">)</span>
+    <span class="o">.</span><span class="nf">sink</span><span class="p">(</span><span class="nv">receiveCompletion</span><span class="p">:</span> <span class="p">{</span> <span class="n">completion</span> <span class="k">in</span> 
+        <span class="c1">// Handle request failure or end of list</span>
+    <span class="p">},</span> <span class="nv">receiveValue</span><span class="p">:</span> <span class="p">{</span> <span class="n">users</span> <span class="k">in</span>
+        <span class="c1">// Append users to table view</span>
+    <span class="p">})</span>
+</code></pre>
+
+<p>As you can deduce from the variable naming in the <code>receiveValue</code> closure, the actual users are returned. The <code>PaginationContainer</code> that was defined earlier is used <em>transparently</em> and never appears in any responses delivered by the server.</p>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2020 <a class="link" href="https://github.com/borchero" target="_blank" rel="external">Oliver Borchert</a>. All rights reserved. (Last updated: 2020-03-18)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
