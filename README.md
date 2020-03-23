@@ -1,6 +1,6 @@
 # Squid
 
-![Cocoapods](https://img.shields.io/cocoapods/v/Squid)
+![Cocoapods](https://img.shields.io/cocoapods/v/Squid?label=version)
 ![Build](https://github.com/borchero/Squid/workflows/Build/badge.svg?branch=master)
 ![CocoaPods](https://github.com/borchero/Squid/workflows/CocoaPods/badge.svg?branch=master)
 ![Documentation](https://github.com/borchero/Squid/workflows/Documentation/badge.svg?branch=master)
