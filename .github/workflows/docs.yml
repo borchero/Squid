@@ -5,13 +5,32 @@ on:
         types: [published]
 
 jobs:
-    publish:
+    generate-docs:
         runs-on: macos-latest
         steps:
         -   name: Checkout
             uses: actions/checkout@v2
         -   name: Generate Documentation
-            uses: steven0351/publish-jazzy-docs@v1.1.1
+            run: sudo gem install jazzy && jazzy
+        -   name: Upload Artifacts
+            uses: actions/upload-artifact@v1
             with:
-                personal_access_token: ${{ secrets.ACCESS_TOKEN }}
-                config: .jazzy.yml
+                name: docs
+                path: docs/
+    
+    publish-docs:
+        runs-on: ubuntu-18.04
+        needs: generate-docs
+        steps:
+        -   name: Download Artifacts
+            uses: actions/download-artifact@v1
+            with:
+                name: docs
+        -   name: Upload artifacts
+            uses: docker:://borchero/cuckoo:0.4.1
+            run: |
+                cuckoo publish \
+                    --dir build \
+                    --bucket squid.borchero.com \
+                    --purge \
+                    --aws-cloudfront-distribution E1P6FI3X51PEKW
