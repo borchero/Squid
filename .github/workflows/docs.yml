@@ -31,7 +31,7 @@ jobs:
         -   name: Upload artifacts
             run: |
                 cuckoo publish \
-                    --dir build \
+                    --dir docs \
                     --bucket squid.borchero.com \
                     --purge \
                     --aws-cloudfront-distribution E1P6FI3X51PEKW
