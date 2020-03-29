@@ -13,13 +13,13 @@ Pod::Spec.new do |s|
     s.license = 'MIT'
     s.summary = 'Declarative and Reactive Networking in Swift.'
 
-    s.homepage = 'https://borchero.github.io/Squid/'
+    s.homepage = 'https://squid.borchero.com'
     s.authors = { 'Oliver Borchert' => 'borchero@icloud.com' }
     s.source = {
         :git => 'https://github.com/borchero/Squid.git',
         :tag => s.version
     }
-    s.documentation_url = 'https://borchero.github.io/Squid/'
+    s.documentation_url = 'https://squid.borchero.com'
 
     s.ios.deployment_target = '13.0'
     s.osx.deployment_target = '10.15'
