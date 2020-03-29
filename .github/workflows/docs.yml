@@ -20,6 +20,8 @@ jobs:
     
     publish-docs:
         runs-on: ubuntu-18.04
+        container: 
+            image: borchero/cuckoo:0.4.1
         needs: generate-docs
         steps:
         -   name: Download Artifacts
@@ -27,7 +29,6 @@ jobs:
             with:
                 name: docs
         -   name: Upload artifacts
-            uses: docker:://borchero/cuckoo:0.4.1
             run: |
                 cuckoo publish \
                     --dir build \
