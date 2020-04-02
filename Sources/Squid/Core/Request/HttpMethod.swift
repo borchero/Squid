@@ -23,12 +23,20 @@ public enum HttpMethod {
     /// DELETE method.
     case delete
 
+    /// PATCH method.
+    case patch
+
+    /// HEAD method.
+    case head
+
     internal var name: String {
         switch self {
         case .get: return "GET"
         case .post: return "POST"
         case .put: return "PUT"
         case .delete: return "DELETE"
+        case .head: return "HEAD"
+        case .patch: return "PATCH"
         }
     }
 
