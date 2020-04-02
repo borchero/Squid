@@ -38,15 +38,9 @@ public struct HttpHeader {
     }
 
     // MARK: Instance Methods
-    internal func add(to request: inout URLRequest) throws {
+    internal func add(to request: inout URLRequest) {
         for (key, value) in self.fields {
-            let escaped = value.addingPercentEncoding(
-                withAllowedCharacters: .urlQueryAllowed
-            )
-            guard let val = escaped else {
-                throw Squid.Error.encodingFailed
-            }
-            request.addValue(val, forHTTPHeaderField: key.name)
+            request.addValue(value, forHTTPHeaderField: key.name)
         }
     }
 }

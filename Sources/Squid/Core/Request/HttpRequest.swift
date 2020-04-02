@@ -55,9 +55,9 @@ internal struct HttpRequest {
         return HttpRequest(request, self.body)
     }
 
-    func with(header: HttpHeader) throws -> HttpRequest {
+    func with(header: HttpHeader) -> HttpRequest {
         var request = self.urlRequest
-        try header.add(to: &request)
+        header.add(to: &request)
         return HttpRequest(request, self.body)
     }
 
