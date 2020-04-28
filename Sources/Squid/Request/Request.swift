@@ -164,10 +164,6 @@ extension Request {
             return .invalidRequest(
                 message: "Request must not have HTTP method GET/DELETE and a non-empty body."
             )
-        } else if (self.method == .post || self.method == .put) && (self.body is HttpData.Empty) {
-            return .invalidRequest(
-                message: "Request must not have HTTP method POST/PUT and an empty body."
-            )
         }
         return nil
     }
