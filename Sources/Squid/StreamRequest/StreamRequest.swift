@@ -53,7 +53,7 @@ extension StreamRequest {
     ///
     /// - Parameter service: The service representing the API against which to schedule this
     ///                      request.
-    public func schedule(with service: HttpService) -> Stream<Self> {
+    public func schedule<S: HttpService>(with service: S) -> Stream<Self, S> {
         return NetworkScheduler.shared.schedule(self, service: service)
     }
 }
@@ -170,10 +170,10 @@ extension JsonStreamRequest {
 // MARK: Internal
 extension StreamRequest {
 
-    internal func responsePublisher(
-        service: HttpService, session: URLSession,
+    internal func responsePublisher<S>(
+        service: S, session: URLSession,
         socket: CurrentValueSubject<URLSessionWebSocketTask?, Never>, requestId: Int
-    ) -> AnyPublisher<WSTaskPublisher.Output, Squid.Error> {
+    ) -> AnyPublisher<WSTaskPublisher.Output, Squid.Error> where S: HttpService {
         let httpRequest = HttpRequest
             .streamPublisher(for: self, service: service)
 

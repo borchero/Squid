@@ -17,10 +17,11 @@ import Combine
 ///
 /// Note that, in contrast to the `Response` publisher, this publisher does *not* replay any
 /// messages received.
-public class Stream<StreamRequestType>: Publisher where StreamRequestType: StreamRequest {
+public class Stream<StreamRequestType, ServiceType>: Publisher
+where StreamRequestType: StreamRequest, ServiceType: HttpService {
 
     // MARK: Types
-    public typealias Failure = Squid.Error
+    public typealias Failure = ServiceType.RequestError
     public typealias Output = Result<StreamRequestType.Result, Squid.Error>
 
     private let publisher: AnyPublisher<Output, Failure>

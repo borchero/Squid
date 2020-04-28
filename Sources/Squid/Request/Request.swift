@@ -102,7 +102,7 @@ extension Request {
     ///
     /// - Parameter service: The service representing the API against which to schedule this
     ///                      request.
-    public func schedule(with service: HttpService) -> Response<Self> {
+    public func schedule<S>(with service: S) -> Response<Self, S> where S: HttpService {
         return NetworkScheduler.shared.schedule(self, service: service)
     }
 
@@ -122,10 +122,10 @@ extension Request {
     /// - Parameter decode: A closure that is used to decode the received data to the defined type
     ///                     of `PaginatedData`. The closure receives both the body and the request
     ///                     as the original `Request.decode(_:)` method might want to be used.
-    public func schedule<P>(
-        forPaginationWith service: HttpService, chunk: Int, zeroBasedPageIndex: Bool = false,
+    public func schedule<P, S>(
+        forPaginationWith service: S, chunk: Int, zeroBasedPageIndex: Bool = false,
         decode: @escaping (Data, Self) throws -> P
-    ) -> Paginator<Self, P> where P: PaginatedData, P.DataType == Result {
+    ) -> Paginator<Self, P, S> where P: PaginatedData, P.DataType == Result, S: HttpService {
         return Paginator(
             base: self, service: service, chunk: chunk,
             zeroBasedPageIndex: zeroBasedPageIndex, decode: decode
@@ -223,10 +223,10 @@ extension JsonRequest {
     ///                                 against indexes the first page with 0. By default, the first
     ///                                 page is indexed by 1.
     /// - Parameter paginatedType: The paginated data type to which to decode a response.
-    public func schedule<P>(forPaginationWith service: HttpService, chunk: Int,
-                            zeroBasedPageIndex: Bool = false,
-                            paginatedType: P.Type = P.self) -> Paginator<Self, P>
-    where P: PaginatedData, P.DataType == Result, P: Decodable {
+    public func schedule<P, S>(forPaginationWith service: S, chunk: Int,
+                               zeroBasedPageIndex: Bool = false,
+                               paginatedType: P.Type = P.self) -> Paginator<Self, P, S>
+    where P: PaginatedData, P.DataType == Result, P: Decodable, S: HttpService {
         return Paginator(
             base: self, service: service, chunk: chunk, zeroBasedPageIndex: zeroBasedPageIndex
         ) { data, _ -> P in
@@ -242,10 +242,10 @@ extension JsonRequest {
 // MARK: Internal
 extension Request {
 
-    internal func responsePublisher(
-        service: HttpService, session: URLSession, subject: CurrentValueSubject<URLRequest?, Never>,
+    internal func responsePublisher<S>(
+        service: S, session: URLSession, subject: CurrentValueSubject<URLRequest?, Never>,
         requestId: Int
-    ) -> AnyPublisher<Data, Squid.Error> {
+    ) -> AnyPublisher<Data, Squid.Error> where S: HttpService {
         let httpRequest = HttpRequest
             .publisher(for: self, service: service)
             .handleEvents(receiveOutput: { subject.send($0.urlRequest) })
@@ -266,10 +266,10 @@ extension Request {
             .eraseToAnyPublisher()
     }
 
-    internal func retriedResponsePublisher(
-        service: HttpService, session: URLSession, retrier: Retrier,
+    internal func retriedResponsePublisher<S>(
+        service: S, session: URLSession, retrier: Retrier,
         subject: CurrentValueSubject<URLRequest?, Never>, requestId: Int
-    ) -> AnyPublisher<Data, Squid.Error> {
+    ) -> AnyPublisher<Data, Squid.Error> where S: HttpService {
         let response = self.responsePublisher(
             service: service, session: session, subject: subject, requestId: requestId
         )

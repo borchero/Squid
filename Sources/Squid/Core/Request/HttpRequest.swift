@@ -92,9 +92,9 @@ extension HttpRequest: CustomStringConvertible {
 // MARK: Extension
 extension HttpRequest {
 
-    internal static func publisher<R>(
-        for request: R, service: HttpService
-    ) -> AnyPublisher<HttpRequest, Squid.Error> where R: Request {
+    internal static func publisher<R, S>(
+        for request: R, service: S
+    ) -> AnyPublisher<HttpRequest, Squid.Error> where R: Request, S: HttpService {
         return service.asyncHeader
             .mapError(Squid.Error.ensure(_:))
             .flatMap { header -> Future<HttpRequest, Squid.Error> in
@@ -129,9 +129,9 @@ extension HttpRequest {
             }.eraseToAnyPublisher()
     }
 
-    internal static func streamPublisher<R>(
-        for request: R, service: HttpService
-    ) -> AnyPublisher<HttpRequest, Squid.Error> where R: StreamRequest {
+    internal static func streamPublisher<R, S>(
+        for request: R, service: S
+    ) -> AnyPublisher<HttpRequest, Squid.Error> where R: StreamRequest, S: HttpService {
         return service.asyncHeader
             .mapError(Squid.Error.ensure(_:))
             .flatMap { header -> Future<HttpRequest, Squid.Error> in

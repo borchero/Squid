@@ -15,18 +15,18 @@ import Combine
 /// In contrast to the `Response` publisher, this instance is no publisher itself. The
 /// `Paginator.connect(with:)` needs to be called which yields a publisher that emits the
 /// responses for successive pagination requests. See the method's documentation for details.
-public class Paginator<BaseRequestType, PaginationType>
-where BaseRequestType: Request, PaginationType: PaginatedData,
+public class Paginator<BaseRequestType, PaginationType, ServiceType>
+where BaseRequestType: Request, PaginationType: PaginatedData, ServiceType: HttpService,
     PaginationType.DataType == BaseRequestType.Result {
 
     // MARK: Types
     private let base: BaseRequestType
-    private let service: HttpService
+    private let service: ServiceType
     private let chunk: Int
     private let zeroBasedPageIndex: Bool
     private let _decode: (Data, BaseRequestType) throws -> PaginationType
 
-    internal init(base: BaseRequestType, service: HttpService, chunk: Int, zeroBasedPageIndex: Bool,
+    internal init(base: BaseRequestType, service: ServiceType, chunk: Int, zeroBasedPageIndex: Bool,
                   decode: @escaping (Data, BaseRequestType) throws -> PaginationType) {
         self.base = base
         self.service = service
@@ -55,7 +55,9 @@ where BaseRequestType: Request, PaginationType: PaginatedData,
     /// Note that this method can be called multiple times and yields independent publishers.
     /// 
     /// - Parameter ticks: The publisher that indicates the need for requesting the next page.
-    public func connect<P>(with ticks: P) -> AnyPublisher<BaseRequestType.Result, Squid.Error>
+    public func connect<P>(
+        with ticks: P
+    ) -> AnyPublisher<BaseRequestType.Result, ServiceType.RequestError>
     where P: Publisher, P.Failure == Never {
         let conduit = PaginatorConduit(
             base: self.base, service: self.service, chunk: self.chunk,
@@ -64,7 +66,7 @@ where BaseRequestType: Request, PaginationType: PaginatedData,
         return ticks
             .map { _ in () }
             .merge(with: Just(()))
-            .setFailureType(to: Squid.Error.self)
+            .setFailureType(to: ServiceType.RequestError.self)
             .filter { _ in conduit.guardState() }
             .flatMap { _ in conduit.schedule() }
             .extractData()
@@ -73,8 +75,8 @@ where BaseRequestType: Request, PaginationType: PaginatedData,
     }
 }
 
-private class PaginatorConduit<BaseRequestType, PaginationType>
-where BaseRequestType: Request, PaginationType: PaginatedData,
+private class PaginatorConduit<BaseRequestType, PaginationType, ServiceType>
+where BaseRequestType: Request, PaginationType: PaginatedData, ServiceType: HttpService,
     PaginationType.DataType == BaseRequestType.Result {
 
     private enum State {
@@ -86,17 +88,17 @@ where BaseRequestType: Request, PaginationType: PaginatedData,
     }
 
     typealias ScheduleType = Publishers.HandleEvents<
-        Response<PaginationRequest<BaseRequestType, PaginationType>>>
+        Response<PaginationRequest<BaseRequestType, PaginationType>, ServiceType>>
 
     private let base: BaseRequestType
-    private let service: HttpService
+    private let service: ServiceType
     private let chunk: Int
     private let _decode: (Data, BaseRequestType) throws -> PaginationType
 
     private var currentPage: Int
     private var requestState = Locked<State>(.waiting)
 
-    init(base: BaseRequestType, service: HttpService, chunk: Int, zeroBasedPageIndex: Bool,
+    init(base: BaseRequestType, service: ServiceType, chunk: Int, zeroBasedPageIndex: Bool,
          decode: @escaping (Data, BaseRequestType) throws -> PaginationType) {
         self.base = base
         self.service = service
@@ -124,7 +126,7 @@ where BaseRequestType: Request, PaginationType: PaginatedData,
         }
     }
 
-    func handleCompletion(_ completion: Subscribers.Completion<Squid.Error>) {
+    func handleCompletion(_ completion: Subscribers.Completion<ServiceType.RequestError>) {
         switch completion {
         case .failure:
             self.requestState.value = .failed

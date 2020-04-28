@@ -14,6 +14,11 @@ import Combine
 /// represents a particular API.
 public protocol HttpService {
 
+    // MARK: Associated Types
+    /// The type of error that requests scheduled against this service emits. Defaults to
+    /// `Squid.Error`.
+    associatedtype RequestError: Error = Squid.Error
+
     // MARK: API Configuration
     /// The URL of the API representes by this HTTP service (e.g. "api.example.com"). This is the
     /// only field that needs to be provided by a particular implementation. This url should not
@@ -41,6 +46,9 @@ public protocol HttpService {
     ///
     /// - Note: When scheduling a `StreamRequest`, retriers will be ignored.
     var retrierFactory: RetrierFactory { get }
+
+    /// Maps errors retrieved from requests to this service's custom error.
+    func mapError(_ error: Squid.Error) -> RequestError
 
     // MARK: Hooks
     /// The hook describes a component that is called whenever a request is scheduled for this
@@ -78,5 +86,13 @@ extension HttpService {
     /// By default, a hook that does nothing is used.
     public var hook: ServiceHook {
         return NilServiceHook()
+    }
+}
+
+extension HttpService where RequestError == Squid.Error {
+
+    /// If the default error type `Squid.Error` is used, it is simply returned without modification.
+    public func mapError(_ error: Squid.Error) -> RequestError {
+        return error
     }
 }

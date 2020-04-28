@@ -38,7 +38,9 @@ internal class NetworkScheduler {
     }()
 
     // MARK: HTTP Request
-    func schedule<R>(_ request: R, service: HttpService) -> Response<R> where R: Request {
+    func schedule<R, S>(
+        _ request: R, service: S
+    ) -> Response<R, S>where R: Request, S: HttpService {
         #if DEBUG
         let requestId = self.runningIdentifier++
         #else
@@ -71,13 +73,16 @@ internal class NetworkScheduler {
             .map { $0.0 }
             .merge(with: fulfilled)
             .first()
+            .mapError(service.mapError(_:))
             .subscribe(on: queue)
 
         return Response(publisher: response, request: request)
     }
 
     // MARK: Web Socket Request
-    func schedule<R>(_ request: R, service: HttpService) -> Stream<R> where R: StreamRequest {
+    func schedule<R, S>(
+        _ request: R, service: S
+    ) -> Stream<R, S> where R: StreamRequest, S: HttpService {
         #if DEBUG
         let requestId = self.runningIdentifier++
         #else
@@ -102,6 +107,7 @@ internal class NetworkScheduler {
                     return .failure(error)
                 }
             }.mapError(Squid.Error.ensure(_:))
+            .mapError(service.mapError(_:))
             .subscribe(on: queue)
 
         return Stream(publisher: response, task: socket, request: request)

@@ -61,4 +61,21 @@ final class FailureTests: XCTestCase {
         wait(for: [expectation], timeout: 0.2)
         c.cancel()
     }
+
+    func testErrorMapping() {
+        let expectation = XCTestExpectation()
+
+        let service = ErrorMappingApi()
+        let request = UsersRequest()
+        let response = request.schedule(with: service)
+
+        let c = response.sink(receiveCompletion: { completion in
+            if case .failure(let fail) = completion, fail == .notFound {
+                expectation.fulfill()
+            }
+        }, receiveValue: { _ in })
+
+        wait(for: [expectation], timeout: 0.2)
+        c.cancel()
+    }
 }

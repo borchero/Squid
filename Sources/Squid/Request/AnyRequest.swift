@@ -20,13 +20,13 @@ import Foundation
 /// scheduling can be performed even easier.
 ///
 /// **Note that this entity does not allow to make insecure requests over HTTP (only HTTPS).**
-public struct AnyRequest: Request {
+public struct AnyRequest<S: HttpService>: Request {
 
     // MARK: Types
     public typealias Result = Data
 
     // MARK: Properties
-    private let service: HttpService
+    private let service: S
 
     public let routes: HttpRoute
 
@@ -39,6 +39,47 @@ public struct AnyRequest: Request {
     public let priority: RequestPriority
 
     // MARK: Initialization
+    /// Initializes a new request based on a predefined `HttpService`.
+    ///
+    /// - Parameter method: The HTTP method for the request. Defaults to GET.
+    /// - Parameter routes: The routing paths for the request. The final URL is constructed by
+    ///                     making use of the given `service`.
+    /// - Parameter query: The request's query parameters. Defaults to no parameters.
+    /// - Parameter header: The request's headers. Defaults to no header fields.
+    /// - Parameter body: The request's body. Defaults to an empty body.
+    /// - Parameter acceptedStatusCodes: Acceptable status codes for a successful response. Defaults
+    ///                                  to all 2xx status codes.
+    /// - Parameter priority: The priority of the request. Defaults to `.default`.
+    /// - Parameter service: The service representing an API.
+    public init(_ method: HttpMethod = .get,
+                routes: HttpRoute,
+                query: HttpQuery = [:],
+                header: HttpHeader = [:],
+                body: HttpBody = HttpData.Empty(),
+                acceptedStatusCodes: CountableClosedRange<Int> = 200...299,
+                priority: RequestPriority = .default,
+                service: S) {
+        self.service = service
+        self.routes = []
+        self.method = method
+        self.query = query
+        self.header = header
+        self.body = body
+        self.acceptedStatusCodes = acceptedStatusCodes
+        self.priority = priority
+    }
+
+    // MARK: Instance Methods
+    /// Schedules the request and, as expected, returns a `Response` publisher. As the service is
+    /// transparently constructed when initializing the request, there is no need to pass a service
+    /// in this case. This implies that the user should **not** use the `schedule(with:)` method.
+    public func schedule() -> Response<Self, S> {
+        return self.schedule(with: self.service)
+    }
+}
+
+extension AnyRequest where S == AnyHttpService {
+
     /// Initializes a new request for a particular URL.
     ///
     /// - Parameter method: The HTTP method for the request. Defaults to GET.
@@ -61,43 +102,5 @@ public struct AnyRequest: Request {
             acceptedStatusCodes: acceptedStatusCodes, priority: priority,
             service: AnyHttpService(at: url)
         )
-    }
-
-    /// Initializes a new request based on a predefined `HttpService`.
-    ///
-    /// - Parameter method: The HTTP method for the request. Defaults to GET.
-    /// - Parameter routes: The routing paths for the request. The final URL is constructed by
-    ///                     making use of the given `service`.
-    /// - Parameter query: The request's query parameters. Defaults to no parameters.
-    /// - Parameter header: The request's headers. Defaults to no header fields.
-    /// - Parameter body: The request's body. Defaults to an empty body.
-    /// - Parameter acceptedStatusCodes: Acceptable status codes for a successful response. Defaults
-    ///                                  to all 2xx status codes.
-    /// - Parameter priority: The priority of the request. Defaults to `.default`.
-    /// - Parameter service: The service representing an API.
-    public init(_ method: HttpMethod = .get,
-                routes: HttpRoute,
-                query: HttpQuery = [:],
-                header: HttpHeader = [:],
-                body: HttpBody = HttpData.Empty(),
-                acceptedStatusCodes: CountableClosedRange<Int> = 200...299,
-                priority: RequestPriority = .default,
-                service: HttpService) {
-        self.service = service
-        self.routes = []
-        self.method = method
-        self.query = query
-        self.header = header
-        self.body = body
-        self.acceptedStatusCodes = acceptedStatusCodes
-        self.priority = priority
-    }
-
-    // MARK: Instance Methods
-    /// Schedules the request and, as expected, returns a `Response` publisher. As the service is
-    /// transparently constructed when initializing the request, there is no need to pass a service
-    /// in this case. This implies that the user should **not** use the `schedule(with:)` method.
-    public func schedule() -> Response<Self> {
-        return self.schedule(with: self.service)
     }
 }

@@ -19,11 +19,12 @@ import Combine
 ///
 /// Lastly, the class cannot be initialized by the user but is only returned by Squid upon
 /// scheduling a request.
-public class Response<RequestType>: Publisher where RequestType: Request {
+public class Response<RequestType, ServiceType>: Publisher
+where RequestType: Request, ServiceType: HttpService {
 
     // MARK: Types
     public typealias Output = RequestType.Result
-    public typealias Failure = Squid.Error
+    public typealias Failure = ServiceType.RequestError
 
     private let publisher: AnyPublisher<Output, Failure>
     private let request: RequestType
