@@ -74,7 +74,7 @@ extension HttpTaskSubscription: HttpTaskSubscriptionDelegate {
                 self.subscriber?.receive(completion: .failure(.invalidResponse))
                 return
             }
-            _ = self.subscriber?.receive((value.0, response))
+            _ = self.subscriber?.receive(.init(base: response, body: value.0))
             self.subscriber?.receive(completion: .finished)
         case .failure(let error):
             self.subscriber?.receive(completion: .failure(error))

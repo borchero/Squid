@@ -67,6 +67,7 @@
 		C9643A8723EF035B00B286D2 /* RetrierStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9643A8623EF035B00B286D2 /* RetrierStub.swift */; };
 		C990EABC24587B4300079F52 /* Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9643A8923EF052700B286D2 /* Protected.swift */; };
 		C990EABE24587ECA00079F52 /* ErrorMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = C990EABD24587ECA00079F52 /* ErrorMapping.swift */; };
+		C9C493F72484400400AA4A3B /* HttpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C493F62484400400AA4A3B /* HttpResponse.swift */; };
 		C9E6FCA72415BE2B0077ABF2 /* OHHTTPStubs in Frameworks */ = {isa = PBXBuildFile; productRef = C9E6FCA62415BE2B0077ABF2 /* OHHTTPStubs */; };
 		C9E6FCA92415BE2B0077ABF2 /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C9E6FCA82415BE2B0077ABF2 /* OHHTTPStubsSwift */; };
 		C9F2E25424155181007F2977 /* ServiceHook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2E25324155181007F2977 /* ServiceHook.swift */; };
@@ -148,6 +149,7 @@
 		C9643A8623EF035B00B286D2 /* RetrierStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrierStub.swift; sourceTree = "<group>"; };
 		C9643A8923EF052700B286D2 /* Protected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protected.swift; sourceTree = "<group>"; };
 		C990EABD24587ECA00079F52 /* ErrorMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMapping.swift; sourceTree = "<group>"; };
+		C9C493F62484400400AA4A3B /* HttpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpResponse.swift; sourceTree = "<group>"; };
 		C9F2E25324155181007F2977 /* ServiceHook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHook.swift; sourceTree = "<group>"; };
 		C9F2E256241552C9007F2977 /* CachingServiceHook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingServiceHook.swift; sourceTree = "<group>"; };
 		C9F2E2582415A321007F2977 /* NilServiceHook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilServiceHook.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 		C911D3E823E7C3010065CD7D /* Http */ = {
 			isa = PBXGroup;
 			children = (
+				C9C493F62484400400AA4A3B /* HttpResponse.swift */,
 				C911D3E923E7C3010065CD7D /* HttpTaskPublisher.swift */,
 				C911D3EA23E7C3010065CD7D /* HttpTaskSubscription.swift */,
 			);
@@ -601,6 +604,7 @@
 				C911D44123E7C3010065CD7D /* Request.swift in Sources */,
 				C911D41E23E7C3010065CD7D /* URLSessionDelegateProxy.swift in Sources */,
 				C911D42D23E7C3010065CD7D /* Paginator.swift in Sources */,
+				C9C493F72484400400AA4A3B /* HttpResponse.swift in Sources */,
 				C911D42423E7C3010065CD7D /* HttpBody.swift in Sources */,
 				C911D43C23E7C3010065CD7D /* IgnoreError.swift in Sources */,
 				C911D42E23E7C3010065CD7D /* Response.swift in Sources */,

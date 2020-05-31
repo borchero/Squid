@@ -12,7 +12,7 @@ import Combine
 // interface without using some kind of multicast publisher in the pipeline.
 internal struct HttpTaskPublisher: Publisher {
 
-    typealias Output = (data: Data, response: HTTPURLResponse)
+    typealias Output = RawHttpResponse
     typealias Failure = Squid.Error
 
     private let request: URLRequest
@@ -32,13 +32,13 @@ internal struct HttpTaskPublisher: Publisher {
 }
 
 // MARK: Extensions
-extension Publisher where Output == (data: Data, response: HTTPURLResponse) {
+extension Publisher where Output == RawHttpResponse {
 
     func debug<R>(request: R, requestId: Int) -> Publishers.HandleEvents<Self> where R: Request {
         return self.handleEvents(receiveOutput: { result in
             Squid.Logger.shared.log(
                 "Finished request `\(type(of: request))` with identifier \(requestId):\n" +
-                result.response.description(for: result.data).indent(spaces: 4)
+                result.base.description(for: result.body).indent(spaces: 4)
             )
         }, receiveCompletion: { completion in
             guard case .failure(let error) = completion else {

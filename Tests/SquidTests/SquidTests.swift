@@ -24,7 +24,9 @@ final class SquidRequestTests: XCTestCase {
         let expectation = XCTestExpectation()
         
         let request = AnyRequest(url: "squid.borchero.com/users")
-        let task = request.schedule()
+        let response = request.schedule()
+
+        let task = response
             .decode(type: [UserContainer].self, decoder: JSONDecoder())
             .ignoreError()
             .sink { users in
@@ -34,9 +36,16 @@ final class SquidRequestTests: XCTestCase {
                 XCTAssertEqual(users[1].lastname, "Mustermann")
                 expectation.fulfill()
             }
+        let c = response.header
+            .ignoreError()
+            .sink { header in
+                XCTAssertEqual(header["Content-Length"], "179")
+                XCTAssertEqual(header["Content-Type"], "application/json")
+            }
         
         wait(for: [expectation], timeout: 0.1)
         task.cancel()
+        c.cancel()
         Squid.Logger.silence(false)
     }
     

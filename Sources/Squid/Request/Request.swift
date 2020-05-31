@@ -241,7 +241,7 @@ extension Request {
     internal func responsePublisher<S>(
         service: S, session: URLSession, subject: CurrentValueSubject<URLRequest?, Never>,
         requestId: Int
-    ) -> AnyPublisher<Data, Squid.Error> where S: HttpService {
+    ) -> AnyPublisher<RawHttpResponse, Squid.Error> where S: HttpService {
         let httpRequest = HttpRequest
             .publisher(for: self, service: service)
             .handleEvents(receiveOutput: { subject.send($0.urlRequest) })
@@ -258,24 +258,23 @@ extension Request {
 
         return response
             .validate(statusCodeIn: self.acceptedStatusCodes)
-            .map { $0.data }
             .eraseToAnyPublisher()
     }
 
     internal func retriedResponsePublisher<S>(
         service: S, session: URLSession, retrier: Retrier,
         subject: CurrentValueSubject<URLRequest?, Never>, requestId: Int
-    ) -> AnyPublisher<Data, Squid.Error> where S: HttpService {
+    ) -> AnyPublisher<RawHttpResponse, Squid.Error> where S: HttpService {
         let response = self.responsePublisher(
             service: service, session: session, subject: subject, requestId: requestId
         )
 
         return response
-            .catch { error -> AnyPublisher<Data, Squid.Error> in
+            .catch { error -> AnyPublisher<RawHttpResponse, Squid.Error> in
                 retrier
                     .retry(self, failingWith: error)
                     .setFailureType(to: Squid.Error.self)
-                    .flatMap { retry -> AnyPublisher<Data, Squid.Error> in
+                    .flatMap { retry -> AnyPublisher<RawHttpResponse, Squid.Error> in
                         switch (retry, retrier.allowsMultipleRetries) {
                         case (true, true):
                             return self.retriedResponsePublisher(
@@ -295,15 +294,15 @@ extension Request {
     }
 }
 
-extension Publisher where Output == (data: Data, response: HTTPURLResponse) {
+extension Publisher where Output == RawHttpResponse {
 
     func validate(
         statusCodeIn range: CountableClosedRange<Int>
     ) -> AnyPublisher<Output, Squid.Error> {
         return self.tryMap { response -> Output in
-            let statusCode = response.response.statusCode
+            let statusCode = response.base.statusCode
             if !range.contains(statusCode) {
-                throw Squid.Error.requestFailed(statusCode: statusCode, response: response.data)
+                throw Squid.Error.requestFailed(statusCode: statusCode, response: response.body)
             }
             return response
         }.mapError(Squid.Error.ensure)

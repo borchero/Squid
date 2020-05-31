@@ -88,10 +88,11 @@ extension Publisher {
 
     internal func handleServiceHook<R>(
         _ hook: ServiceHook, for request: R
-    ) -> Publishers.HandleEvents<Self> where R: Request, Output == (R.Result, URLRequest) {
+    ) -> Publishers.HandleEvents<Self>
+    where R: Request, Output == (HttpResponse<R.Result>, URLRequest) {
         return self.handleEvents(
             receiveOutput: { output in
-                hook.onSuccess(request, output.1, result: output.0)
+                hook.onSuccess(request, output.1, result: output.0.body)
             }, receiveCompletion: { completion in
                 if case .failure(let error) = completion {
                     hook.onFailure(error)

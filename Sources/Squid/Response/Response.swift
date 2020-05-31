@@ -26,18 +26,25 @@ where RequestType: Request, ServiceType: HttpService {
     public typealias Output = RequestType.Result
     public typealias Failure = ServiceType.RequestError
 
-    private let publisher: AnyPublisher<Output, Failure>
+    private let publisher: AnyPublisher<HttpResponse<RequestType.Result>, Failure>
     private let request: RequestType
 
     internal init<P>(publisher: P, request: RequestType)
-    where P: Publisher, P.Output == Output, P.Failure == Failure {
+    where P: Publisher, P.Output == HttpResponse<RequestType.Result>, P.Failure == Failure {
         self.publisher = publisher.shareReplayLatest()
         self.request = request
+    }
+
+    // MARK: Computed Properties
+    /// Returns a publisher for the response's header. It can be subscribed either to the header,
+    /// to the response object itself, or to both in order to send the request.
+    public var header: AnyPublisher<[String: String], ServiceType.RequestError> {
+        return self.publisher.map { $0.header }.eraseToAnyPublisher()
     }
 
     // MARK: Publisher
     public func receive<S>(subscriber: S)
     where S: Subscriber, Failure == S.Failure, Output == S.Input {
-        self.publisher.receive(subscriber: subscriber)
+        self.publisher.map { $0.body }.receive(subscriber: subscriber)
     }
 }

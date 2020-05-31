@@ -60,13 +60,15 @@ internal class NetworkScheduler {
             .setFailureType(to: Squid.Error.self)
         let fulfilled = urlRequest
             .flatMap { service.hook.fulfillPublisher(request, urlRequest: $0) }
+            .map { HttpResponse(body: $0, header: [:]) }
 
         // 3) Build request chain
         let response = request
             .retriedResponsePublisher(
                 service: service, session: session, retrier: retrier, subject: subject,
                 requestId: requestId
-            ).tryMap(request.decode)
+            )
+            .tryMap { response in try response.decode(using: request.decode) }
             .mapError(Squid.Error.ensure(_:))
             .combineLatest(urlRequest)
             .handleServiceHook(service.hook, for: request)
