@@ -25,6 +25,10 @@ public protocol HttpService {
     /// contain the scheme (e.g. "https://") as it might get overwritten unexpectedly by a request.
     var apiUrl: UrlConvertible { get }
 
+    /// Whether requests scheduled against this service use secure protocols (e.g. "https" for HTTP
+    /// requests, "wss" for WebSockets).
+    var usesSecureProtocol: Bool { get }
+
     /// A header that ought to be used by all requests issued against the API represented by this
     /// HTTP service. Most commonly, this header contains fields such as the API key or some form
     /// of Authorization. Request headers always overwrite header fields set by the HTTP service
@@ -61,6 +65,11 @@ public protocol HttpService {
 }
 
 extension HttpService {
+
+    /// By default, requests are secured.
+    public var usesSecureProtocol: Bool {
+        return true
+    }
 
     /// By default, the HTTP service does not set any headers.
     public var header: HttpHeader {

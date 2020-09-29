@@ -107,8 +107,9 @@ extension HttpRequest {
 
                     // 2) Modify request to carry all required data
                     do {
+                        let secure = request.usesSecureProtocol ?? service.usesSecureProtocol
                         httpRequest = try httpRequest
-                            .with(scheme: request.usesSecureProtocol ? "https" : "http")
+                            .with(scheme: secure ? "https" : "http")
                             .with(method: request.method)
                             .with(route: request.routes)
                             .with(query: request.query)
@@ -144,8 +145,9 @@ extension HttpRequest {
 
                     // 2) Modify request to carry all required data
                     do {
+                        let secure = request.usesSecureProtocol ?? service.usesSecureProtocol
                         httpRequest = try httpRequest
-                            .with(scheme: request.usesSecureProtocol ? "wss" : "ws")
+                            .with(scheme: secure ? "wss" : "ws")
                             .with(method: .get)
                             .with(route: request.routes)
                             .with(query: request.query)

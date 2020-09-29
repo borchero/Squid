@@ -14,8 +14,9 @@ public protocol NetworkRequest {
 
     // MARK: Protocol
     /// Whether the request makes use of the secure counterpart of the protocol (e.g. "https" for
-    /// HTTP requests, "wss" for WebSockets).
-    var usesSecureProtocol: Bool { get }
+    /// HTTP requests, "wss" for WebSockets). If this option is set, it overrides the option set on
+    /// the service it is scheduled against.
+    var usesSecureProtocol: Bool? { get }
 
     // MARK: URL Manipulation
     /// The routing paths of the request.
@@ -40,8 +41,8 @@ extension NetworkRequest {
 
     /// By default, this is set to `true`. Think twice before setting this to `false` and allowing
     /// insecure network requests.
-    public var usesSecureProtocol: Bool {
-        return true
+    public var usesSecureProtocol: Bool? {
+        return nil
     }
 
     /// By default, no routing paths are used.
