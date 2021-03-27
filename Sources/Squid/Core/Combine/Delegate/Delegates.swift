@@ -7,13 +7,13 @@
 
 import Foundation
 
-internal protocol HttpTaskSubscriptionDelegate: class {
+internal protocol HttpTaskSubscriptionDelegate: AnyObject {
 
     func receive(_ data: Data)
     func finalize(response: URLResponse?, error: Error?)
 }
 
-internal protocol WSTaskSubscriptionDelegate: class {
+internal protocol WSTaskSubscriptionDelegate: AnyObject {
 
     func close(with error: URLSessionWebSocketTask.CloseCode, reason: Data?)
 }

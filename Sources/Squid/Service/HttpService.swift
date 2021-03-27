@@ -20,7 +20,7 @@ public protocol HttpService {
     associatedtype RequestError: Error = Squid.Error
 
     // MARK: API Configuration
-    /// The URL of the API representes by this HTTP service (e.g. "api.example.com"). This is the
+    /// The URL of the API represented by this HTTP service (e.g. "api.example.com"). This is the
     /// only field that needs to be provided by a particular implementation. This url should not
     /// contain the scheme (e.g. "https://") as it might get overwritten unexpectedly by a request.
     var apiUrl: UrlConvertible { get }

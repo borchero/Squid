@@ -19,6 +19,10 @@ public protocol NetworkRequest {
     var usesSecureProtocol: Bool? { get }
 
     // MARK: URL Manipulation
+    /// The optional base URL of the API endpoint represented by this HTTP request (e.g. "api.example.com").
+    /// If this option is set, it overrides the `apiUrl` option set on the service it is scheduled against.
+    var url: UrlConvertible? { get }
+
     /// The routing paths of the request.
     var routes: HttpRoute { get }
 
@@ -42,6 +46,11 @@ extension NetworkRequest {
     /// By default, this is set to `true`. Think twice before setting this to `false` and allowing
     /// insecure network requests.
     public var usesSecureProtocol: Bool? {
+        return nil
+    }
+
+    /// By default, the apiUrl on the service is used.
+    public var url: UrlConvertible? {
         return nil
     }
 
