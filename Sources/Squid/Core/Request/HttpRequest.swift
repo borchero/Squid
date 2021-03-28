@@ -99,13 +99,16 @@ extension HttpRequest {
             .mapError(Squid.Error.ensure(_:))
             .flatMap { header -> Future<HttpRequest, Squid.Error> in
                 return .init { promise in
-                    // 1) Initialize request with destination URL
-                    guard var httpRequest = HttpRequest(url: service.apiUrl) else {
+                    // 1) Determine destination url
+                    let url = request.url ?? service.apiUrl
+
+                    // 2) Initialize request with destination URL
+                    guard var httpRequest = HttpRequest(url: url) else {
                         promise(.failure(.invalidUrl))
                         return
                     }
 
-                    // 2) Modify request to carry all required data
+                    // 3) Modify request to carry all required data
                     do {
                         let secure = request.usesSecureProtocol ?? service.usesSecureProtocol
                         httpRequest = try httpRequest
@@ -120,7 +123,7 @@ extension HttpRequest {
                         promise(.failure(.ensure(error)))
                     }
 
-                    // 3) Validate request
+                    // 4) Validate request
                     if let error = request.validate() {
                         promise(.failure(error))
                     }
@@ -137,13 +140,16 @@ extension HttpRequest {
             .mapError(Squid.Error.ensure(_:))
             .flatMap { header -> Future<HttpRequest, Squid.Error> in
                 return .init { promise in
-                    // 1) Initialize request with destination URL
-                    guard var httpRequest = HttpRequest(url: service.apiUrl) else {
+                    // 1) Determine destination url
+                    let url = request.url ?? service.apiUrl
+
+                    // 2) Initialize request with destination URL
+                    guard var httpRequest = HttpRequest(url: url) else {
                         promise(.failure(.invalidUrl))
                         return
                     }
 
-                    // 2) Modify request to carry all required data
+                    // 3) Modify request to carry all required data
                     do {
                         let secure = request.usesSecureProtocol ?? service.usesSecureProtocol
                         httpRequest = try httpRequest

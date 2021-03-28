@@ -57,7 +57,10 @@ class StubFactory {
     
     func usersPost() {
         let descriptor = stub(condition: { request -> Bool in
-            let data = request.ohhttpStubs_httpBody!
+            guard let data = request.ohhttpStubs_httpBody else {
+                return false
+            }
+            
             let json = try! JSONSerialization.jsonObject(
                 with: data, options: []
             ) as! [String: String]
