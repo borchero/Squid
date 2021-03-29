@@ -73,6 +73,7 @@
 		C9F2E25424155181007F2977 /* ServiceHook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2E25324155181007F2977 /* ServiceHook.swift */; };
 		C9F2E257241552C9007F2977 /* CachingServiceHook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2E256241552C9007F2977 /* CachingServiceHook.swift */; };
 		C9F2E2592415A321007F2977 /* NilServiceHook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2E2582415A321007F2977 /* NilServiceHook.swift */; };
+		E1C765B9260FEF4A00405872 /* HttpData+UrlEncoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C765B8260FEF4A00405872 /* HttpData+UrlEncoded.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +154,7 @@
 		C9F2E25324155181007F2977 /* ServiceHook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHook.swift; sourceTree = "<group>"; };
 		C9F2E256241552C9007F2977 /* CachingServiceHook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingServiceHook.swift; sourceTree = "<group>"; };
 		C9F2E2582415A321007F2977 /* NilServiceHook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilServiceHook.swift; sourceTree = "<group>"; };
+		E1C765B8260FEF4A00405872 /* HttpData+UrlEncoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HttpData+UrlEncoded.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +271,7 @@
 				C911D3EC23E7C3010065CD7D /* HttpData+Empty.swift */,
 				C911D3ED23E7C3010065CD7D /* HttpData+Image.swift */,
 				C911D3EF23E7C3010065CD7D /* HttpData+Json.swift */,
+				E1C765B8260FEF4A00405872 /* HttpData+UrlEncoded.swift */,
 			);
 			path = Body;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				C911D43D23E7C3010065CD7D /* Dictionary.swift in Sources */,
 				C911D44423E7C3010065CD7D /* AnyHttpService.swift in Sources */,
 				C911D43B23E7C3010065CD7D /* Concurrency.swift in Sources */,
+				E1C765B9260FEF4A00405872 /* HttpData+UrlEncoded.swift in Sources */,
 				C9F2E257241552C9007F2977 /* CachingServiceHook.swift in Sources */,
 				C911D44523E7C3010065CD7D /* HttpService.swift in Sources */,
 				C9F2E2592415A321007F2977 /* NilServiceHook.swift in Sources */,
