@@ -28,6 +28,7 @@ public struct AnyRequest<S: HttpService>: Request {
     // MARK: Properties
     private let service: S
 
+    public let url: UrlConvertible?
     public let routes: HttpRoute
 
     public let method: HttpMethod
@@ -56,6 +57,7 @@ public struct AnyRequest<S: HttpService>: Request {
                 query: HttpQuery = [:],
                 header: HttpHeader = [:],
                 body: HttpBody = HttpData.Empty(),
+                url: UrlConvertible? = nil,
                 acceptedStatusCodes: CountableClosedRange<Int> = 200...299,
                 priority: RequestPriority = .default,
                 service: S) {
@@ -65,6 +67,7 @@ public struct AnyRequest<S: HttpService>: Request {
         self.query = query
         self.header = header
         self.body = body
+        self.url = url
         self.acceptedStatusCodes = acceptedStatusCodes
         self.priority = priority
     }

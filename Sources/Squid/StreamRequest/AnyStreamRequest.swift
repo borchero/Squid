@@ -20,6 +20,7 @@ public struct AnyStreamRequest<ServiceType: HttpService>: StreamRequest {
     // MARK: Properties
     private let service: ServiceType
 
+    public let url: UrlConvertible?
     public let routes: HttpRoute
     public let query: HttpQuery
     public let priority: RequestPriority
@@ -34,11 +35,13 @@ public struct AnyStreamRequest<ServiceType: HttpService>: StreamRequest {
     /// - Parameter service: The service representing an API.
     public init(routes: HttpRoute,
                 query: HttpQuery = [:],
+                url: UrlConvertible? = nil,
                 priority: RequestPriority = .default,
                 service: ServiceType) {
         self.service = service
         self.routes = []
         self.query = query
+        self.url = url
         self.priority = priority
     }
 
