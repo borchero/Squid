@@ -17,6 +17,19 @@ struct UsersRequest: JsonRequest {
     }
 }
 
+struct NotCachableUsersRequest: JsonRequest {
+    
+    typealias Result = [UserContainer]
+    
+    var routes: HttpRoute {
+        return ["users"]
+    }
+    
+    var shouldCacheResult: Bool {
+        return false
+    }
+}
+
 struct AuthorizeRequest: Request {
     
     typealias Result = Void

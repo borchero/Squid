@@ -32,6 +32,11 @@ public protocol Request: NetworkRequest {
     /// `HttpData.Empty` is returned.
     var body: HttpBody { get }
 
+    /// The value that indicates should service cached this specific request. This property used by
+    /// `CachingServiceHook` by default, but you also able to consider this value in your implementation
+    /// of the caching service hook
+    var shouldCacheResult: Bool { get }
+    
     /// Prepares the URL request that will be sent. The function is passed the request as assembled
     /// based on all other properties. You may modify the request as you wish.
     ///
@@ -88,6 +93,11 @@ extension Request {
     /// By default, all 2xx status codes are accepted.
     public var acceptedStatusCodes: CountableClosedRange<Int> {
         return 200...299
+    }
+    
+    /// By default, all results are cached.
+    public var shouldCacheResult: Bool {
+        return true
     }
 
     // MARK: Scheduling Requests

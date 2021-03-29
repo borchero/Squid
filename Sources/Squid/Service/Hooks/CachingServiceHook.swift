@@ -30,6 +30,9 @@ public class CachingServiceHook: ServiceHook {
     public func onSchedule<R>(
         _ request: R, _ urlRequest: URLRequest
     ) -> R.Result? where R: Request {
+        guard request.shouldCacheResult else {
+            return nil
+        }
         guard request.method == .get else {
             return nil
         }
@@ -47,6 +50,9 @@ public class CachingServiceHook: ServiceHook {
     public func onSuccess<R>(
         _ request: R, _ urlRequest: URLRequest, result: R.Result
     ) where R: Request {
+        guard request.shouldCacheResult else {
+            return
+        }
         guard request.method == .get else {
             return
         }
