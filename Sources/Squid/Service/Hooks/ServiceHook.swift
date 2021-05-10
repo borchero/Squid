@@ -46,7 +46,7 @@ public protocol ServiceHook {
     /// the user.
     ///
     /// - Parameter error: The error that caused a request to fail.
-    func onFailure(_ error: Error)
+    func onFailure<R>(_ error: Error, _ urlRequest: R) where R: NetworkRequest
 }
 
 extension ServiceHook {
@@ -64,7 +64,7 @@ extension ServiceHook {
     }
 
     /// By default, no operation is performed.
-    public func onFailure(_ error: Error) {
+    public func onFailure<R>(_ error: Error, _ urlRequest: R)  where R: NetworkRequest {
         return
     }
 }
@@ -95,22 +95,22 @@ extension Publisher {
                 hook.onSuccess(request, output.1, result: output.0.body)
             }, receiveCompletion: { completion in
                 if case .failure(let error) = completion {
-                    hook.onFailure(error)
+                    hook.onFailure(error, request)
                 }
             })
     }
 
-    internal func handleFailureServiceHook<R, E>(
-        _ hook: ServiceHook
-    ) -> Publishers.HandleEvents<Self> where E: Error, Output == Result<R, E> {
+    internal func handleFailureServiceHook<R>(
+        _ hook: ServiceHook, for request: R
+    ) -> Publishers.HandleEvents<Self> where R:StreamRequest, Output == Result<R.Result, Squid.Error> {
         return self.handleEvents(
             receiveOutput: { output in
                 if case .failure(let error) = output {
-                    hook.onFailure(error)
+                    hook.onFailure(error, request)
                 }
             }, receiveCompletion: { completion in
                 if case .failure(let error) = completion {
-                    hook.onFailure(error)
+                    hook.onFailure(error, request)
                 }
             })
     }

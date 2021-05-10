@@ -100,7 +100,7 @@ internal class NetworkScheduler {
         let response = request
             .responsePublisher(
                 service: service, session: session, socket: socket, requestId: requestId
-            ).handleFailureServiceHook(service.hook)
+            )
             .tryMap { result -> Result<R.Result, Squid.Error> in
                 switch result {
                 case .success(let message):
@@ -109,6 +109,7 @@ internal class NetworkScheduler {
                     return .failure(error)
                 }
             }.mapError(Squid.Error.ensure(_:))
+            .handleFailureServiceHook(service.hook, for: request)
             .mapError(service.mapError(_:))
             .subscribe(on: queue)
 
