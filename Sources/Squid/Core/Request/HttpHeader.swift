@@ -60,6 +60,16 @@ extension HttpHeader: Hashable {
     }
 }
 
+extension HttpHeader: CustomStringConvertible {
+    public var description: String {
+        var headers: [String: String] = [:]
+        fields.forEach { (key: HttpHeader.Field, value: String) in
+            headers[key.name] = value
+        }
+        return headers.httpHeaderDescription ?? ""
+    }
+}
+
 extension HttpHeader: ExpressibleByDictionaryLiteral {
 
     public init(dictionaryLiteral elements: (Field, String)...) {

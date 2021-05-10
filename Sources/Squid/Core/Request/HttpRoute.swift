@@ -52,6 +52,12 @@ extension HttpRoute: Hashable {
     }
 }
 
+extension HttpRoute: CustomStringConvertible {
+    public var description: String {
+        paths.joined(separator: "/")
+    }
+}
+
 // MARK: Operators
 extension HttpRoute {
 

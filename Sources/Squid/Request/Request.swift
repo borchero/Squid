@@ -131,6 +131,17 @@ extension Request {
             zeroBasedPageIndex: zeroBasedPageIndex, decode: decode
         )
     }
+    
+    public func description<S>(with service: S) -> String where S: HttpService {
+        let urlString = "\(routes.description)\(query.description.isEmpty ? "" : "?")\(query.description)"
+        let headersString = [service.header.description,header.description].filter({$0.isEmpty == false}).joined(separator: "\n")
+        return """
+               - Method:   \(method.name)
+               - Route:    \(urlString)
+               - Headers:  \(headersString.indent(spaces: 12, skipLines: 1))
+               - Body:     \(body.description.indent(spaces: 12, skipLines: 1))
+               """
+    }
 }
 
 extension Request where Result == Data {

@@ -61,6 +61,19 @@ extension HttpQuery: ExpressibleByDictionaryLiteral {
     }
 }
 
+extension HttpQuery: CustomStringConvertible {
+    public var description: String {
+        parameters
+            .reduce([]) { (result: [String], tuple: (key: String, value: String)) -> [String] in
+                var res: [String] = []
+                res.append(contentsOf: result)
+                res.append("\(tuple.key)=\(tuple.value)")
+                return res
+            }
+            .joined(separator: "&")
+    }
+}
+
 extension HttpQuery: Equatable {
 
     public static func == (lhs: HttpQuery, rhs: HttpQuery) -> Bool {
