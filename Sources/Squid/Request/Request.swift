@@ -174,28 +174,13 @@ extension Request {
 /// working with a JSON API where the returned data is a JSON object. As a requirement, the
 /// request's result type must implement the `Decodable` protocol. The `decode(_:)` method is then
 /// synthesized automatically by using a `JSONDecoder` and decoding the raw data to the specified
-/// type. `decodeSnakeCase` can further be used to modify the behavior of the aforementioned
-/// decoder.
-public protocol JsonRequest: Request where Result: Decodable {
-
-    /// Defines whether the decoder decoding the raw data to the result type should consider
-    /// camel case in the Swift code as snake case in the JSON (i.e. `userID` would be parsed from
-    /// the field `user_id` if not specified explicity in the type to decode to). By default,
-    /// attributes are decoded using snake case attribute names.
-    var decodeSnakeCase: Bool { get }
-}
+/// type.
+public protocol JsonRequest: Request where Result: Decodable { }
 
 extension JsonRequest {
 
-    public var decodeSnakeCase: Bool {
-        return true
-    }
-
     public func decode(_ data: Data) throws -> Result {
-        let decoder = JSONDecoder()
-        if self.decodeSnakeCase {
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-        }
+        let decoder = SquidCoders.shared.decoder
         return try decoder.decode(Result.self, from: data)
     }
 }
@@ -226,10 +211,7 @@ extension JsonRequest {
         return Paginator(
             base: self, service: service, chunk: chunk, zeroBasedPageIndex: zeroBasedPageIndex
         ) { data, _ -> P in
-            let decoder = JSONDecoder()
-            if self.decodeSnakeCase {
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-            }
+            let decoder = SquidCoders.shared.decoder
             return try decoder.decode(P.self, from: data)
         }
     }

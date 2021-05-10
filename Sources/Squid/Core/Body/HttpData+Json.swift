@@ -25,7 +25,7 @@ extension HttpData {
         /// - Parameter encoder: The JSON encoder to use for encoding. When set to `nil`, a JSON
         ///                      encoder is used where camel case attribute names are converted into
         ///                      snake case.
-        public init(_ value: T, encoder: JSONEncoder? = nil) {
+        public init(_ value: T, encoder: JSONEncoder? = SquidCoders.shared.encoder) {
             self.value = value
             self.encoder = encoder ?? snakeCaseJSONEncoder()
         }
