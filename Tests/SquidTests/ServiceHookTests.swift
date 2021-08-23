@@ -48,4 +48,37 @@ final class ServiceHookTests: XCTestCase {
         wait(for: [exp2], timeout: 0.1)
         c2.cancel()
     }
+    
+    func testCachingHookIngnoreRequest() {
+        
+        // Given
+        StubFactory.shared.usersGet()
+        
+        let api = MyCachingApi()
+        let request = NotCachableUsersRequest()
+        
+        let exp1 = XCTestExpectation()
+        let exp2 = XCTestExpectation()
+
+        // When
+        let c1 = request.schedule(with: api).ignoreError()
+            .sink { _ in
+                exp1.fulfill()
+            }
+
+        wait(for: [exp1], timeout: 0.1)
+        c1.cancel()
+
+        HTTPStubs.removeAllStubs()
+
+        let c2 = request.schedule(with: api).sink { completion in
+            if case .failure = completion {
+                exp2.fulfill()
+            }
+        } receiveValue: { _ in }
+        
+        // Then
+        wait(for: [exp2], timeout: 1)
+        c2.cancel()
+    }
 }
