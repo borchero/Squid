@@ -16,8 +16,8 @@ where R.Result == D.DataType {
 
     public typealias PaginatedRequest = ChunkedPaginationRequest<R, D>
 
-    let chunk: Int
-    let zeroBasedPageIndex: Bool
+    public let chunk: Int
+    public let zeroBasedPageIndex: Bool
 
     public func pageRequest(
         from baseRequest: R,

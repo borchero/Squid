@@ -16,8 +16,6 @@ where R.Result == D.DataType {
 
     public typealias PaginatedRequest = LinkedPaginationRequest<R, D>
 
-    let chunk: Int
-
     public func pageRequest(
         from baseRequest: R,
         pointer: PaginationPointer,
@@ -33,10 +31,6 @@ where R.Result == D.DataType {
 public protocol LinkedPaginatedData: PaginatedData {
 
     // MARK: Page Metadata
-
-    /// The requested number of items on the page. Might be larger than the actual number of
-    /// elements.
-    var chunk: Int { get }
 
     var previousPageUrl: URL? { get }
 
