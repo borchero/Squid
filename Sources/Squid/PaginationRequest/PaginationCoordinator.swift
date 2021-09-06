@@ -27,7 +27,6 @@ where PaginatedRequest.Result == PaginationType, BaseRequest.Result == Paginated
 /// The properties of the protocol can be leveraged to enable handling paginated requests
 /// automatically by observing the provided properties.
 public protocol PaginatedData {
-    // BaseRequest.Result == PaginatedRequest.Result.DataType
 
     // MARK: Data
     /// The actual type of the requested data (usually provided as a field of the top-level JSON).
