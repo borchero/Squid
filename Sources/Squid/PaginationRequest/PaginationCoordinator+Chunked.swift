@@ -9,7 +9,7 @@ import Foundation
 
 public struct ChunkedPaginationCoordinator<R: Request, D: ChunkedPaginatedData>: PaginationCoordinator
 where R.Result == D.DataType {
-
+    
     public typealias BaseRequest = R
 
     public typealias PaginationType = D
@@ -19,6 +19,11 @@ where R.Result == D.DataType {
     public let chunk: Int
     public let zeroBasedPageIndex: Bool
 
+    public init(chunk: Int, zeroBasedPageIndex: Bool) {
+        self.chunk = chunk
+        self.zeroBasedPageIndex = zeroBasedPageIndex
+    }
+    
     public func pageRequest(
         from baseRequest: R,
         pointer: PaginationPointer,

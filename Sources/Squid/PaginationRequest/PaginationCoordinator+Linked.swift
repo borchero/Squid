@@ -15,6 +15,8 @@ where R.Result == D.DataType {
     public typealias PaginationType = D
 
     public typealias PaginatedRequest = LinkedPaginationRequest<R, D>
+    
+    public init() {}
 
     public func pageRequest(
         from baseRequest: R,
