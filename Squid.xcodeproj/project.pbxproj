@@ -30,8 +30,7 @@
 		C911D42C23E7C3010065CD7D /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3F823E7C3010065CD7D /* Stream.swift */; };
 		C911D42D23E7C3010065CD7D /* Paginator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3F923E7C3010065CD7D /* Paginator.swift */; };
 		C911D42E23E7C3010065CD7D /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3FA23E7C3010065CD7D /* Response.swift */; };
-		C911D42F23E7C3010065CD7D /* PaginatedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3FC23E7C3010065CD7D /* PaginatedData.swift */; };
-		C911D43023E7C3010065CD7D /* PaginationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3FD23E7C3010065CD7D /* PaginationRequest.swift */; };
+		C911D42F23E7C3010065CD7D /* PaginationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3FC23E7C3010065CD7D /* PaginationCoordinator.swift */; };
 		C911D43123E7C3010065CD7D /* NetworkScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D3FF23E7C3010065CD7D /* NetworkScheduler.swift */; };
 		C911D43223E7C3010065CD7D /* AnyRetrierFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D40123E7C3010065CD7D /* AnyRetrierFactory.swift */; };
 		C911D43423E7C3010065CD7D /* Retrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911D40423E7C3010065CD7D /* Retrier.swift */; };
@@ -73,6 +72,8 @@
 		C9F2E25424155181007F2977 /* ServiceHook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2E25324155181007F2977 /* ServiceHook.swift */; };
 		C9F2E257241552C9007F2977 /* CachingServiceHook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2E256241552C9007F2977 /* CachingServiceHook.swift */; };
 		C9F2E2592415A321007F2977 /* NilServiceHook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2E2582415A321007F2977 /* NilServiceHook.swift */; };
+		E11F237426E6060400AF207E /* PaginationCoordinator+Linked.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11F237326E6060400AF207E /* PaginationCoordinator+Linked.swift */; };
+		E12A3C8926E3CFA100943BBD /* PaginationCoordinator+Chunked.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12A3C8826E3CFA100943BBD /* PaginationCoordinator+Chunked.swift */; };
 		E1C765B9260FEF4A00405872 /* HttpData+UrlEncoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C765B8260FEF4A00405872 /* HttpData+UrlEncoded.swift */; };
 /* End PBXBuildFile section */
 
@@ -111,8 +112,7 @@
 		C911D3F823E7C3010065CD7D /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
 		C911D3F923E7C3010065CD7D /* Paginator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paginator.swift; sourceTree = "<group>"; };
 		C911D3FA23E7C3010065CD7D /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
-		C911D3FC23E7C3010065CD7D /* PaginatedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedData.swift; sourceTree = "<group>"; };
-		C911D3FD23E7C3010065CD7D /* PaginationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationRequest.swift; sourceTree = "<group>"; };
+		C911D3FC23E7C3010065CD7D /* PaginationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationCoordinator.swift; sourceTree = "<group>"; };
 		C911D3FF23E7C3010065CD7D /* NetworkScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkScheduler.swift; sourceTree = "<group>"; };
 		C911D40123E7C3010065CD7D /* AnyRetrierFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyRetrierFactory.swift; sourceTree = "<group>"; };
 		C911D40423E7C3010065CD7D /* Retrier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Retrier.swift; sourceTree = "<group>"; };
@@ -154,6 +154,8 @@
 		C9F2E25324155181007F2977 /* ServiceHook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHook.swift; sourceTree = "<group>"; };
 		C9F2E256241552C9007F2977 /* CachingServiceHook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingServiceHook.swift; sourceTree = "<group>"; };
 		C9F2E2582415A321007F2977 /* NilServiceHook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilServiceHook.swift; sourceTree = "<group>"; };
+		E11F237326E6060400AF207E /* PaginationCoordinator+Linked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaginationCoordinator+Linked.swift"; sourceTree = "<group>"; };
+		E12A3C8826E3CFA100943BBD /* PaginationCoordinator+Chunked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaginationCoordinator+Chunked.swift"; sourceTree = "<group>"; };
 		E1C765B8260FEF4A00405872 /* HttpData+UrlEncoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HttpData+UrlEncoded.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -302,8 +304,9 @@
 		C911D3FB23E7C3010065CD7D /* PaginationRequest */ = {
 			isa = PBXGroup;
 			children = (
-				C911D3FC23E7C3010065CD7D /* PaginatedData.swift */,
-				C911D3FD23E7C3010065CD7D /* PaginationRequest.swift */,
+				C911D3FC23E7C3010065CD7D /* PaginationCoordinator.swift */,
+				E12A3C8826E3CFA100943BBD /* PaginationCoordinator+Chunked.swift */,
+				E11F237326E6060400AF207E /* PaginationCoordinator+Linked.swift */,
 			);
 			path = PaginationRequest;
 			sourceTree = "<group>";
@@ -613,12 +616,14 @@
 				C911D42E23E7C3010065CD7D /* Response.swift in Sources */,
 				C911D41F23E7C3010065CD7D /* Delegates.swift in Sources */,
 				C911D44323E7C3010065CD7D /* NetworkRequest.swift in Sources */,
+				E12A3C8926E3CFA100943BBD /* PaginationCoordinator+Chunked.swift in Sources */,
 				C911D43423E7C3010065CD7D /* Retrier.swift in Sources */,
 				C911D41B23E7C3010065CD7D /* Squid.swift in Sources */,
 				C911D42A23E7C3010065CD7D /* HttpHeader.swift in Sources */,
 				C911D43D23E7C3010065CD7D /* Dictionary.swift in Sources */,
 				C911D44423E7C3010065CD7D /* AnyHttpService.swift in Sources */,
 				C911D43B23E7C3010065CD7D /* Concurrency.swift in Sources */,
+				E11F237426E6060400AF207E /* PaginationCoordinator+Linked.swift in Sources */,
 				E1C765B9260FEF4A00405872 /* HttpData+UrlEncoded.swift in Sources */,
 				C9F2E257241552C9007F2977 /* CachingServiceHook.swift in Sources */,
 				C911D44523E7C3010065CD7D /* HttpService.swift in Sources */,
@@ -630,12 +635,11 @@
 				C911D42723E7C3010065CD7D /* HttpRequest.swift in Sources */,
 				C911D42623E7C3010065CD7D /* HttpRoute.swift in Sources */,
 				C911D42923E7C3010065CD7D /* HttpMethod.swift in Sources */,
-				C911D43023E7C3010065CD7D /* PaginationRequest.swift in Sources */,
 				C911D43823E7C3010065CD7D /* StreamRequest.swift in Sources */,
 				C911D43623E7C3010065CD7D /* BackoffRetrier.swift in Sources */,
 				C911D42523E7C3010065CD7D /* HttpData+Json.swift in Sources */,
 				C911D43A23E7C3010065CD7D /* Replay.swift in Sources */,
-				C911D42F23E7C3010065CD7D /* PaginatedData.swift in Sources */,
+				C911D42F23E7C3010065CD7D /* PaginationCoordinator.swift in Sources */,
 				C911D42023E7C3010065CD7D /* HttpTaskPublisher.swift in Sources */,
 				C911D44223E7C3010065CD7D /* AnyRequest.swift in Sources */,
 				C911D41D23E7C3010065CD7D /* WSTaskPublisher.swift in Sources */,
@@ -813,7 +817,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 7BEHQZ5DW9;
+				DEVELOPMENT_TEAM = 93M5J98VLY;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -837,7 +841,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 7BEHQZ5DW9;
+				DEVELOPMENT_TEAM = 93M5J98VLY;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

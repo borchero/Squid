@@ -116,20 +116,24 @@ extension Request {
     ///                    of returned elements is only smaller than the given chunk if the given
     ///                    page index is the index of the last page and the number of elements is
     ///                    not divisible by the chunk.
-    /// - Parameter zeroBasedPageIndex: Whether the API endpoint that the request is scheduled
-    ///                                 against indexes the first page with 0. By default, the first
-    ///                                 page is indexed by 1.
-    /// - Parameter decode: A closure that is used to decode the received data to the defined type
-    ///                     of `PaginatedData`. The closure receives both the body and the request
-    ///                     as the original `Request.decode(_:)` method might want to be used.
-    public func schedule<P, S>(
-        forPaginationWith service: S, chunk: Int, zeroBasedPageIndex: Bool = false,
-        decode: @escaping (Data, Self) throws -> P
-    ) -> Paginator<Self, P, S> where P: PaginatedData, P.DataType == Result, S: HttpService {
-        return Paginator(
-            base: self, service: service, chunk: chunk,
-            zeroBasedPageIndex: zeroBasedPageIndex, decode: decode
+    public func schedule<C, S>(
+        forPaginationWith service: S,
+        coordinatedBy coordinator: C
+    ) -> Paginator<C, S>
+    where C: PaginationCoordinator, C.BaseRequest == Self, C.PaginationType.DataType == Result, S: HttpService {
+        return Paginator(base: self, coordinator: coordinator, service: service)
+    }
+
+    public func schedule<D, S>(
+        forPaginationWith service: S,
+        chunk: Int, zeroBasedPageIndex: Bool = false,
+        paginatedType: D.Type = D.self
+    ) -> Paginator<ChunkedPaginationCoordinator<Self, D>, S> where D: ChunkedPaginatedData {
+        let coordinator = ChunkedPaginationCoordinator<Self, D>(
+            chunk: chunk,
+            zeroBasedPageIndex: zeroBasedPageIndex
         )
+        return Paginator(base: self, coordinator: coordinator, service: service)
     }
 }
 
@@ -199,41 +203,31 @@ extension JsonRequest {
         return try decoder.decode(Result.self, from: data)
     }
 }
-
-extension JsonRequest {
-
-    /// This method is very similar to the method
-    /// `Request.schedule(forPaginationWith:chunk:zeroBasedPageIndex:decode:)`, however, the user
-    /// does not have to explicitly define a `decode` function whenever both the actual result and
-    /// the type of `PaginatedData` to be used conform to the `Decodable` protocol. The type of the
-    /// paginated data is tried to be inferred automatically, but might need to be given explicitly
-    /// in some circumstances.
-    ///
-    /// - Parameter service: The service representing the API against which to schedule paginated
-    ///                      requests.
-    /// - Parameter chunk: The (maximum) number of elements that are requested per page. The number
-    ///                    of returned elements is only smaller than the given chunk if the given
-    ///                    page index is the index of the last page and the number of elements is
-    ///                    not divisible by the chunk.
-    /// - Parameter zeroBasedPageIndex: Whether the API endpoint that the request is scheduled
-    ///                                 against indexes the first page with 0. By default, the first
-    ///                                 page is indexed by 1.
-    /// - Parameter paginatedType: The paginated data type to which to decode a response.
-    public func schedule<P, S>(forPaginationWith service: S, chunk: Int,
-                               zeroBasedPageIndex: Bool = false,
-                               paginatedType: P.Type = P.self) -> Paginator<Self, P, S>
-    where P: PaginatedData, P.DataType == Result, P: Decodable, S: HttpService {
-        return Paginator(
-            base: self, service: service, chunk: chunk, zeroBasedPageIndex: zeroBasedPageIndex
-        ) { data, _ -> P in
-            let decoder = JSONDecoder()
-            if self.decodeSnakeCase {
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-            }
-            return try decoder.decode(P.self, from: data)
-        }
-    }
-}
+//
+//extension JsonRequest {
+//
+//    /// This method is very similar to the method
+//    /// `Request.schedule(forPaginationWith:chunk:zeroBasedPageIndex:decode:)`, however, the user
+//    /// does not have to explicitly define a `decode` function whenever both the actual result and
+//    /// the type of `PaginatedData` to be used conform to the `Decodable` protocol. The type of the
+//    /// paginated data is tried to be inferred automatically, but might need to be given explicitly
+//    /// in some circumstances.
+//    ///
+//    /// - Parameter service: The service representing the API against which to schedule paginated
+//    ///                      requests.
+//    /// - Parameter chunk: The (maximum) number of elements that are requested per page. The number
+//    ///                    of returned elements is only smaller than the given chunk if the given
+//    ///                    page index is the index of the last page and the number of elements is
+//    ///                    not divisible by the chunk.
+//    /// - Parameter zeroBasedPageIndex: Whether the API endpoint that the request is scheduled
+//    ///                                 against indexes the first page with 0. By default, the first
+//    ///                                 page is indexed by 1.
+//    /// - Parameter paginatedType: The paginated data type to which to decode a response.
+//    public func schedule<C, S>(forPaginationWith service: S, paginatedType: P.Type = P.self) -> Paginator<Self, P, S>
+//    where C: PaginationCoordinator, C.DataType.DataType == Result, C.DataType: Decodable, S: HttpService {
+//        return Paginator(base: self, service: service)
+//    }
+//}
 
 // MARK: Internal
 extension Request {

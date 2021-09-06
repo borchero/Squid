@@ -8,6 +8,11 @@
 import Foundation
 import Combine
 
+public enum PaginationPointer {
+    case previous
+    case next
+}
+
 /// A paginator is returned whenever a request is scheduled for pagination (see
 /// `Request.schedule(forPaginationWith:chunk:zeroBasedPageIndex:decode:)` or
 /// `JsonRequest.schedule(forPaginationWith:chunk:zeroBasedPageIndex:paginatedType:)`).
@@ -15,24 +20,22 @@ import Combine
 /// In contrast to the `Response` publisher, this instance is no publisher itself. The
 /// `Paginator.connect(with:)` needs to be called which yields a publisher that emits the
 /// responses for successive pagination requests. See the method's documentation for details.
-public class Paginator<BaseRequestType, PaginationType, ServiceType>
-where BaseRequestType: Request, PaginationType: PaginatedData, ServiceType: HttpService,
-    PaginationType.DataType == BaseRequestType.Result {
+public class Paginator<CoordinatorType, ServiceType>
+where CoordinatorType: PaginationCoordinator, ServiceType: HttpService {
 
     // MARK: Types
-    private let base: BaseRequestType
+    private let base: CoordinatorType.BaseRequest
     private let service: ServiceType
-    private let chunk: Int
-    private let zeroBasedPageIndex: Bool
-    private let _decode: (Data, BaseRequestType) throws -> PaginationType
+    private let coordinator: CoordinatorType
 
-    internal init(base: BaseRequestType, service: ServiceType, chunk: Int, zeroBasedPageIndex: Bool,
-                  decode: @escaping (Data, BaseRequestType) throws -> PaginationType) {
+    internal init(
+        base: CoordinatorType.BaseRequest,
+        coordinator: CoordinatorType,
+        service: ServiceType
+    ) {
         self.base = base
+        self.coordinator = coordinator
         self.service = service
-        self.chunk = chunk
-        self.zeroBasedPageIndex = zeroBasedPageIndex
-        self._decode = decode
     }
 
     // MARK: Instance Methods
@@ -57,54 +60,50 @@ where BaseRequestType: Request, PaginationType: PaginatedData, ServiceType: Http
     /// - Parameter ticks: The publisher that indicates the need for requesting the next page.
     public func connect<P>(
         with ticks: P
-    ) -> AnyPublisher<BaseRequestType.Result, ServiceType.RequestError>
+    ) -> AnyPublisher<CoordinatorType.BaseRequest.Result, ServiceType.RequestError>
     where P: Publisher, P.Failure == Never {
         let conduit = PaginatorConduit(
-            base: self.base, service: self.service, chunk: self.chunk,
-            zeroBasedPageIndex: self.zeroBasedPageIndex, decode: self._decode
+            base: self.base,
+            coordinator: self.coordinator,
+            service: self.service
         )
+
         return ticks
             .map { _ in () }
             .merge(with: Just(()))
             .setFailureType(to: ServiceType.RequestError.self)
             .filter { _ in conduit.guardState() }
-            .flatMap { _ in conduit.schedule() }
+            .flatMap { _ in conduit.schedule(pointer: .next) }
             .extractData()
             .share()
             .eraseToAnyPublisher()
     }
 }
 
-private class PaginatorConduit<BaseRequestType, PaginationType, ServiceType>
-where BaseRequestType: Request, PaginationType: PaginatedData, ServiceType: HttpService,
-    PaginationType.DataType == BaseRequestType.Result {
+private class PaginatorConduit<CoordinatorType, ServiceType>
+where CoordinatorType: PaginationCoordinator, ServiceType: HttpService {
 
     private enum State {
-
         case waiting
         case running
         case failed
         case finishedAll
     }
 
-    typealias ScheduleType = Publishers.HandleEvents<
-        Response<PaginationRequest<BaseRequestType, PaginationType>, ServiceType>>
+    typealias ScheduleType = Publishers.HandleEvents<Response<CoordinatorType.PaginatedRequest, ServiceType>>
 
-    private let base: BaseRequestType
+    private let base: CoordinatorType.BaseRequest
+    private let coordinator: CoordinatorType
     private let service: ServiceType
-    private let chunk: Int
-    private let _decode: (Data, BaseRequestType) throws -> PaginationType
 
-    private var currentPage: Int
     private var requestState = Locked<State>(.waiting)
 
-    init(base: BaseRequestType, service: ServiceType, chunk: Int, zeroBasedPageIndex: Bool,
-         decode: @escaping (Data, BaseRequestType) throws -> PaginationType) {
+    private var previousData: CoordinatorType.PaginationType?
+
+    init(base: CoordinatorType.BaseRequest, coordinator: CoordinatorType, service: ServiceType) {
         self.base = base
+        self.coordinator = coordinator
         self.service = service
-        self.chunk = chunk
-        self.currentPage = zeroBasedPageIndex ? 0 : 1
-        self._decode = decode
     }
 
     func guardState() -> Bool {
@@ -117,13 +116,10 @@ where BaseRequestType: Request, PaginationType: PaginatedData, ServiceType: Http
         }
     }
 
-    func advancePage(_ data: PaginationType) {
-        self.currentPage += 1
-        if data.isLastPage {
-            self.requestState.value = .finishedAll
-        } else {
-            self.requestState.value = .waiting
-        }
+    func handlePage(_ data: CoordinatorType.PaginationType) {
+        self.previousData = data
+
+        self.requestState.value = data.isLastPage ? .finishedAll : .waiting
     }
 
     func handleCompletion(_ completion: Subscribers.Completion<ServiceType.RequestError>) {
@@ -135,11 +131,15 @@ where BaseRequestType: Request, PaginationType: PaginatedData, ServiceType: Http
         }
     }
 
-    func schedule() -> ScheduleType {
-        let request = PaginationRequest(base: self.base, page: self.currentPage,
-                                        chunk: self.chunk, decode: self._decode)
+    func schedule(pointer: PaginationPointer) -> ScheduleType {
+        let request = coordinator.pageRequest(
+            from: self.base,
+            pointer: pointer,
+            previousData: self.previousData
+        )
+
         return request.schedule(with: self.service)
-            .handleEvents(receiveOutput: self.advancePage(_:),
+            .handleEvents(receiveOutput: self.handlePage(_:),
                           receiveCompletion: self.handleCompletion(_:))
     }
 }
