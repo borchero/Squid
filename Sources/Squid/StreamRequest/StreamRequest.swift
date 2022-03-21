@@ -122,38 +122,18 @@ extension StreamRequest where Result == String {
 /// messages are always encoded to `Data` for a more efficient transmission. Messages received can
 /// be either `String` or `Data`: in both cases, they are decoded equally (note that `Data` messages
 /// might be more efficient.
-public protocol JsonStreamRequest: StreamRequest where Message: Encodable, Result: Decodable {
-
-    /// Defines whether the encoder and decoder camel case in the Swift code as snake case in the
-    /// JSON (i.e. `userID` would be encoded as/decoded from the field `user_id` if not specified
-    /// explicity in the type to decode to). By default, attributes are encoded/decoded using snake
-    /// case attribute names.
-    var decodeSnakeCase: Bool { get }
-}
-
-extension JsonStreamRequest {
-
-    public var decodeSnakeCase: Bool {
-        return true
-    }
-}
+public protocol JsonStreamRequest: StreamRequest where Message: Encodable, Result: Decodable {}
 
 extension JsonStreamRequest {
 
     public func encode(_ message: Message) throws -> URLSessionWebSocketTask.Message {
-        let encoder = JSONEncoder()
-        if self.decodeSnakeCase {
-            encoder.keyEncodingStrategy = .convertToSnakeCase
-        }
+        let encoder = SquidCoders.shared.encoder
 
         return .data(try encoder.encode(message))
     }
 
     public func decode(_ message: URLSessionWebSocketTask.Message) throws -> Result {
-        let decoder = JSONDecoder()
-        if self.decodeSnakeCase {
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-        }
+        let decoder = SquidCoders.shared.decoder
 
         switch message {
         case .string(let string):

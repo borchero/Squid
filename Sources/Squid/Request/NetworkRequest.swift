@@ -7,10 +7,14 @@
 
 import Foundation
 
+public protocol RequestStringConvertible {
+    func description<S>(with service: S) -> String where S: HttpService
+}
+
 /// The network request is a protocol that serves as a base protocol for requests on remote servers.
 /// The protocol is mainly used as a common base for `Request` and `StreamRequest`. You should
 /// never directly use this protocol as it hardly provides any functionality.
-public protocol NetworkRequest {
+public protocol NetworkRequest: RequestStringConvertible {
 
     // MARK: Protocol
     /// Whether the request makes use of the secure counterpart of the protocol (e.g. "https" for
@@ -78,4 +82,14 @@ extension NetworkRequest {
     public var timeout: TimeInterval {
         return TimeInterval.infinity
     }
+    
+    public func description<S>(with service: S) -> String where S: HttpService {
+        let urlString = "\(routes.description)\(query.description.isEmpty ? "" : "?")\(query.description)"
+        let headersString = [service.header.description,header.description].filter({$0.isEmpty == false}).joined(separator: "\n")
+        return """
+               - Route:    \(urlString)
+               - Headers:  \(headersString.indent(spaces: 12, skipLines: 1))
+               """
+    }
 }
+
